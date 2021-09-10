@@ -1,10 +1,14 @@
 import "./App.css";
+import { BrowserRouter, Route } from "react-router-dom";
+import HomePage from "./components/homepage/Homepage";
+// import Header from "./components/header/Header";
 
 function App() {
   return (
     <div className="main-container bg-titanium">
-      <h1>Sigma Finance</h1>
-      <p>Teste</p>
+      <BrowserRouter>
+        <Route exact path="/" component={HomePage} />
+      </BrowserRouter>
     </div>
   );
 }
