@@ -1,7 +1,10 @@
 * {
   margin: 0;
 }
+
 .main-container {
+  max-width: 100%;
+  max-height: 100%;
   width: 100vw;
   height: 100vh;
 }
@@ -19,3 +22,10 @@
     #283048
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+/* Azul da logo */
+/* rgb(40, 48, 72) */
+
+/* Cinzas */
+/* rgb(107, 107, 108) */
+/* rgb(72, 72, 72) */

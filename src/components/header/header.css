@@ -1,0 +1,29 @@
+#header-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 8vh;
+  background-color: black;
+  color: white;
+  padding: 0 1rem;
+  border-bottom: 2px solid white;
+}
+
+#logoImg {
+  width: 30px;
+  margin-right: 1rem;
+}
+
+#logo-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  letter-spacing: 0.1rem;
+  font-size: 0.8rem;
+}
+
+.no-link-decoration {
+  text-decoration: none;
+  color: white;
+}
