@@ -3,10 +3,9 @@ import axios from "axios";
 
 import TextInput from "../forms/TextInput";
 
-class SignUp extends React.Component {
+class LoginForm extends React.Component {
   state = {
     name: "",
-    // id: "",
   };
 
   handleChange = (event) => {
@@ -31,7 +30,7 @@ class SignUp extends React.Component {
           "user.name vale:",
           user.name
         );
-        if (user.name === this.state.name) {
+        if (user.name.toLowerCase() === this.state.name.toLowerCase()) {
           console.log("entrou no if");
           existUser = true;
         }
@@ -41,24 +40,20 @@ class SignUp extends React.Component {
     } catch (err) {
       console.error(err);
     }
-    // In case where the user doesn´t exist, post it to the API
-    if (!existUser) {
-      try {
-        const response = await axios.post(
-          "https://ironrest.herokuapp.com/sigmaFinanceUsers",
-          this.state
-        );
-        console.log(response);
-      } catch (err) {
-        console.error(err);
-      }
-      // In case where the user do exist, alert the screen
+    // In case where the user exist, enter the APP into the wallet
+    if (existUser) {
+      this.props.history.push(`/wallet/${existUser}`);
+      // In case where the user doesn't exist, alert the screen and prevent login
     } else {
-      alert("This username is taken. Try a new one");
+      alert(
+        "This username doesn't exist. Don't you remember you own username?"
+      );
+      this.setState({ name: "" });
     }
   };
 
   render() {
+    console.log(this.state.name);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -76,7 +71,7 @@ class SignUp extends React.Component {
             </div>
           </div>
           <div>
-            <button type="submit">Submit</button>
+            <button type="submit">Login</button>
           </div>
         </form>
       </div>
@@ -84,4 +79,4 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+export default LoginForm;

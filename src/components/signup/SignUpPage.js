@@ -2,18 +2,19 @@ import React from "react";
 
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-// import SignUp from "../signup/SignUp";
+import SignUpForm from "./SignUpForm";
 
-function HomePage() {
+function SignUpPage() {
   return (
     <div>
       <Header />
       <div className="center-content">
-        <h1>Welcome to Sigma</h1>
+        <h2>New Here? Please sign up below</h2>
+        <SignUpForm />
       </div>
       <Footer />
     </div>
   );
 }
 
-export default HomePage;
+export default SignUpPage;
