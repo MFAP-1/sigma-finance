@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 .main-container {
@@ -21,6 +22,10 @@
     #859398,
     #283048
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.center-content {
+  text-align: center;
 }
 
 /* Azul da logo */

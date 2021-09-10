@@ -14,7 +14,15 @@ function Header() {
           <h1>Sigma Finance</h1>
         </div>
       </Link>
-      <nav>Link 1 Link 2</nav>
+      <nav>
+        <Link to="/login" className="no-link-decoration">
+          Login
+        </Link>
+        <span> </span>
+        <Link to="/signup" className="no-link-decoration">
+          SignUp
+        </Link>
+      </nav>
     </div>
   );
 }
