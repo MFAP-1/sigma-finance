@@ -20,29 +20,19 @@ class LoginForm extends React.Component {
       const response = await axios.get(
         "https://ironrest.herokuapp.com/sigmaFinanceUsers"
       );
-      console.log("objeto recebido do axios", response.data);
       response.data.map((user) => {
-        console.log(
-          "user:",
-          user,
-          "this name é:",
-          this.state.name,
-          "user.name vale:",
-          user.name
-        );
         if (user.name.toLowerCase() === this.state.name.toLowerCase()) {
           console.log("entrou no if");
           existUser = true;
         }
         return user;
       });
-      console.log("existingUser", existUser);
     } catch (err) {
       console.error(err);
     }
     // In case where the user exist, enter the APP into the wallet
     if (existUser) {
-      this.props.history.push(`/wallet/${existUser}`);
+      this.props.history.push(`/wallet/${this.state.name}`);
       // In case where the user doesn't exist, alert the screen and prevent login
     } else {
       alert(

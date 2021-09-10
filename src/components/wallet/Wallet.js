@@ -7,11 +7,11 @@ import Footer from "../footer/Footer";
 
 class Wallet extends React.Component {
   state = {
-    username: "xx",
+    username: "",
   };
 
   componentDidMount = () => {
-    // this.setState({ username: this.props.match.params.userName });
+    this.setState({ username: this.props.match.params.userName });
   };
 
   render() {

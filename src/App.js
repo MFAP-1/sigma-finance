@@ -12,7 +12,7 @@ function App() {
     <div className="main-container bg-titanium">
       <BrowserRouter>
         <Route exact path="/" component={HomePage} />
-        <Route path="/wallet/:userId" component={Wallet} />
+        <Route path="/wallet/:userName" component={Wallet} />
         <Route path="/signup" component={SignUpPage} />
         <Route path="/login" component={LoginPage} />
       </BrowserRouter>

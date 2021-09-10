@@ -4,13 +4,13 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import LoginForm from "./LoginForm";
 
-function LoginPage() {
+function LoginPage(props) {
   return (
     <div>
       <Header />
       <div className="center-content">
         <h2>To login, please enter your username:</h2>
-        <LoginForm />
+        <LoginForm history={props.history} />
       </div>
       <Footer />
     </div>
