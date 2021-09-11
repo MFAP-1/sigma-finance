@@ -2,14 +2,19 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 
+// Fixed imports
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 import HomePage from "./components/homepage/Homepage";
+//
+import InvestmentListPage from "./components/InvestmentList/InvestmentListPage";
+// Wallet imports
 import Wallet from "./components/wallet/Wallet";
+import AddAsset from "./components/wallet/AddAsset";
+// Authentication imports
 import SignUpPage from "./components/signup/SignUpPage";
 import LoginPage from "./components/login/LoginPage";
-import InvestmentListPage from "./components/InvestmentList/InvestmentListPage";
-import Header from "./components/header/Header";
 import Logout from "./components/logout/Logout";
-import Footer from "./components/footer/Footer";
 
 class App extends React.Component {
   state = {
@@ -30,12 +35,22 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/investment-list" component={InvestmentListPage} />
 
+          {/* Wallet Routes */}
           <Route
+            exact
             path="/wallet"
             render={(props) => (
               <Wallet {...props} username={this.state.username} />
             )}
           />
+          <Route
+            path="/wallet/add"
+            render={(props) => (
+              <AddAsset {...props} username={this.state.username} />
+            )}
+          />
+
+          {/* Authentication Routes */}
           <Route path="/signup" component={SignUpPage} />
           <Route
             path="/login"
@@ -49,6 +64,7 @@ class App extends React.Component {
               <Logout {...props} updateLoginState={this.updateLoginState} />
             )}
           />
+
           <Footer />
         </BrowserRouter>
       </div>

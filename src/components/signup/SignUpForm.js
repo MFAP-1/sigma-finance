@@ -22,7 +22,6 @@ class SignUpForm extends React.Component {
       );
       response.data.map((user) => {
         if (user.name.toLowerCase() === this.state.name.toLowerCase()) {
-          console.log("entrou no if");
           existUser = true;
         }
         return user;

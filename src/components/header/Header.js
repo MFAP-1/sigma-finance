@@ -9,8 +9,13 @@ function Header(props) {
   const renderOnlineNavBar = () => {
     return (
       <nav id="nav-bar-large">
+        <Link to="/investment-list" className="no-link-decoration">
+          Invest. List
+        </Link>
         <div id="wallet-nav-div">
-          Wallet:
+          <Link to="/wallet" className="no-link-decoration">
+            [Wallet]
+          </Link>
           <Link to="/wallet/add" className="no-link-decoration">
             <small>Add asset</small>
           </Link>
