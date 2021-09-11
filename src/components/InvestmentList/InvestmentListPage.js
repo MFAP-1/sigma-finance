@@ -1,12 +1,14 @@
 import React from "react";
-import InvestmentList from "./InvestmentList";
+import StockList from "./InvestmentList";
+import CryptoList from "./CryptoList";
 import "./InvestmentList.css";
 
 function InvestmentListPage() {
   return (
     <div >
        
-      <InvestmentList />
+      <StockList />
+      <CryptoList />
    
     </div>
   );

@@ -3,26 +3,30 @@ import axios from "axios";
 import Chart from "chart.js/auto";
 import "./InvestmentList.css";
 
-class InvestmentList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
+class StockList extends React.Component {
+     
+    state = {
+
       chartValuesX: [],
       chartValuesY: [],
       companySymbol: "FB",
       outputSize: "full",
       typeInformation: "TIME_SERIES_DAILY",
-      chart: null,
-    };
+      isLoaded: null,
+   
   }
 
   getChartData = async () => {
     const apiKey = "R2P4F9RG0EKKWZEU";
 
-    let url = `https://www.alphavantage.co/query?function=${this.state.typeInformation}&symbol=${this.state.companySymbol}&${this.state.outputSize}=full&apikey=${apiKey}`;
+    let url = `https://www.alphavantage.co/query?function=${
+      this.state.typeInformation
+    }&symbol=${this.state.companySymbol.toUpperCase()}&${
+      this.state.outputSize
+    }=full&apikey=${apiKey}`;
 
     const response = await axios.get(url);
-    console.log(response.data);
+
     this.transformData(response.data);
   };
 
@@ -60,16 +64,22 @@ class InvestmentList extends React.Component {
   };
 
   renderChart = () => {
-    if (this.state.chart) {
-      this.state.chart.destroy();
+    if (this.state.chartValuesX.length === 0) {
+      return alert("Please write a valid stock");
     }
+
+    if (this.state.isLoaded) {
+      this.state.isLoaded.destroy();
+    }
+
     const chart = new Chart(document.getElementById("myCanvas"), {
       type: "line",
+
       data: {
         labels: this.state.chartValuesX,
         datasets: [
           {
-            label: this.state.companySymbol,
+            label: this.state.companySymbol.toUpperCase(),
             data: this.state.chartValuesY,
             backgroundColor: "#03b1fc",
             borderColor: "black",
@@ -79,9 +89,23 @@ class InvestmentList extends React.Component {
           },
         ],
       },
+      options: {
+        scales: {
+          x: {
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            grid: {
+              display: true,
+            },
+          },
+        },
+      },
     });
 
-    this.setState({ chart: chart });
+    this.setState({ isLoaded: chart });
   };
 
   handleInput = (event) => {
@@ -91,7 +115,7 @@ class InvestmentList extends React.Component {
   };
 
   handleFind = () => {
-    if (this.state.companySymbol === "" ) {
+    if (this.state.companySymbol === "") {
       alert("Please write a valid stock name");
     } else {
       this.getChartData();
@@ -124,4 +148,4 @@ class InvestmentList extends React.Component {
   }
 }
 
-export default InvestmentList;
+export default StockList;
