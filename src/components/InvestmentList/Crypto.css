@@ -1,0 +1,56 @@
+.crypto-strip {
+    display:flex;
+    flex-direction:row;
+    /* justify-items:start; */
+    align-items: center;
+    height:5rem;
+    border-bottom: 1px solid black;
+    width:100%;
+    margin-right:1.2rem
+   
+}
+
+.divImgNameSymbol {
+    display:flex;
+    align-items:center;
+    min-width: 18.75rem;
+    /* margin:0 20px; */
+    margin:1rem
+}
+
+.divImgNameSymbol img {
+    height:1.875rem;
+    width:1.875rem;
+    margin-right:0.8rem;
+}
+
+.divImgNameSymbol h1 {
+   font-size:1rem;
+   width:9.375rem;
+   margin-right:0.5rem;
+}
+
+.coin-symbol {
+    text-transform:uppercase;
+}
+
+.coin-data {
+    display:flex;
+    text-align:center;
+    justify-content: space-between;
+    width:100%
+}
+
+.coin-price {
+    width:6.875rem;
+}
+
+.coin-marketcap{
+    width:12.5rem;
+}
+
+
+
+
+
+

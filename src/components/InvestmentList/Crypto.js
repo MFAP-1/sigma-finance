@@ -1,24 +1,24 @@
 import React from "react";
-import "./InvestmentList.css";
+import "./Crypto.css";
 
 
 const Crypto = (props) => {
     return (
       
-        <div >
-            <div >
-                <div >
+        <div className = "coin-container">
+            <div className = "crypto-strip">
+                <div className = "divImgNameSymbol">
                     <img src = {props.image} alt="cryptoLogo"/>
                     <h1>{props.name}</h1>
-                    <p >{props.symbol}</p>
+                    <p className = "coin-symbol">{props.symbol}</p>
                 </div>
-                <div >
-                    <p >${props.price}</p>
-                    <p >${props.volume.toLocaleString()}</p>
-                </div>
+                <div className ="coin-data">
+                    <p className ="coin-price">${props.price}</p>
+                    <p className ="coin-volume">${props.marketcap.toLocaleString()}</p>
+                    <p className ="coin-price">${props.price}</p>
+                    <p className ="coin-price">{props.priceChange}%</p>
+               </div>
             </div>
-
-<h1>teste</h1>
         </div>
     )
 
@@ -27,5 +27,3 @@ const Crypto = (props) => {
 
 
 export default Crypto;
-
-
