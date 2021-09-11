@@ -2,111 +2,80 @@ import React from "react";
 import axios from "axios";
 import Chart from "chart.js/auto";
 import "./InvestmentList.css";
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
 
 class InvestmentList extends React.Component {
   constructor() {
     super();
     this.state = {
-      chartLabels: [],
-      chartValues: [],
-      initialDate: "",
-      finalDate: "",
+      chartValuesX: [],
+      chartValuesY: [],
+      companySymbol: "FB",
+      outputSize: "full",
+      typeInformation: "TIME_SERIES_DAILY",
       chart: null,
-      currency: "",
-      minValue: 0,
-      maxValue: 0,
     };
   }
 
+  getChartData = async () => {
+    const apiKey = "R2P4F9RG0EKKWZEU";
 
+    let url = `https://www.alphavantage.co/query?function=${this.state.typeInformation}&symbol=${this.state.companySymbol}&${this.state.outputSize}=full&apikey=${apiKey}`;
 
+    const response = await axios.get(url);
+    console.log(response.data);
+    this.transformData(response.data);
+  };
 
-  getData = async () => {
+  transformData = (data) => {
+    const obj = { ...data["Time Series (Daily)"] };
+    const chartXclone = [];
+    const chartYclone = [];
+
+    for (let key in obj) {
+      chartXclone.push(key);
+      chartYclone.push(obj[key]["4. close"]);
+    }
+    chartXclone.reverse();
+    chartYclone.reverse();
+
+    this.setState({
+      chartValuesX: [...chartXclone],
+      chartValuesY: [...chartYclone],
+    });
+  };
+
+  componentDidMount = async () => {
     try {
-    //   // tem que ser let e não const
-    // let queryStr = "";
-    // let queryDateStr = "";
-    // let queryCurrencyStr = ""
-
-  
-    //   if(this.state.initialDate !== "" && this.state.finalDate !== "") {
-    //     queryStr = `?start=${this.state.initialDate}&end=${this.state.finalDate}`
-    //     console.log(queryStr);
-    //   }else {
-    //     queryCurrencyStr = "?"
-    //   }
-
-    //   if(this.state.currency !== "") {
-    //     queryDateStr = `&currency=${this.state.currency}`
-    //   }
-     
-     
-      const response = await axios.get(
-        `https://api.coindesk.com/v1/bpi/historical/close.json`
-      );
-     
-      const obj = { ...response.data.bpi };
-     
-      const chartLabelsClone = [];
-      const chartValuesClone = [];
-
-      for (let key in obj) {
-        chartLabelsClone.push(key);
-        chartValuesClone.push(obj[key]);
-      }
-
-      this.setState({
-        chartLabels: [...chartLabelsClone],
-        chartValues: [...chartValuesClone],
-        minValue: Math.round(Math.min(...chartValuesClone)),
-        maxValue: Math.round(Math.max(...chartValuesClone)) ,
-      });
+      await this.getChartData();
+      this.renderChart();
     } catch (err) {
       console.error(err);
     }
   };
 
-  componentDidMount = async () => {
-    
-    await this.getData()
-    this.renderChart()
-  
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.chartValuesY !== this.state.chartValuesY) {
+      this.renderChart();
+    }
   };
-
-
-  componentDidUpdate = async (prevProps, prevState) => {
-   
-    if (  
-      prevState.initialDate !== this.state.initialDate ||
-         prevState.finalDate !== this.state.finalDate  ||
-         prevState.currency !== this.state.currency ) {   
-        await this.getData()   
-        this.renderChart();
-        
-  }} 
-   
 
   renderChart = () => {
     if (this.state.chart) {
       this.state.chart.destroy();
     }
-    
-    
     const chart = new Chart(document.getElementById("myCanvas"), {
       type: "line",
       data: {
-        labels: this.state.chartLabels,
+        labels: this.state.chartValuesX,
         datasets: [
           {
-            label: "",
-            data: this.state.chartValues,
+            label: this.state.companySymbol,
+            data: this.state.chartValuesY,
             backgroundColor: "#03b1fc",
             borderColor: "black",
             fill: true,
             tension: 0.2,
-            borderWidth:1
+            borderWidth: 1,
           },
         ],
       },
@@ -115,49 +84,44 @@ class InvestmentList extends React.Component {
     this.setState({ chart: chart });
   };
 
-  handleDate = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-
+  handleInput = (event) => {
+    this.setState({
+      companySymbol: event.target.value,
+    });
   };
 
-  handleCurrency =(event) => {
-    this.setState({currency: event.target.value})
-  }
-  
+  handleFind = () => {
+    if (this.state.companySymbol === "" ) {
+      alert("Please write a valid stock name");
+    } else {
+      this.getChartData();
+    }
+  };
 
   render() {
-  
-
     return (
-        <div>
-         
-          <div  className ="graphic">
-            <div>
-              <input type="date" name="initialDate" onChange={this.handleDate} />
-              <input type="date" name="finalDate" onChange={this.handleDate} />
-              <select className="form-select w-25 mt-2" aria-label="Default select example" onChange={this.handleCurrency}>
-                <option value="USD" >USD</option>
-                <option value="EUR" >EUR</option>
-              </select>
-            </div>
-            
-            <div className="">
-              <h1>Values</h1>
-              <h3>Max Price: {this.state.maxValue} {!this.state.currency ? "USD" : this.state.currency}</h3>
-              <h3>Min Price: {this.state.minValue} {!this.state.currency ? "USD" : this.state.currency}</h3>
-            </div>
-          </div>
-          
-          {/* <h1>{Math.max(...this.state.chartValues)}</h1> */}
-          <canvas id="myCanvas"> </canvas>
-          
+      <div>
+        <h1>Stocks</h1>
+
+        <div className="searchBar">
+          <input
+            id="companySymbolInput"
+            className="inputSearchBar"
+            onChange={this.handleInput}
+            value={this.state.companySymbol}
+          />
+
+          <button className="buttonSearchBar" onClick={this.handleFind}>
+            Find
+          </button>
         </div>
-      );
-    }
+
+        <div className="canvasGraphic">
+          <canvas id="myCanvas"> </canvas>
+        </div>
+      </div>
+    );
   }
-
-
-
+}
 
 export default InvestmentList;
-
