@@ -4,6 +4,8 @@ import axios from "axios";
 
 import "./wallet.css";
 
+import formatMoney from "../../scripts/formatMoney";
+
 class Wallet extends React.Component {
   state = {
     assetList: [],
@@ -15,7 +17,6 @@ class Wallet extends React.Component {
         "https://ironrest.herokuapp.com/sigmaFinanceAssets"
       );
       this.setState({ assetList: [...response.data] });
-      // console.log(respose.data);
     } catch (err) {
       console.error(err);
     }
@@ -23,6 +24,7 @@ class Wallet extends React.Component {
 
   renderAssetList = () => {
     let portfolioTotalValue = 0;
+    let itemNumber = 1;
     return (
       <table id="portfolio-table">
         <thead>
@@ -34,7 +36,7 @@ class Wallet extends React.Component {
             <th>Unit Price</th>
             <th>Total Value</th>
             <th>Date bought</th>
-            <th>Actions</th>
+            <th colSpan="2">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -43,50 +45,73 @@ class Wallet extends React.Component {
               portfolioTotalValue += assetObj.quantity * assetObj.unitPrice;
               return (
                 <tr key={assetObj._id}>
-                  <td>x</td>
+                  <td>{itemNumber++}</td>
                   <td>{assetObj.assetName}</td>
                   <td>{assetObj.assetSymbol}</td>
                   <td>{assetObj.quantity}</td>
-                  <td>{assetObj.unitPrice}</td>
-                  <td>{assetObj.quantity * assetObj.unitPrice}</td>
+                  <td>{formatMoney(Number(assetObj.unitPrice))}</td>
+                  <td>{formatMoney(assetObj.quantity * assetObj.unitPrice)}</td>
                   <td>{assetObj.dateBought}</td>
-                  <td>x</td>
+                  <Link
+                    to={`/wallet/update/${assetObj._id}`}
+                    className="no-link-decoration-black"
+                  >
+                    <td style={{ width: "25px" }}>
+                      <i class="fas fa-pen"></i>
+                    </td>
+                  </Link>
+                  <Link
+                    to={`/wallet/delete/${assetObj._id}`}
+                    className="no-link-decoration-black"
+                  >
+                    <td style={{ width: "25px" }}>
+                      <i class="fas fa-trash"></i>
+                    </td>
+                  </Link>
                 </tr>
               );
+            } else {
+              return <></>;
             }
           })}
         </tbody>
         <tfoot>
           <tr>
             <td colSpan="5">Total</td>
-            <td>$ {portfolioTotalValue}</td>
+            <td>{formatMoney(portfolioTotalValue)}</td>
           </tr>
         </tfoot>
       </table>
     );
   };
 
-  render() {
-    console.log("username na wallet", this.props.username);
+  renderOnlineWallet = () => {
     return (
       <div>
         <div className="center-content">
           <h1>Welcome to your wallet {this.props.username}</h1>
-          <h3>What is up for today?</h3>
-          <Link to="/wallet/add">
-            <p>Add asset</p>
-          </Link>
-          <Link to="/wallet/update">
-            <p>Update asset</p>
-          </Link>
-          <Link to="/wallet/delete">
-            <p>Delete asset</p>
-          </Link>
-          <h3>This is your protfolio:</h3>
-          <div>{this.renderAssetList()}</div>
+          <h3>This is your summarized protfolio:</h3>
+          <div className="center-object">{this.renderAssetList()}</div>
         </div>
       </div>
     );
+  };
+  renderOfflineWallet = () => {
+    return (
+      <div className="center-content">
+        To check your wallet, login at:
+        <br />
+        <Link to="/login" className="no-link-decoration-black">
+          <button>Login</button>
+        </Link>
+      </div>
+    );
+  };
+
+  render() {
+    return this.props.loggedIn
+      ? this.renderOnlineWallet()
+      : this.renderOfflineWallet();
   }
 }
 

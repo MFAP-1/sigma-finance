@@ -6,11 +6,13 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import HomePage from "./components/homepage/Homepage";
-//
+// ...
 import InvestmentListPage from "./components/InvestmentList/InvestmentListPage";
 // Wallet imports
 import Wallet from "./components/wallet/Wallet";
 import AddAsset from "./components/wallet/AddAsset";
+import UpdateAsset from "./components/wallet/UpdateAsset";
+import DeleteAsset from "./components/wallet/DeleteAsset";
 // Authentication imports
 import SignUpPage from "./components/signup/SignUpPage";
 import LoginPage from "./components/login/LoginPage";
@@ -31,7 +33,7 @@ class App extends React.Component {
     return (
       <div className="main-container bg-titanium">
         <BrowserRouter>
-          <Header loggedIn={this.state.loggedIn} />
+          <Header state={this.state} />
           <Route exact path="/" component={HomePage} />
           <Route exact path="/investment-list" component={InvestmentListPage} />
 
@@ -40,13 +42,29 @@ class App extends React.Component {
             exact
             path="/wallet"
             render={(props) => (
-              <Wallet {...props} username={this.state.username} />
+              <Wallet
+                {...props}
+                username={this.state.username}
+                loggedIn={this.state.loggedIn}
+              />
             )}
           />
           <Route
             path="/wallet/add"
             render={(props) => (
               <AddAsset {...props} username={this.state.username} />
+            )}
+          />
+          <Route
+            path="/wallet/update/:userId"
+            render={(props) => (
+              <UpdateAsset {...props} username={this.state.username} />
+            )}
+          />
+          <Route
+            path="/wallet/delete/:userId"
+            render={(props) => (
+              <DeleteAsset {...props} username={this.state.username} />
             )}
           />
 

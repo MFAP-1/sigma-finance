@@ -53,7 +53,7 @@ class LoginForm extends React.Component {
               <TextInput
                 className="input"
                 type="text"
-                placeholder="Nome do usuário"
+                placeholder="Insert a username"
                 name="name"
                 onChange={this.handleChange}
                 value={this.state.name}

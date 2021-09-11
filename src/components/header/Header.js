@@ -8,26 +8,31 @@ import "./header.css";
 function Header(props) {
   const renderOnlineNavBar = () => {
     return (
-      <nav id="nav-bar-large">
-        <Link to="/investment-list" className="no-link-decoration">
-          Invest. List
-        </Link>
-        <div id="wallet-nav-div">
-          <Link to="/wallet" className="no-link-decoration">
-            [Wallet]
+      <div>
+        <nav id="nav-bar-large">
+          <Link to="/investment-list" className="no-link-decoration">
+            Invest. List
           </Link>
-          <Link to="/wallet/add" className="no-link-decoration">
-            <small>Add asset</small>
+          <div id="wallet-nav-div">
+            <Link to="/wallet" className="no-link-decoration">
+              [Wallet]
+            </Link>
+            <Link to="/wallet" className="no-link-decoration">
+              <small>Portfolio</small>
+            </Link>
+            <Link to="/wallet/add" className="no-link-decoration">
+              <small>Add asset</small>
+            </Link>
+          </div>
+          <span style={{ textDecoration: "underline" }}>
+            <i class="fas fa-user"></i>
+            {props.state.username}
+          </span>
+          <Link to="/logout" className="no-link-decoration">
+            Logout
           </Link>
-          <Link to="/" className="no-link-decoration">
-            <small>Update asset</small>
-          </Link>
-        </div>
-        <span> </span>
-        <Link to="/logout" className="no-link-decoration">
-          Logout
-        </Link>
-      </nav>
+        </nav>
+      </div>
     );
   };
 
@@ -53,7 +58,7 @@ function Header(props) {
           <h1>Sigma Finance</h1>
         </div>
       </Link>
-      {props.loggedIn ? renderOnlineNavBar() : renderOfflineNavBar()}
+      {props.state.loggedIn ? renderOnlineNavBar() : renderOfflineNavBar()}
     </div>
   );
 }

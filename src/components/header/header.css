@@ -28,6 +28,11 @@
   color: white;
 }
 
+.no-link-decoration-black {
+  text-decoration: none;
+  color: black;
+}
+
 #nav-bar-small,
 #nav-bar-large {
   display: flex;

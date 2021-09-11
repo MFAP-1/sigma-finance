@@ -10,22 +10,30 @@
   height: 100vh;
 }
 
+.bg-titanium {
+  background-color: rgb(226, 226, 226);
+}
 /* .bg-titanium {
   background: #283048; fallback for old browsers */
-  /* background: -webkit-linear-gradient(
+/* background: -webkit-linear-gradient(
     to bottom,
     #859398,
     #283048 */
-  /* ); Chrome 10-25, Safari 5.1-6 */
-  /* background: linear-gradient(
+/* ); Chrome 10-25, Safari 5.1-6 */
+/* background: linear-gradient(
     to bottom,
     #859398,
     #283048 */
-  /* ); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+
+/* ); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+
 } */
 
 .center-content {
   text-align: center;
+}
+
+.center-object {
+  display: flex;
+  justify-content: center;
 }
 
 /* Azul da logo */

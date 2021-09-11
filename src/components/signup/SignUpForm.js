@@ -58,7 +58,7 @@ class SignUpForm extends React.Component {
               <TextInput
                 className="input"
                 type="text"
-                placeholder="Nome do usuário"
+                placeholder="Create a username"
                 name="name"
                 onChange={this.handleChange}
                 value={this.state.name}

@@ -1,4 +1,9 @@
 #portfolio-table,
-td {
+td,
+th {
   border: 1px solid black;
+}
+
+thead {
+  font-size: 1.1rem;
 }

@@ -7,8 +7,10 @@ import "./addAsset.css";
 
 class AddAsset extends React.Component {
   state = {
-    username: "", // comes from props
-    assetName: "", //comes from form!
+    // comes from props
+    username: "",
+    //comes from form!
+    assetName: "",
     assetSymbol: "",
     quantity: 0,
     unitPrice: 0,
@@ -41,7 +43,6 @@ class AddAsset extends React.Component {
   };
 
   render() {
-    console.log("username na addAsset:", this.state.username);
     return (
       <div className="center-content add-asset-box">
         <h1>Add a new asset to your protfolio</h1>
