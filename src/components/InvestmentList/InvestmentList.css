@@ -1,0 +1,10 @@
+* {
+    align-items: center;
+}
+.canvasGraphic {
+    margin:50px;
+    width: 50%;
+    height:30%;
+    background-color: white;
+    align-items: center;
+}
