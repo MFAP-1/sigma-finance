@@ -21,7 +21,7 @@ class UpdateAsset extends React.Component {
   componentDidMount = async () => {
     try {
       const response = await axios.get(
-        `https://ironrest.herokuapp.com/sigmaFinanceAssets/${this.props.match.params.userId}`
+        `https://ironrest.herokuapp.com/sigmaFinanceAssets/${this.props.match.params.assetId}`
       );
       this.setState({ ...response.data });
       this.setState({
@@ -53,7 +53,7 @@ class UpdateAsset extends React.Component {
     // };
     try {
       const response = await axios.put(
-        `https://ironrest.herokuapp.com/sigmaFinanceAssets/${this.props.match.params.userId}`,
+        `https://ironrest.herokuapp.com/sigmaFinanceAssets/${this.props.match.params.assetId}`,
         this.state
       );
       console.log(response);

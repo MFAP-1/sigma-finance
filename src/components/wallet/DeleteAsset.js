@@ -5,7 +5,7 @@ class DeleteAsset extends React.Component {
   componentDidMount = async () => {
     try {
       const response = axios.delete(
-        `https://ironrest.herokuapp.com/sigmaFinanceAssets/${this.props.match.params.userId}`
+        `https://ironrest.herokuapp.com/sigmaFinanceAssets/${this.props.match.params.assetId}`
       );
       console.log(response);
       this.props.history.push("/");

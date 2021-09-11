@@ -62,6 +62,7 @@ class SignUpForm extends React.Component {
                 name="name"
                 onChange={this.handleChange}
                 value={this.state.name}
+                required
               />
             </div>
           </div>

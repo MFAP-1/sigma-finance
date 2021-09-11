@@ -25,7 +25,7 @@ function Header(props) {
             </Link>
           </div>
           <span style={{ textDecoration: "underline" }}>
-            <i class="fas fa-user"></i>
+            <i className="fas fa-user"></i>
             {props.state.username}
           </span>
           <Link to="/logout" className="no-link-decoration">

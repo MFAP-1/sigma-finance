@@ -17,6 +17,7 @@ import DeleteAsset from "./components/wallet/DeleteAsset";
 import SignUpPage from "./components/signup/SignUpPage";
 import LoginPage from "./components/login/LoginPage";
 import Logout from "./components/logout/Logout";
+import DetailedAsset from "./components/wallet/DetailedAsset";
 
 class App extends React.Component {
   state = {
@@ -29,7 +30,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log("username no app:", this.state.username);
     return (
       <div className="main-container bg-titanium">
         <BrowserRouter>
@@ -56,13 +56,19 @@ class App extends React.Component {
             )}
           />
           <Route
-            path="/wallet/update/:userId"
+            path="/wallet/details/:assetId"
+            render={(props) => (
+              <DetailedAsset {...props} username={this.state.username} />
+            )}
+          />
+          <Route
+            path="/wallet/update/:assetId"
             render={(props) => (
               <UpdateAsset {...props} username={this.state.username} />
             )}
           />
           <Route
-            path="/wallet/delete/:userId"
+            path="/wallet/delete/:assetId"
             render={(props) => (
               <DeleteAsset {...props} username={this.state.username} />
             )}

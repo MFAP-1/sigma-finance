@@ -5,6 +5,7 @@ import axios from "axios";
 import "./wallet.css";
 
 import formatMoney from "../../scripts/formatMoney";
+// import formatDate from "../../scripts/formatDate";
 
 class Wallet extends React.Component {
   state = {
@@ -36,7 +37,7 @@ class Wallet extends React.Component {
             <th>Unit Price</th>
             <th>Total Value</th>
             <th>Date bought</th>
-            <th colSpan="2">Actions</th>
+            <th colSpan="3">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -53,11 +54,19 @@ class Wallet extends React.Component {
                   <td>{formatMoney(assetObj.quantity * assetObj.unitPrice)}</td>
                   <td>{assetObj.dateBought}</td>
                   <Link
+                    to={`/wallet/details/${assetObj._id}`}
+                    className="no-link-decoration-black"
+                  >
+                    <td style={{ width: "25px" }}>
+                      <i className="fas fa-info"></i>
+                    </td>
+                  </Link>
+                  <Link
                     to={`/wallet/update/${assetObj._id}`}
                     className="no-link-decoration-black"
                   >
                     <td style={{ width: "25px" }}>
-                      <i class="fas fa-pen"></i>
+                      <i className="fas fa-pen"></i>
                     </td>
                   </Link>
                   <Link
@@ -65,7 +74,7 @@ class Wallet extends React.Component {
                     className="no-link-decoration-black"
                   >
                     <td style={{ width: "25px" }}>
-                      <i class="fas fa-trash"></i>
+                      <i className="fas fa-trash"></i>
                     </td>
                   </Link>
                 </tr>
@@ -74,11 +83,19 @@ class Wallet extends React.Component {
               return <></>;
             }
           })}
+          <tr key="add new asset btn">
+            <td colSpan="8">
+              <Link to="/wallet/add" className="no-link-decoration">
+                <button style={{ width: "100%" }}>Add new asset</button>
+              </Link>
+            </td>
+          </tr>
         </tbody>
         <tfoot>
           <tr>
-            <td colSpan="5">Total</td>
+            <td colSpan="5">Total portfolio value</td>
             <td>{formatMoney(portfolioTotalValue)}</td>
+            <td colSpan="2"></td>
           </tr>
         </tfoot>
       </table>
@@ -91,7 +108,7 @@ class Wallet extends React.Component {
         <div className="center-content">
           <h1>Welcome to your wallet {this.props.username}</h1>
           <h3>This is your summarized protfolio:</h3>
-          <div className="center-object">{this.renderAssetList()}</div>
+          <div id="portfolio-table-div">{this.renderAssetList()}</div>
         </div>
       </div>
     );

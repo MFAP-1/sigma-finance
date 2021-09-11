@@ -18,6 +18,7 @@ function AssetForm(props) {
           name="assetName"
           onChange={props.handleChange}
           value={props.state.assetName}
+          required
         />
         <TextInput
           type="text"
@@ -27,6 +28,7 @@ function AssetForm(props) {
           placeholder="ex: AAPL"
           onChange={props.handleChange}
           value={props.state.assetSymbol}
+          required
         />
       </div>
       <div
@@ -43,6 +45,7 @@ function AssetForm(props) {
           name="quantity"
           onChange={props.handleChange}
           value={props.state.quantity}
+          required
         />
         <TextInput
           type="number"
@@ -52,6 +55,7 @@ function AssetForm(props) {
           name="unitPrice"
           onChange={props.handleChange}
           value={props.state.unitPrice}
+          required
         />
       </div>
       <TextInput
@@ -61,6 +65,7 @@ function AssetForm(props) {
         name="dateBought"
         onChange={props.handleChange}
         value={props.state.dateBought}
+        required
       />
       {/* <CheckboxInput
         id="characterFormDebt"
