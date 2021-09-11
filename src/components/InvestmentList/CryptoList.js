@@ -53,9 +53,12 @@ class CryptoList extends React.Component {
        let filteredCoinArr =  this.state.coins.filter((coin) =>{
           return   coin.name.toLowerCase().includes(this.state.search.toLowerCase())
         })
+        if (filteredCoinArr.length !== 0){
         this.setState({
            coins: [...filteredCoinArr]
           });
+        }
+        
          
     }
 
