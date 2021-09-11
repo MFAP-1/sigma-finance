@@ -3,6 +3,12 @@ import axios from "axios";
 import Chart from "chart.js/auto";
 import "./InvestmentList.css";
 
+const randomStockList = ["AAPL", "MSFT", "AMZN", "FB", "GOOG", "GOOGL", "TSLA", "NVIDIA", "PYPL", 
+                      "ASML", "INTC", "NFLX", "ADBE", "CSCO", "PEP",   "XOM", "C", "PFE", "GE", 
+                      "AIG", "WMT", "IBM", "BAC", "JNJ", "GS", "CVX", "PG",  "JPM",
+                      "COP", "VALE3.SA", "ITUB4.SA", "PETR4.SA", "B3SA3.SA", "BBDC4.SA", "PETR3.SA",
+                      "ABEV3.SA", "WEGE3.SA", "MGLU3.SA", "GNDI3.SA", "CASH3.SA"	]
+
 class StockList extends React.Component {
      
     state = {
@@ -16,21 +22,42 @@ class StockList extends React.Component {
    
   }
 
-  getChartData = async () => {
-    const apiKey = "R2P4F9RG0EKKWZEU";
+  getRandomStocks = () => {
+    let randomStocks = []
+    for (let i = 0; i < 5; i++){
+      randomStocks.push(randomStockList[Math.floor(Math.random()* randomStockList.length)])
+    }
+    console.log(randomStocks)
+ }
 
-    let url = `https://www.alphavantage.co/query?function=${
-      this.state.typeInformation
-    }&symbol=${this.state.companySymbol.toUpperCase()}&${
-      this.state.outputSize
-    }=full&apikey=${apiKey}`;
+
+
+
+
+  getChartData = async () => {
+    // const apiKey = "R2P4F9RG0EKKWZEU";
+
+    // let url = `https://www.alphavantage.co/query?function=${
+    //   this.state.typeInformation
+    // }&symbol=${this.state.companySymbol.toUpperCase()}&${
+    //   this.state.outputSize
+    // }=full&apikey=${apiKey}`;
+
+    //teste para não passar do limite de requisições
+    let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
 
     const response = await axios.get(url);
 
-    this.transformData(response.data);
+    this.transformDataChart(response.data);
   };
 
-  transformData = (data) => {
+
+  getCompanyData = async () => {
+    let url2 = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=AAPL&apikey=demo%27"
+    const response = await axios.get(url2);
+  }
+
+  transformDataChart = (data) => {
     const obj = { ...data["Time Series (Daily)"] };
     const chartXclone = [];
     const chartYclone = [];
@@ -52,6 +79,8 @@ class StockList extends React.Component {
     try {
       await this.getChartData();
       this.renderChart();
+      this.getRandomStocks();
+
     } catch (err) {
       console.error(err);
     }
