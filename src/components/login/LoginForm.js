@@ -22,7 +22,6 @@ class LoginForm extends React.Component {
       );
       response.data.map((user) => {
         if (user.name.toLowerCase() === this.state.name.toLowerCase()) {
-          console.log("entrou no if");
           existUser = true;
         }
         return user;
@@ -32,7 +31,8 @@ class LoginForm extends React.Component {
     }
     // In case where the user exist, enter the APP into the wallet
     if (existUser) {
-      this.props.history.push(`/wallet/${this.state.name}`);
+      this.props.updateLoginState(this.state.name);
+      this.props.history.push(`/wallet`);
       // In case where the user doesn't exist, alert the screen and prevent login
     } else {
       alert(
@@ -43,7 +43,7 @@ class LoginForm extends React.Component {
   };
 
   render() {
-    console.log(this.state.name);
+    // console.log(this.state.name);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>

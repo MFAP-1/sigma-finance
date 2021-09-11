@@ -27,3 +27,24 @@
   text-decoration: none;
   color: white;
 }
+
+#nav-bar-small,
+#nav-bar-large {
+  display: flex;
+  justify-content: space-around;
+}
+
+#nav-bar-small {
+  width: 10vw;
+}
+
+#nav-bar-large {
+  width: 30vw;
+}
+
+#wallet-nav-div {
+  width: 20vw;
+  display: flex;
+  justify-content: space-between;
+  border: 1px dotted white;
+}

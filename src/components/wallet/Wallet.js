@@ -2,27 +2,26 @@ import React from "react";
 // import { Link } from "react-router-dom";
 // import axios from "axios";
 
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
+// import Header from "../header/Header";
+// import Footer from "../footer/Footer";
 
 class Wallet extends React.Component {
-  state = {
-    username: "",
-  };
+  // state = {
+  //   username: "",
+  // };
 
-  componentDidMount = () => {
-    this.setState({ username: this.props.match.params.userName });
-  };
+  // componentDidMount = () => {
+  //   this.setState({ username: this.props.match.params.userName });
+  // };
 
   render() {
+    console.log("username na wallet", this.props.username);
     return (
       <div>
-        <Header />
         <div className="center-content">
-          <h1>Welcome to your wallet {this.state.username}</h1>
+          <h1>Welcome to your wallet {this.props.username}</h1>
           {/* <h1>Welcome to your wallet</h1> */}
         </div>
-        <Footer />
       </div>
     );
   }
