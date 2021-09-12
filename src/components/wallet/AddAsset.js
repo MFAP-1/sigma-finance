@@ -45,7 +45,7 @@ class AddAsset extends React.Component {
   render() {
     return (
       <div className="center-content add-asset-box">
-        <h1>Add a new asset to your protfolio</h1>
+        <h1>Add a new asset to your portfolio</h1>
         <AssetForm
           state={this.state}
           handleSubmit={this.handleSubmit}

@@ -124,7 +124,7 @@ class DetailedAsset extends React.Component {
             {formatMoney(this.state.statistics.totalYield)}
           </li>
           <li key="yield2">
-            <strong>Rendimento percentual total (%a.a.): </strong>
+            <strong>Rendimento percentual total acumulado (%a.a.): </strong>
             {this.state.statistics.totalYieldPercentage}
           </li>
           <li key="yield3">
