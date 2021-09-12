@@ -1,8 +1,9 @@
 import React from "react";
 import axios from "axios";
 
-import getAmoutOfDays from "../../scripts/getAmountOfDays";
+import calculateDuration from "../../scripts/calculateDuration";
 import formatMoney from "../../scripts/formatMoney";
+import formatDate from "../../scripts/formatDate";
 
 class DetailedAsset extends React.Component {
   state = {
@@ -13,8 +14,14 @@ class DetailedAsset extends React.Component {
     unitPrice: 0,
     dateBought: "",
     // calculated parameters
-    totalYield: 0,
-    totalYieldPercentage: 0,
+    statistics: {
+      totalInitialValue: 0,
+      totalCurrentValue: 0,
+      investmentDuration: 0,
+      totalYield: 0,
+      totalYieldPercentage: 0,
+      YieldPercentagePerMonth: 0,
+    },
   };
 
   componentDidMount = async () => {
@@ -35,16 +42,35 @@ class DetailedAsset extends React.Component {
   };
 
   runInvestimentStatistic = () => {
-    let totalYield =
-      (Number(this.state.unitPrice) + 20) * this.state.quantity -
-      this.state.unitPrice * this.state.quantity;
+    const totalInitialValue = this.state.unitPrice * this.state.quantity;
+    const totalCurrentValue =
+      (Number(this.state.unitPrice) + 20) * this.state.quantity;
+    const investmentDuration = calculateDuration(this.state.dateBought);
+    const totalYield = totalCurrentValue - totalInitialValue;
+    const totalYieldPercentage = (
+      (totalYield / totalInitialValue) *
+      100
+    ).toFixed(3);
+    const YieldPercentagePerMonth = (
+      totalYieldPercentage /
+      (investmentDuration / 30)
+    ).toFixed(3);
     this.setState({
-      totalYield: totalYield,
+      statistics: {
+        totalInitialValue: totalInitialValue,
+        totalCurrentValue: totalCurrentValue,
+        investmentDuration: investmentDuration,
+        totalYield: totalYield,
+        totalYieldPercentage: totalYieldPercentage,
+        YieldPercentagePerMonth: YieldPercentagePerMonth,
+      },
     });
   };
 
   render() {
     console.log(this.state); // ---------------------DEBUGGUER
+    console.log("teste formatdate:", formatDate(this.state.dateBought)); // ---------------------DEBUGGUER
+
     return (
       <div>
         <h1>The details for the '{this.state.assetSymbol}' asset are: </h1>
@@ -63,25 +89,23 @@ class DetailedAsset extends React.Component {
             {this.state.quantity}.
           </li>
           <hr />
-          <h3>Values:</h3>
+          <h3>Investments values:</h3>
           <li key="start-unit-price">
-            <strong>Investment start unit value: </strong>
+            <strong>Initial unit value: </strong>
             {formatMoney(Number(this.state.unitPrice))}
           </li>
           <li key="current-unit-price">
-            <strong>Investment current unit value: </strong>
+            <strong>Current unit value: </strong>
             {/*   +20    ------------------DEBUGGUER*/}
             {formatMoney(Number(this.state.unitPrice) + 20)}
           </li>
           <li key="start-total-value">
-            <strong>Investment initial total value: </strong>
-            {formatMoney(this.state.unitPrice * this.state.quantity)}
+            <strong>Initial total value: </strong>
+            {formatMoney(this.state.statistics.totalInitialValue)}
           </li>
           <li key="current-total-value">
-            <strong>Investment current total value: </strong>
-            {formatMoney(
-              (Number(this.state.unitPrice) + 20) * this.state.quantity
-            )}
+            <strong>Current total value: </strong>
+            {formatMoney(this.state.statistics.totalCurrentValue)}
           </li>
           <hr />
           <h3>TimeFrame:</h3>
@@ -91,17 +115,21 @@ class DetailedAsset extends React.Component {
           </li>
           <li key="investiment-time">
             <strong>Investiment time: </strong>
-            {getAmoutOfDays(this.state.dateBought)} days
+            {this.state.statistics.investmentDuration} days
           </li>
           <hr />
           <h3>Rendimentos:</h3>
           <li key="yield1">
-            <strong>Rendimento real: </strong>
-            {formatMoney(this.state.totalYield)}
+            <strong>Rendimento real acumulado: </strong>
+            {formatMoney(this.state.statistics.totalYield)}
           </li>
-          <li key="yield1">
-            <strong>Rendimento percentual total (%): </strong>
-            {this.state.totalYieldPercentage}
+          <li key="yield2">
+            <strong>Rendimento percentual total (%a.a.): </strong>
+            {this.state.statistics.totalYieldPercentage}
+          </li>
+          <li key="yield3">
+            <strong>Rendimento percentual estimado ao mês (%a.m.): </strong>
+            {this.state.statistics.YieldPercentagePerMonth}
           </li>
         </ul>
       </div>

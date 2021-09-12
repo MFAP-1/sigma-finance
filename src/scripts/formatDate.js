@@ -1,6 +1,7 @@
 function formatDate(dateString) {
   let newDate = new Date(dateString);
-  return newDate;
+  console.log(newDate);
+  // return newDate;
 }
 
 export default formatDate;

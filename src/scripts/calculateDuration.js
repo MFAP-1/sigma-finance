@@ -1,4 +1,4 @@
-function getAmoutOfDays(dateString) {
+function calculateDuration(dateString) {
   const date = new Date(dateString);
   const today = new Date();
 
@@ -9,4 +9,4 @@ function getAmoutOfDays(dateString) {
   return differenceInDays.toFixed(0);
 }
 
-export default getAmoutOfDays;
+export default calculateDuration;
