@@ -22,7 +22,7 @@ class StockList extends React.Component {
       isLoaded: null,
       searchEndPoint:"",
       bestMatches:[],
-    
+        
   }
 
   getRandomStocks = () => {
@@ -37,15 +37,15 @@ class StockList extends React.Component {
   getChartData = async () => {
     const apiKey = "R2P4F9RG0EKKWZEU";
 
-    // let url = `https://www.alphavantage.co/query?function=${
-    //   this.state.typeInformation
-    // }&symbol=${this.state.companySymbol.toUpperCase()}&outputsize=${
-    //   this.state.outputsize
-    // }&apikey=${apiKey}`;
-    // console.log(url)
+    let url = `https://www.alphavantage.co/query?function=${
+      this.state.typeInformation
+    }&symbol=${this.state.companySymbol.toUpperCase()}&outputsize=${
+      this.state.outputsize
+    }&apikey=${apiKey}`;
+    console.log(url)
 
     //teste para não passar do limite de requisições
-    let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
+    // let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
 
     const response = await axios.get(url);
 
@@ -98,7 +98,7 @@ class StockList extends React.Component {
 
   renderChart = () => {
     if (this.state.chartValuesX.length === 0) {
-      return alert("Please write a valid stock");
+      return alert("Couldn't find information about this stock");
     }
 
     if (this.state.isLoaded) {
@@ -199,7 +199,7 @@ handleFind2 = () => {
 
 handleSubmitSearch = (event) => {
   this.setState({
-    companySymbol: event.target.name,
+    companySymbol: event.target.name
   });
 
 
@@ -225,25 +225,12 @@ handleSubmitSearch = (event) => {
 //////////////////////////END//////////////////////////////////
 
   render() {
-
-
     return (
       <div className="container">
         
-        <h1>Stocks</h1>
-<div className = "container-searchBars">
-        <div className="searchBar">
-          <input
-            id="companySymbolInput"
-            className="inputText-Stocks"
-            onChange={this.handleInput}
-            value={this.state.companySymbol}
-          />
-          <button className="button-Stocks" onClick={this.handleFind}>
-            Find
-          </button>
-        </div>
-        <div className="searchBar">
+        <h1>Mudar</h1>
+      <div className = "container-searchBars">
+              <div className="searchBar">
           <input
             id="companySymbolInput2"
             className="inputText-Stocks"
@@ -254,9 +241,23 @@ handleSubmitSearch = (event) => {
             Search by name
           </button>
          </div>
+
+         <div className="searchBar">
+          <input
+            id="companySymbolInput"
+            className="inputText-Stocks"
+            onChange={this.handleInput}
+            value={this.state.companySymbol}
+          />
+          <button className="button-Stocks" onClick={this.handleFind}>
+            Find
+          </button>
+        </div>
+  
     </div>
+
     <div className ="container-searchResults">
-         {this.state.bestMatches.map((match) => {
+           {this.state.bestMatches.map((match) => {
                 return (
                   <div>
                     <button 
@@ -270,6 +271,11 @@ handleSubmitSearch = (event) => {
                 );
               })}
          </div>
+   
+
+
+
+
          <div className="canvasGraphic">
           <canvas id="myCanvas"> </canvas>
         </div>
