@@ -1,0 +1,22 @@
+#portfolio-table-div {
+  max-height: 70vh;
+  overflow: scroll;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#portfolio-table,
+td,
+th {
+  border: 1px solid black;
+}
+
+thead,
+tfoot {
+  font-size: 1.1rem;
+  font-weight: 900;
+  background-color: black;
+  color: white;
+}
