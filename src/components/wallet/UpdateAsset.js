@@ -3,7 +3,7 @@ import axios from "axios";
 
 import AssetForm from "./AssetForm";
 
-import "./addAsset.css";
+import "./assetForm.css";
 
 class UpdateAsset extends React.Component {
   state = {
@@ -11,11 +11,14 @@ class UpdateAsset extends React.Component {
     _id: "",
     username: "",
     //comes from form!
+    assetType: "",
+    currency: "",
     assetName: "",
     assetSymbol: "",
     quantity: 0,
     unitPrice: 0,
     dateBought: "",
+    additionalComments: "",
   };
 
   componentDidMount = async () => {
@@ -34,23 +37,12 @@ class UpdateAsset extends React.Component {
   };
 
   handleChange = (event) => {
-    // if (event.target.type === "checkbox") {
-    //   return this.setState({ [event.target.name]: event.target.checked });
-    // }
-    return this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   };
 
+  // to update the asset in the API based on its id
   handleSubmit = async (event) => {
     event.preventDefault(); // preventing the reload
-    // const updatedObj = {
-    //   _id: this.state._id,
-    //   username: this.state.username,
-    //   assetName: this.state.assetName,
-    //   assetSymbol: this.state.assetSymbol,
-    //   quantity: this.state.quantity,
-    //   unitPrice: this.state.unitPrice,
-    //   dateBought: this.state.dateBought,
-    // };
     try {
       const response = await axios.put(
         `https://ironrest.herokuapp.com/sigmaFinanceAssets/${this.props.match.params.assetId}`,
@@ -67,7 +59,7 @@ class UpdateAsset extends React.Component {
     console.log("state no Upadate:", this.state); // ---------------------DEBUGGUER
     return (
       <div className="center-content add-asset-box">
-        <h1>Check the select asset for updating</h1>
+        <h2>Check the selected asset for updating</h2>
         <AssetForm
           state={this.state}
           handleSubmit={this.handleSubmit}

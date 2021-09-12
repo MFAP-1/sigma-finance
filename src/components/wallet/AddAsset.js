@@ -3,18 +3,21 @@ import axios from "axios";
 
 import AssetForm from "./AssetForm";
 
-import "./addAsset.css";
+import "./assetForm.css";
 
 class AddAsset extends React.Component {
   state = {
     // comes from props
     username: "",
     //comes from form!
+    assetType: "",
+    currency: "",
     assetName: "",
     assetSymbol: "",
     quantity: 0,
     unitPrice: 0,
     dateBought: "",
+    additionalComments: "",
   };
 
   componentDidMount = () => {
@@ -22,10 +25,7 @@ class AddAsset extends React.Component {
   };
 
   handleChange = (event) => {
-    // if (event.target.type === "checkbox") {
-    //   return this.setState({ [event.target.name]: event.target.checked });
-    // }
-    return this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   handleSubmit = async (event) => {
@@ -45,7 +45,7 @@ class AddAsset extends React.Component {
   render() {
     return (
       <div className="center-content add-asset-box">
-        <h1>Add a new asset to your portfolio</h1>
+        <h2>Add a new asset to your portfolio</h2>
         <AssetForm
           state={this.state}
           handleSubmit={this.handleSubmit}

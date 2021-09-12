@@ -5,7 +5,7 @@ import axios from "axios";
 import "./wallet.css";
 
 import formatMoney from "../../scripts/formatMoney";
-// import formatDate from "../../scripts/formatDate";
+import formatDate from "../../scripts/formatDate";
 
 class Wallet extends React.Component {
   state = {
@@ -50,31 +50,41 @@ class Wallet extends React.Component {
                   <td>{assetObj.assetName}</td>
                   <td>{assetObj.assetSymbol}</td>
                   <td>{assetObj.quantity}</td>
-                  <td>{formatMoney(Number(assetObj.unitPrice))}</td>
-                  <td>{formatMoney(assetObj.quantity * assetObj.unitPrice)}</td>
-                  <td>{assetObj.dateBought}</td>
+                  <td>
+                    {formatMoney(Number(assetObj.unitPrice), assetObj.currency)}
+                  </td>
+                  <td>
+                    {formatMoney(
+                      assetObj.quantity * assetObj.unitPrice,
+                      assetObj.currency
+                    )}
+                  </td>
+                  <td>{formatDate(assetObj.dateBought, assetObj.currency)}</td>
                   <Link
                     to={`/wallet/details/${assetObj._id}`}
                     className="no-link-decoration-black"
                   >
-                    <td style={{ width: "25px" }}>
+                    <td style={{ width: "25px" }} className="tooltip">
                       <i className="fas fa-info"></i>
+                      <span class="tooltiptext">Asset details</span>
                     </td>
                   </Link>
                   <Link
                     to={`/wallet/update/${assetObj._id}`}
                     className="no-link-decoration-black"
                   >
-                    <td style={{ width: "25px" }}>
+                    <td style={{ width: "25px" }} className="tooltip">
                       <i className="fas fa-pen"></i>
+                      <span class="tooltiptext">Edit asset</span>
                     </td>
                   </Link>
                   <Link
                     to={`/wallet/delete/${assetObj._id}`}
                     className="no-link-decoration-black"
                   >
-                    <td style={{ width: "25px" }}>
+                    <td style={{ width: "25px" }} className="tooltip">
                       <i className="fas fa-trash"></i>
+                      <span class="tooltiptext">Delete asset</span>
                     </td>
                   </Link>
                 </tr>
@@ -94,7 +104,7 @@ class Wallet extends React.Component {
         <tfoot>
           <tr>
             <td colSpan="5">Total portfolio value</td>
-            <td>{formatMoney(portfolioTotalValue)}</td>
+            <td>{formatMoney(portfolioTotalValue, "USD")}</td>
             <td colSpan="2"></td>
           </tr>
         </tfoot>
