@@ -5,7 +5,14 @@ import "./footer.css";
 function Footer() {
   return (
     <div id="footer-div">
-      <p>2021. Manoel e Raul</p>
+      <span>&#169;</span>
+      <a
+        href="https://github.com/MFAP-1/sigma-finance"
+        style={{ color: "white", paddingRight: "10px" }}
+      >
+        Sigma Finance.
+      </a>
+      <span>Copyright 2021: Manoel and Raul.</span>
     </div>
   );
 }

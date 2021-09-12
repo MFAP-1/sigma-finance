@@ -22,7 +22,6 @@ class SignUpForm extends React.Component {
       );
       response.data.map((user) => {
         if (user.name.toLowerCase() === this.state.name.toLowerCase()) {
-          console.log("entrou no if");
           existUser = true;
         }
         return user;
@@ -59,10 +58,11 @@ class SignUpForm extends React.Component {
               <TextInput
                 className="input"
                 type="text"
-                placeholder="Nome do usuário"
+                placeholder="Create a username"
                 name="name"
                 onChange={this.handleChange}
                 value={this.state.name}
+                required
               />
             </div>
           </div>
