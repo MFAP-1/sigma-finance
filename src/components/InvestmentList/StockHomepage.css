@@ -1,30 +1,34 @@
 .container-infoHomepage {
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: violet;
-   
-    
+       background-color: violet;
+       display:flex;
+       justify-content: space-between;
+       height:800px
 }
-
 
 .container-stockInfo{
     background-color: blue;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    
-
+    width: 45vw;
+    color:white;
+    display:wrap
 
 }
 
 .container-SigmaInfo {
     background-color: chartreuse;
-   
-
+    width: 45vw;
 }
 
-.canvasGraphic{
-    width:500px;
-    height:300px
+
+
+.stripInformation{
+    border-bottom: solid 1px white;
+}
+
+
+#myCanvas {
+    width:1000px;
+}
+
+.container-graphStockDay{
+    padding:10px;
 }
