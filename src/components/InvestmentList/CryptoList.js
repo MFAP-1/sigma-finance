@@ -58,8 +58,7 @@ class CryptoList extends React.Component {
            coins: [...filteredCoinArr]
           });
         }
-        
-         
+    
     }
 
 

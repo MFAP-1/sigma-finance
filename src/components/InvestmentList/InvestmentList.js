@@ -98,7 +98,7 @@ class StockList extends React.Component {
 
   renderChart = () => {
     if (this.state.chartValuesX.length === 0) {
-      return alert("Couldn't find information about this stock");
+      return alert("Couldn't find information about this stock at the moment. Please try again or serch for another");
     }
 
     if (this.state.isLoaded) {
@@ -259,9 +259,9 @@ handleSubmitSearch = (event) => {
     <div className ="container-searchResults">
            {this.state.bestMatches.map((match) => {
                 return (
-                  <div>
+                  <div key ={match["1. symbol"]}>
                     <button 
-                       key ={match["1. symbol"]}
+                       
                        className = "no-button-decoration listSearch-style"
                        name = {match["1. symbol"]}
                        onClick = {this.handleSubmitSearch}

@@ -8,7 +8,7 @@ import "./InvestmentList.css";
 function InvestmentListPage() {
   return (
     <div >
-       <Header />
+    
       <StockList />
       <CryptoList />
      

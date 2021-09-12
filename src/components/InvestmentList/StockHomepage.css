@@ -1,0 +1,30 @@
+.container-infoHomepage {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: violet;
+   
+    
+}
+
+
+.container-stockInfo{
+    background-color: blue;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+
+
+}
+
+.container-SigmaInfo {
+    background-color: chartreuse;
+   
+
+}
+
+.canvasGraphic{
+    width:500px;
+    height:300px
+}
