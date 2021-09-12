@@ -1,9 +1,5 @@
 import React from "react";
-import StockList from "../InvestmentList/InvestmentList";
 import StockHomepage from "../InvestmentList/StockHomepage";
-
-
-
 
 // import Header from "../header/Header";
 // import Footer from "../footer/Footer";

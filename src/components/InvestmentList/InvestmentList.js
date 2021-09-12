@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Chart from "chart.js/auto";
 import "./InvestmentList.css";
-import InvestmentSearchList from "./InvestmentSearchList";
+
 
 const randomStockList = ["AAPL", "MSFT", "AMZN", "FB", "GOOG", "GOOGL", "TSLA", "NVIDIA", "PYPL", 
                       "ASML", "INTC", "NFLX", "ADBE", "CSCO", "PEP",   "XOM", "C", "PFE", "GE", 
@@ -192,6 +192,7 @@ handleFind2 = () => {
 
      this.state.bestMatches.map((match) => {
           console.log(` busca: ${match["2. name"]}`)
+          return 1 // para evitar erro
     })
   }
 }

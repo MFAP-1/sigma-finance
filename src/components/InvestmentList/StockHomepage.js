@@ -29,16 +29,16 @@ class StockHomepage extends React.Component {
     const apiKey = "R2P4F9RG0EKKWZEU";
     const random = this.getRandomStocks()
        
+//FUNCIONANDO
+    // let url = `https://www.alphavantage.co/query?function=${
+    //   this.state.typeInformation
+    // }&symbol=${random}&outputsize=${
+    //   this.state.outputsize
+    // }&apikey=${apiKey}`;
+    // console.log(url)
 
-    let url = `https://www.alphavantage.co/query?function=${
-      this.state.typeInformation
-    }&symbol=${random}&outputsize=${
-      this.state.outputsize
-    }&apikey=${apiKey}`;
-    console.log(url)
-
-    //teste para não passar do limite de requisições
-    // let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
+    //USAR PARA NÃO ATINGIR O LIMITE DE APIS
+    let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
 
     const response = await axios.get(url);
    
@@ -52,12 +52,13 @@ class StockHomepage extends React.Component {
 
   getCompanyDescription = async () => {
     const apiKey = "R2P4F9RG0EKKWZEU";
-
-  let url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.companySymbol}&apikey=${apiKey}`
-   console.log(url2)
-    
-    // let url2 = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo"
-    // console.log(url2)
+////FUNCIONANDO LIMITE DE APIS 
+  // let url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.companySymbol}&apikey=${apiKey}`
+  //  console.log(url2)
+   
+ /// USAR QUANDO LIMITE DE APIS FOR ATINGIDO 
+    let url2 = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo"
+    console.log(url2)
   
     const response2 = await axios.get(url2);
  
@@ -119,9 +120,9 @@ class StockHomepage extends React.Component {
  
 
   renderChart = () => {
-    if (this.state.chartValuesX.length === 0) {
-      return alert("Couldn't find information about this stock at the moment. Please try again or serch for another");
-    }
+    // if (this.state.chartValuesX.length === 0) {
+    //   return alert("Couldn't find information about this stock at the moment. Please try again or serch for another");
+    // }
 
     if (this.state.isLoaded) {
       this.state.isLoaded.destroy();
@@ -183,7 +184,9 @@ class StockHomepage extends React.Component {
           </div>
 
           <div className ="container-SigmaInfo">
-            <h1>TESTE</h1>
+            <h1>Your Personal Finance Manager</h1>
+            <h2 >frase/ imagem</h2>
+            <div className = "botao">Sign me up</div>
           </div>
         </div>
     );

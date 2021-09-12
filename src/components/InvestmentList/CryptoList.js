@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import Chart from "chart.js/auto";
 import "./InvestmentList.css";
 import Crypto from "./Crypto";
 
@@ -23,7 +22,6 @@ class CryptoList extends React.Component {
     });
 
     console.log(this.state.coins);
-
   };
 
   componentDidMount = async () => {
@@ -35,70 +33,65 @@ class CryptoList extends React.Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    if (prevState.search !== this.state.search && this.state.search.length===0) {
+    if (
+      prevState.search !== this.state.search &&
+      this.state.search.length === 0
+    ) {
       this.getListData();
     }
   };
 
+  handleChange = (event) => {
+    this.setState({
+      search: event.target.value,
+    });
+  };
 
-    handleChange = (event) => {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state.search);
+    let filteredCoinArr = this.state.coins.filter((coin) => {
+      return coin.name.toLowerCase().includes(this.state.search.toLowerCase());
+    });
+    if (filteredCoinArr.length !== 0) {
       this.setState({
-          search: event.target.value,
-        });
+        coins: [...filteredCoinArr],
+      });
     }
+  };
 
-    handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(this.state.search)
-       let filteredCoinArr =  this.state.coins.filter((coin) =>{
-          return   coin.name.toLowerCase().includes(this.state.search.toLowerCase())
-        })
-        if (filteredCoinArr.length !== 0){
-        this.setState({
-           coins: [...filteredCoinArr]
-          });
-        }
-    
-    }
-
-
-    render() {
-    
-        return (
-            <div className="coin-app">
-              <div className="coin-search">
-                <h1 className="coin-text">Search a Crypto</h1>
-              <form onSubmit = {this.handleSubmit}>
-                <button>
-                  Search
-                </button>
-                  <input
-                    type="text"
-                    placeholder="Find a Crypto"
-                    className="coin-input"
-                    onChange={this.handleChange}
-                  />
-               </form> 
-              </div>
-              {this.state.coins.map((coin) => {
-                return (
-                  <Crypto
-                    key={coin.id}
-                    name={coin.name}
-                    image={coin.image}
-                    symbol={coin.symbol}
-                    marketcap={coin.market_cap}
-                    price={coin.current_price}
-                    priceChange={coin.price_change_percentage_24h}
-                  />
-                );
-              })}
-            </div>
+  render() {
+    return (
+      <div className="coin-app">
+        <div className="coin-search">
+          <h1 className="cryptocurrency-title">Cryptocurrencies</h1>
+          <form className="crypto-form" onSubmit={this.handleSubmit}>
+            <button className="button-form">Search</button>
+            <input
+              type="text"
+              placeholder="Find a crypto"
+              className="search-input"
+              onChange={this.handleChange}
+            />
+          </form>
+        </div>
+        {this.state.coins.map((coin) => {
+          return (
+            <Crypto
+              key={coin.id}
+              name={coin.name}
+              image={coin.image}
+              symbol={coin.symbol}
+              marketcap={coin.market_cap}
+              price={coin.current_price}
+              priceChange={coin.price_change_percentage_24h}
+              marketcaprank={coin.market_cap_rank}
+            />
           );
-        }
-      }
-
-      
+        })}
+      </div>
+    );
+  }
+}
 
 export default CryptoList;
-
