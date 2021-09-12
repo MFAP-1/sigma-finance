@@ -16,9 +16,8 @@ class StockHomepage extends React.Component {
       outputsize: "compact",
       typeInformation: "TIME_SERIES_DAILY",
       isLoaded: null,
-      searchEndPoint:"",
-      bestMatches:[],
-        
+      companyOverview:{},
+    
   }
 
   getRandomStocks = () => {
@@ -42,13 +41,35 @@ class StockHomepage extends React.Component {
     // let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
 
     const response = await axios.get(url);
-
+   
     this.setState({
     companySymbol: random
     });
 
     this.transformDataChart(response.data);
   };
+
+
+  getCompanyDescription = async () => {
+    const apiKey = "R2P4F9RG0EKKWZEU";
+
+  let url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.companySymbol}&apikey=${apiKey}`
+   console.log(url2)
+    
+    // let url2 = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo"
+    // console.log(url2)
+  
+    const response2 = await axios.get(url2);
+ 
+    const companyInformations = {...response2.data}
+    console.log(companyInformations)
+    this.setState ({
+      companyOverview: companyInformations
+    })
+
+}
+
+
 
 
   // getCompanyData = async () => {
@@ -78,9 +99,11 @@ class StockHomepage extends React.Component {
   componentDidMount = async () => {
     try {
       await this.getChartData();
-      this.renderChart();
-      this.getRandomStocks()
+      
+      this.getCompanyDescription()
      
+      this.renderChart();
+          
 
     } catch (err) {
       console.error(err);
@@ -93,7 +116,7 @@ class StockHomepage extends React.Component {
 //     }
 //  }
 
-  
+ 
 
   renderChart = () => {
     if (this.state.chartValuesX.length === 0) {
@@ -141,8 +164,8 @@ class StockHomepage extends React.Component {
     this.setState({ isLoaded: chart });
   };
 
-
   render() {
+    console.log(this.state.companyOverview["Name"])
     return (
        <div className = "container-infoHomepage">
                         
@@ -150,21 +173,14 @@ class StockHomepage extends React.Component {
          <div><h1>Stock of the day: {this.state.companySymbol}</h1></div>  
             <canvas className = "container-graphStockDay" id="myCanvas"> </canvas>
             <div className  =" cointainer-listInformations">
-            <div className = "stripInformation"> <b>Name:</b> Facebook Inc</div>
-            <div className = "stripInformation"><b>Exchange: </b>NASDAQ</div>
-            <div className = "stripInformation"><b>AssetType:</b> Common Stock</div>
-            <div className = "stripInformation"> <b>Sector: </b>Technology</div>
-            <div className = "stripInformation"><b>MarketCapitalization:</b> 1067693769000</div>
-            <div className = "stripInformation"><b>DividendPerShare:</b> None </div>
+            <div className = "stripInformation"> <b>Name:</b> {this.state.companyOverview["Name"]}</div>
+            <div className = "stripInformation"><b>Exchange: </b> {this.state.companyOverview["Exchange"]}</div>
+            <div className = "stripInformation"><b>AssetType:</b> {this.state.companyOverview["AssetType"]}</div>
+            <div className = "stripInformation"> <b>Sector: </b> {this.state.companyOverview["Sector"]}</div>
+            <div className = "stripInformation"><b>MarketCapitalization:</b> {this.state.companyOverview["MarketCapitalization"]}</div>
+            <div className = "stripInformation"><b>DividendPerShare:</b> {this.state.companyOverview["DividendPerShare"]} </div>
             </div>
           </div>
-
-
-
-
-
-
-
 
           <div className ="container-SigmaInfo">
             <h1>TESTE</h1>
