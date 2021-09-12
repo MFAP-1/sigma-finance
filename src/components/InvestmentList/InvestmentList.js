@@ -20,10 +20,9 @@ class StockList extends React.Component {
       outputsize: "compact",
       typeInformation: "TIME_SERIES_DAILY",
       isLoaded: null,
-      // searchEndPoint:"",
-      // bestMatches:[],
-      // bestMatchesNames:[],
-   
+      searchEndPoint:"",
+      bestMatches:[],
+    
   }
 
   getRandomStocks = () => {
@@ -38,15 +37,15 @@ class StockList extends React.Component {
   getChartData = async () => {
     const apiKey = "R2P4F9RG0EKKWZEU";
 
-    let url = `https://www.alphavantage.co/query?function=${
-      this.state.typeInformation
-    }&symbol=${this.state.companySymbol.toUpperCase()}&outputsize=${
-      this.state.outputsize
-    }&apikey=${apiKey}`;
-    console.log(url)
+    // let url = `https://www.alphavantage.co/query?function=${
+    //   this.state.typeInformation
+    // }&symbol=${this.state.companySymbol.toUpperCase()}&outputsize=${
+    //   this.state.outputsize
+    // }&apikey=${apiKey}`;
+    // console.log(url)
 
     //teste para não passar do limite de requisições
-    // let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
+    let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
 
     const response = await axios.get(url);
 
@@ -54,10 +53,10 @@ class StockList extends React.Component {
   };
 
 
-  getCompanyData = async () => {
-    let url2 = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=AAPL&apikey=demo%27"
-    const response = await axios.get(url2);
-  }
+  // getCompanyData = async () => {
+  //   let url2 = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=AAPL&apikey=demo%27"
+  //   const response = await axios.get(url2);
+  // }
 
   transformDataChart = (data) => {
     const obj = { ...data["Time Series (Daily)"] };
@@ -81,7 +80,8 @@ class StockList extends React.Component {
     try {
       await this.getChartData();
       this.renderChart();
-      this.getRandomStocks();
+      this.getRandomStocks()
+     
 
     } catch (err) {
       console.error(err);
@@ -89,10 +89,12 @@ class StockList extends React.Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    if (prevState.chartValuesY !== this.state.chartValuesY ) {
+    if (prevState.chartValuesY !== this.state.chartValuesY) {
       this.renderChart();
     }
-  };
+ }
+
+  
 
   renderChart = () => {
     if (this.state.chartValuesX.length === 0) {
@@ -154,97 +156,120 @@ class StockList extends React.Component {
     }
   };
 
-///////////////////////////////////////////////////////
 
+////////////////////////////SEARCH BAR BY NAME////////////////////////////////////
 
-// getSearchData = async () => {
-//   const apiKey = "R2P4F9RG0EKKWZEU";
+getSearchData = async () => {
+  const apiKey = "R2P4F9RG0EKKWZEU";
 
-//   let url2 = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${this.state.searchEndPoint}&apikey=${apiKey}`
-//   console.log(url2)
+  let url2 = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${this.state.searchEndPoint}&apikey=${apiKey}`
+  console.log(url2)
 
-//   const response2 = await axios.get(url2);
-//   console.log(response2.data["bestMatches"])
-//   const matches =[...response2.data["bestMatches"]]
-//   this.setState ({
-//     bestMatches: [...matches]
-//   })
+  const response2 = await axios.get(url2);
+  console.log(response2.data["bestMatches"])
+  const matches =[...response2.data["bestMatches"]]
+  this.setState ({
+    bestMatches: [...matches]
+  })
 
-//   this.state.bestMatches.map((match)=> {
-//     console.log(`${match["2. name"]}`)
-//     return 1
+  this.state.bestMatches.map((match)=> {
+    console.log(`${match["2. name"]}`)
+    return 1
   
-//   })
+  })
+}
 
-// }
+handleInput2 = (event) => {
+  this.setState({
+    searchEndPoint: event.target.value,
+  });
+};
 
-// renderSearch =() => {
-//   this.state.bestMatches.map( match => {
-//      <li>{match["2. name"]} </li>
-//   })
+handleFind2 = () => {
+ 
+  if(this.state.searchEndPoint !== ""){
+     this.getSearchData();
 
-// }
+     this.state.bestMatches.map((match) => {
+          console.log(` busca: ${match["2. name"]}`)
+    })
+  }
+}
 
 
-// handleInput2 = (event) => {
-//   this.setState({
-//     searchEndPoint: event.target.value,
-//   });
-// };
+handleSubmitSearch = (event) => {
+  this.setState({
+    companySymbol: event.target.name,
+  });
 
-// handleFind2 = () => {
-//   console.log(this.state.searchEndPoint)
-//   if(this.state.searchEndPoint !== ""){
-//      this.getSearchData();
+
+}
+
+
+
+//   componentDidUpdate = (prevProps, prevState) => {
+//     if (prevState.bestMatches !== this.state.bestMatches ) {
+     
+//   };
 //   }
-// }
 
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   if (prevState.bestMatches !== this.state.bestMatches ) {
-  //     this.render()
-  //   }
-  // };
+//   renderSearchBar = () =>{
+    
+//     this.state.bestMatches.map((match) => {
+    
+//       console.log(` busca: ${match["2. name"]}`)
+//     })
+//   }
 
 
-////////////////////////////////////////////////////////////
+//////////////////////////END//////////////////////////////////
 
   render() {
 
 
     return (
-      <div className="container-graphic">
+      <div className="container">
+        
         <h1>Stocks</h1>
-
+<div className = "container-searchBars">
         <div className="searchBar">
           <input
             id="companySymbolInput"
-            className="inputSearchBar"
+            className="inputText-Stocks"
             onChange={this.handleInput}
             value={this.state.companySymbol}
           />
-
-          <button className="buttonSearchBar" onClick={this.handleFind}>
+          <button className="button-Stocks" onClick={this.handleFind}>
             Find
           </button>
         </div>
-
-
-{/* Search Bar EndPoint */}
-
-        <div className="searchBar2">
+        <div className="searchBar">
           <input
             id="companySymbolInput2"
-            className="inputSearchBar2"
+            className="inputText-Stocks"
             onChange={this.handleInput2}
-            // value={this.state.companySymbol}
+            placeholder="Find a Stock"
           />
-          <button className="buttonSearchBar2" onClick={this.handleFind2}>
-            Find
+          <button className="button-Stocks" onClick={this.handleFind2}>
+            Search by name
           </button>
-          {/* <div>{this.state.bestMatches.length === 0 ? this.state.bestMatches.length : this.state.bestMatches.length }</div> */}
-          </div>
-
-
+         </div>
+    </div>
+    <div className ="container-searchResults">
+         {this.state.bestMatches.map((match) => {
+                return (
+                  <div>
+                    <button 
+                       key ={match["1. symbol"]}
+                       className = "no-button-decoration listSearch-style"
+                       name = {match["1. symbol"]}
+                       onClick = {this.handleSubmitSearch}
+                    >
+                      {`${match["2. name"].split(" ")[0]} ${match["2. name"].split(" ")[1]}  `}</button>
+                  </div>
+                );
+              })}
+         </div>
          <div className="canvasGraphic">
           <canvas id="myCanvas"> </canvas>
         </div>

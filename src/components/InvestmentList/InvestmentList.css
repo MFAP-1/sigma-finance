@@ -1,5 +1,11 @@
-.container-graphic{
+body {
+    background-color:grey;
+}
+
+
+.container{
     text-align: center;
+    
 }
 .canvasGraphic {
  
@@ -7,15 +13,75 @@
     height:40%;
     background-color: white;
     margin: 50px auto;
-
-    
-}
-
-body {
-    background-color:pink;
 }
 
 
-.searchBar2 {
-    background-color:blueviolet;
+.container-searchBars {
+    display:flex;
+    justify-content:center;
+    align-items:center
 }
+
+.searchBar {
+    margin:1rem;
+    display:flex;
+    justify-content:center;
+    align-items:center
+}
+
+.no-button-decoration{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.listSearch-style {
+    color:white;
+    margin:5px;
+}
+
+.button-Stocks {
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #000000 5%, #36363a 100%);
+	    
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+    letter-spacing: 1px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #010407;
+}
+.button-Stocks:hover {
+	background:linear-gradient(to bottom, #09172c 5%, #131869 100%);
+	
+}
+.button-Stocks:active {
+	position:relative;
+	top:1px;
+}
+
+.inputText-Stocks{
+    font-size:1.1rem;
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+
+	text-decoration:none;
+}
+
+.container-searchResults{
+    display:flex;
+    justify-content:center;
+    flex-direction: row;
+    background-color: black;
+    visibility:hidden;
+}
+        
+
+
