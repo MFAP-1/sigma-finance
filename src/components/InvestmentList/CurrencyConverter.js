@@ -1,5 +1,5 @@
 import React from "react";
-import "./CurrencyConverterPage.css";
+
 
 
 function CurrencyConverter(props) {
@@ -8,7 +8,7 @@ function CurrencyConverter(props) {
     <div className="container-currencyConverter">
       <div>
         <input type="number" className="currencyConverter-input" />
-        <select className="select-currency">
+        <select className="select-currency" value={props.currentCurrency}>
             {props.currenciesList.map ((currency) => {
            return (<option key = {currency} value={currency}>{currency}</option>   )     
             })}
