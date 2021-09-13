@@ -3,7 +3,6 @@ function SelectInput(props) {
     <div>
       <label htmlFor={props.id}>{props.label}</label>
       <select
-        className="form-select"
         id={props.id}
         name={props.name}
         value={props.value}

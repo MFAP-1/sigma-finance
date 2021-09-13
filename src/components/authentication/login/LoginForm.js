@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
 
-import TextInput from "../forms/TextInput";
+import TextInput from "../../forms/TextInput";
 
-class SignUpForm extends React.Component {
+class LoginForm extends React.Component {
   state = {
     name: "",
   };
@@ -14,15 +14,8 @@ class SignUpForm extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault(); // preventing the reload
-
-    // checking the length of the username
-    if (this.state.name.length <= 3) {
-      alert("This username is too short. Try a longer one.");
-      return 0;
-    }
-
-    // Fetching the users from the API to check if it already exists
     let existUser = false;
+    // Fetching the users from the API to check if it already exists
     try {
       const response = await axios.get(
         "https://ironrest.herokuapp.com/sigmaFinanceUsers"
@@ -36,26 +29,21 @@ class SignUpForm extends React.Component {
     } catch (err) {
       console.error(err);
     }
-    // In case where the user doesn´t exist, post it to the API
-    if (!existUser) {
-      try {
-        const response = await axios.post(
-          "https://ironrest.herokuapp.com/sigmaFinanceUsers",
-          this.state
-        );
-        console.log(response);
-        this.props.history.push("/login");
-      } catch (err) {
-        console.error(err);
-      }
-      // In case where the user do exist, alert the screen
+    // In case where the user exist, enter the APP into the wallet
+    if (existUser) {
+      this.props.updateLoginState(this.state.name);
+      this.props.history.push(`/wallet`);
+      // In case where the user doesn't exist, alert the screen and prevent login
     } else {
-      alert("This username is taken. Try a new one");
+      alert(
+        "This username doesn't exist. Don't you remember you own username?"
+      );
       this.setState({ name: "" });
     }
   };
 
   render() {
+    // console.log(this.state.name);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -65,7 +53,7 @@ class SignUpForm extends React.Component {
               <TextInput
                 className="input"
                 type="text"
-                placeholder="Create a username"
+                placeholder="Insert a username"
                 name="name"
                 onChange={this.handleChange}
                 value={this.state.name}
@@ -74,7 +62,7 @@ class SignUpForm extends React.Component {
             </div>
           </div>
           <div>
-            <button type="submit">Submit new user</button>
+            <button type="submit">Login</button>
           </div>
         </form>
       </div>
@@ -82,4 +70,4 @@ class SignUpForm extends React.Component {
   }
 }
 
-export default SignUpForm;
+export default LoginForm;

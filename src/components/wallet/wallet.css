@@ -28,7 +28,7 @@ tfoot {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
+  width: 130px;
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -41,6 +41,7 @@ tfoot {
   margin-left: -60px;
   opacity: 0;
   transition: opacity 0.3s;
+  font-size: 0.9rem;
 }
 
 .tooltip .tooltiptext::after {

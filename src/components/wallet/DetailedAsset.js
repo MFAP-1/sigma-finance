@@ -10,6 +10,7 @@ class DetailedAsset extends React.Component {
     // from API
     assetType: "",
     currency: "USD",
+    investmentIndicator: "",
     assetName: "",
     assetSymbol: "",
     quantity: 0,
@@ -42,11 +43,11 @@ class DetailedAsset extends React.Component {
   //
   componentDidUpdate = (prevProps, prevStats) => {
     if (prevStats.assetName !== this.state.assetName) {
-      this.runInvestimentStatistic();
+      this.runInvestmentStatistic();
     }
   };
 
-  runInvestimentStatistic = () => {
+  runInvestmentStatistic = () => {
     const totalInitialValue = this.state.unitPrice * this.state.quantity;
     const totalCurrentValue =
       (Number(this.state.unitPrice) + 20) * this.state.quantity;
@@ -97,6 +98,10 @@ class DetailedAsset extends React.Component {
             <strong>Currency: </strong>
             {this.state.currency}.
           </li>
+          <li key="investment-indicator">
+            <strong>Investment Indicator: </strong>
+            {this.state.investmentIndicator}.
+          </li>
           <li key="quantity">
             <strong>Quantity bought (units): </strong>
             {this.state.quantity}.
@@ -111,8 +116,8 @@ class DetailedAsset extends React.Component {
             <strong>Date Bought: </strong>
             {formatDate(this.state.dateBought)}
           </li>
-          <li key="investiment-time">
-            <strong>Investiment time: </strong>
+          <li key="investment-time">
+            <strong>Investment time: </strong>
             {this.state.statistics.investmentDuration} days
           </li>
           <hr />
@@ -151,11 +156,29 @@ class DetailedAsset extends React.Component {
           </li>
           <li key="yield2">
             <strong>Rendimento percentual total acumulado (%a.a.): </strong>
-            {this.state.statistics.totalYieldPercentage}
+            {this.state.statistics.totalYieldPercentage}%
           </li>
           <li key="yield3">
             <strong>Rendimento percentual estimado ao mês (%a.m.): </strong>
-            {this.state.statistics.YieldPercentagePerMonth}
+            {this.state.statistics.YieldPercentagePerMonth}%
+          </li>
+          <hr />
+          <h3>Comparações do redimento com outros indicadores:</h3>
+          <li key="comparison1">
+            <strong>Valor total se investido na poupança: </strong>
+            {0}
+          </li>
+          <li key="comparison2">
+            <strong>Diferença percentual sobre a poupança: </strong>
+            {0}%
+          </li>
+          <li key="comparison1">
+            <strong>Valor total se investido no IPCA+0%: </strong>
+            {0}
+          </li>
+          <li key="comparison2">
+            <strong>Diferença percentual sobre a IPCA+0%: </strong>
+            {0}%
           </li>
         </ul>
       </div>

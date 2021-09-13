@@ -12,6 +12,7 @@ class AddAsset extends React.Component {
     //comes from form!
     assetType: "",
     currency: "",
+    investmentIndicator: "",
     assetName: "",
     assetSymbol: "",
     quantity: 0,

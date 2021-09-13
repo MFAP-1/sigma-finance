@@ -2,6 +2,7 @@ import React from "react";
 
 import TextInput from "../forms/TextInput";
 import SelectInput from "../forms/SelectInput";
+import RadioInput from "../forms/RadioInput";
 
 import "./assetForm.css";
 
@@ -41,6 +42,43 @@ function AssetForm(props) {
           required
         />
       </div>
+      {props.state.assetType !== "Bond" ? (
+        ""
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
+          <RadioInput
+            name="investmentIndicator"
+            id="assetFormRadioInput1"
+            value="IPCA"
+            checked={props.state.investmentIndicator === "IPCA"}
+            onChange={props.handleChange}
+            label="IPCA"
+          />
+          <RadioInput
+            name="investmentIndicator"
+            id="assetFormRadioInput3"
+            value="CDI"
+            checked={props.state.investmentIndicator === "CDI"}
+            onChange={props.handleChange}
+            label="CDI"
+          />
+          <RadioInput
+            name="investmentIndicator"
+            id="assetFormRadioInput2"
+            value="Selic"
+            checked={props.state.investmentIndicator === "Selic"}
+            onChange={props.handleChange}
+            label="Selic"
+          />
+        </div>
+      )}
       <div
         style={{
           display: "flex",

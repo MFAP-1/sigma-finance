@@ -13,11 +13,11 @@ import Wallet from "./components/wallet/Wallet";
 import AddAsset from "./components/wallet/AddAsset";
 import UpdateAsset from "./components/wallet/UpdateAsset";
 import DeleteAsset from "./components/wallet/DeleteAsset";
-// Authentication imports
-import SignUpPage from "./components/signup/SignUpPage";
-import LoginPage from "./components/login/LoginPage";
-import Logout from "./components/logout/Logout";
 import DetailedAsset from "./components/wallet/DetailedAsset";
+// Authentication imports
+import SignUpPage from "./components/authentication/signup/SignUpPage";
+import LoginPage from "./components/authentication/login/LoginPage";
+import Logout from "./components/authentication/logout/Logout";
 
 class App extends React.Component {
   state = {
