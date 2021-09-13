@@ -6,6 +6,7 @@ function TextInput(props) {
       <input
         type={props.type}
         id={props.id}
+        className={props.className}
         min={props.min}
         step={props.step}
         name={props.name}

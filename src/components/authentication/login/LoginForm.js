@@ -21,7 +21,7 @@ class LoginForm extends React.Component {
         "https://ironrest.herokuapp.com/sigmaFinanceUsers"
       );
       response.data.map((user) => {
-        if (user.name.toLowerCase() === this.state.name.toLowerCase()) {
+        if (user.name === this.state.name) {
           existUser = true;
         }
         return user;

@@ -4,6 +4,7 @@ function SelectInput(props) {
       <label htmlFor={props.id}>{props.label}</label>
       <select
         id={props.id}
+        className={props.className}
         name={props.name}
         value={props.value}
         onChange={props.onChange}

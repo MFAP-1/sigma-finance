@@ -1,3 +1,4 @@
+/* Table */
 #portfolio-table-div {
   max-height: 70vh;
   overflow: scroll;
@@ -19,6 +20,12 @@ tfoot {
   font-weight: 900;
   background-color: black;
   color: white;
+}
+
+/* select-currency-input */
+.select-currency-input {
+  width: auto;
+  text-align: center;
 }
 
 /* Tooltips texts style */
