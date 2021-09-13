@@ -1,13 +1,11 @@
-function formatMoney(value) {
-  // let locale = "pt-BR";
-  let locale = "en-US";
-  // if (this.state.currency === "USD") {
-  //   locale = "en-US";
-  // }
+function formatMoney(value, targetCurrency) {
+  let locale = "pt-BR"; // for EUR currency, the locale format is the same as "pt-BR"
+  if (targetCurrency === "USD") {
+    locale = "en-US";
+  }
   return value.toLocaleString(locale, {
     style: "currency",
-    currency: "USD",
-    // currency: this.state.currency,
+    currency: targetCurrency,
   });
 }
 

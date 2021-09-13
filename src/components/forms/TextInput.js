@@ -7,6 +7,7 @@ function TextInput(props) {
         type={props.type}
         id={props.id}
         min={props.min}
+        step={props.step}
         name={props.name}
         onChange={props.onChange}
         value={props.value}

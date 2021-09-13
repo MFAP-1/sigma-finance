@@ -1,7 +1,5 @@
 import React from "react";
 
-// import Header from "../header/Header";
-import Footer from "../footer/Footer";
 import LoginForm from "./LoginForm";
 
 function LoginPage(props) {
@@ -14,7 +12,6 @@ function LoginPage(props) {
           updateLoginState={props.updateLoginState}
         />
       </div>
-      <Footer />
     </div>
   );
 }
