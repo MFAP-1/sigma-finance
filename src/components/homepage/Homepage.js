@@ -10,8 +10,7 @@ function HomePage() {
     <div >
       <div className="center-content">
         <h1>Welcome to Sigma</h1>
-        <p>Trazer conteudo pra cá! Os conteúdos independentes do login</p>
-        <StockHomepage/>
+         <StockHomepage/>
       </div>
     </div>
   );

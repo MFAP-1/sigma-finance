@@ -98,7 +98,7 @@ class StockList extends React.Component {
 
   renderChart = () => {
     if (this.state.chartValuesX.length === 0) {
-      return alert("Couldn't find information about this stock at the moment. Please try again or serch for another");
+      return alert("Couldn't find information about this stock at the moment. Please try again or search for another");
     }
 
     if (this.state.isLoaded) {
@@ -114,12 +114,12 @@ class StockList extends React.Component {
           {
             label: this.state.companySymbol.toUpperCase(),
             data: this.state.chartValuesY,
-            backgroundColor: "#03b1fc",
+            backgroundColor:"black",
             borderColor: "black",
             fill: true,
             tension: 0.2,
             borderWidth: 1,
-            pointRadius:1,
+            pointRadius:2,
           },
         ],
       },
@@ -129,11 +129,16 @@ class StockList extends React.Component {
             grid: {
               display: false,
             },
-          },
+            ticks: {
+               color:"black"},
+            },
           y: {
             grid: {
               display: true,
             },
+            ticks: {
+              color:"black"}
+            
           },
         },
       },
@@ -229,14 +234,14 @@ handleSubmitSearch = (event) => {
     return (
       <div className="container">
         
-        <h1>Mudar</h1>
+        <h1>Stock Informations</h1>
       <div className = "container-searchBars">
-              <div className="searchBar">
+        <div className="searchBar">
           <input
             id="companySymbolInput2"
             className="inputText-Stocks"
             onChange={this.handleInput2}
-            placeholder="Find a Stock"
+            placeholder="Ticker Symbol Lookup"
           />
           <button className="button-Stocks" onClick={this.handleFind2}>
             Search by name
@@ -262,7 +267,7 @@ handleSubmitSearch = (event) => {
                 return (
                   <div key ={match["1. symbol"]}>
                     <button 
-                       
+                     
                        className = "no-button-decoration listSearch-style"
                        name = {match["1. symbol"]}
                        onClick = {this.handleSubmitSearch}
@@ -272,11 +277,7 @@ handleSubmitSearch = (event) => {
                 );
               })}
          </div>
-   
-
-
-
-
+ 
          <div className="canvasGraphic">
           <canvas id="myCanvas"> </canvas>
         </div>

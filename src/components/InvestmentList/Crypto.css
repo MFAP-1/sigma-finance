@@ -68,7 +68,8 @@
 .divImgNameSymbol img {
     height:1.875rem;
     width:1.875rem;
-    margin-right:0.8rem;
+    
+    
 }
 
 .coin-symbol {
@@ -95,4 +96,5 @@
 
 .green {
     color:green;
+   
 }

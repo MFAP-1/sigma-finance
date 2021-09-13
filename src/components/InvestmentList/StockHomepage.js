@@ -4,7 +4,7 @@ import Chart from "chart.js/auto";
 import "./StockHomepage.css";
 
 
-const randomStockList = ["AAPL", "MSFT", "AMZN", "FB", "GOOG", "GOOGL"]                  
+const randomStockList = ["AAPL", "MSFT", "FB", "GOOG", "GOOGL", "ASML", "INTC", "NFLX", "ADBE", "CSCO", "PEP",  "XOM", "C", "PFE", "GE"]                  
 
 class StockHomepage extends React.Component {
      
@@ -12,6 +12,8 @@ class StockHomepage extends React.Component {
 
       chartValuesX: [],
       chartValuesY: [],
+      chartValuesY2:[],
+      chartValuesY3:[],
       companySymbol: "",
       outputsize: "compact",
       typeInformation: "TIME_SERIES_DAILY",
@@ -30,15 +32,17 @@ class StockHomepage extends React.Component {
     const random = this.getRandomStocks()
        
 //FUNCIONANDO
-    // let url = `https://www.alphavantage.co/query?function=${
-    //   this.state.typeInformation
-    // }&symbol=${random}&outputsize=${
-    //   this.state.outputsize
-    // }&apikey=${apiKey}`;
-    // console.log(url)
+    let url = `https://www.alphavantage.co/query?function=${
+      this.state.typeInformation
+    }&symbol=${random}&outputsize=${
+      this.state.outputsize
+    }&apikey=${apiKey}`;
+    console.log(url)
+
+    // let  url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${random}&apikey=${apiKey}`
 
     //USAR PARA NÃO ATINGIR O LIMITE DE APIS
-    let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
+    // let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
 
     const response = await axios.get(url);
    
@@ -46,24 +50,32 @@ class StockHomepage extends React.Component {
     companySymbol: random
     });
 
+    // const response2 = await axios.get(url2)
+    // const companyInformations = {...response2.data}
+        
+    //     this.setState ({
+    //       companyOverview: companyInformations
+    //    })
+
+
     this.transformDataChart(response.data);
   };
 
 
   getCompanyDescription = async () => {
     const apiKey = "R2P4F9RG0EKKWZEU";
-////FUNCIONANDO LIMITE DE APIS 
-  // let url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.companySymbol}&apikey=${apiKey}`
-  //  console.log(url2)
+//FUNCIONANDO LIMITE DE APIS 
+  let url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.companySymbol}&apikey=${apiKey}`
+   console.log(url2)
    
  /// USAR QUANDO LIMITE DE APIS FOR ATINGIDO 
-    let url2 = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo"
-    console.log(url2)
+    // let url2 = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo"
+    // console.log(url2)
   
     const response2 = await axios.get(url2);
  
     const companyInformations = {...response2.data}
-    console.log(companyInformations)
+    // console.log(companyInformations)
     this.setState ({
       companyOverview: companyInformations
     })
@@ -71,29 +83,29 @@ class StockHomepage extends React.Component {
 }
 
 
-
-
-  // getCompanyData = async () => {
-  //   let url2 = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=AAPL&apikey=demo%27"
-  //   const response = await axios.get(url2);
-  // }
-
   transformDataChart = (data) => {
     const obj = { ...data["Time Series (Daily)"] };
     const chartXclone = [];
     const chartYclone = [];
+    const chartY2clone = [];
+    const chartY3clone = [];
 
     for (let key in obj) {
       chartXclone.push(key);
-      chartYclone.push(obj[key]["4. close"]);
+      chartYclone.push(obj[key]["2. high"]);
+      chartY2clone.push(obj[key]["3. low"]);
+      chartY3clone.push(obj[key]["4. close"])
     }
     chartXclone.reverse();
     chartYclone.reverse();
-
+    chartY2clone.reverse();
+    chartY3clone.reverse();
     this.setState({
      
       chartValuesX: [...chartXclone],
       chartValuesY: [...chartYclone],
+      chartValuesY2: [...chartY2clone],
+      chartValuesY3: [...chartY3clone],
     });
   };
 
@@ -101,11 +113,10 @@ class StockHomepage extends React.Component {
     try {
       await this.getChartData();
       
-      this.getCompanyDescription()
+      await this.getCompanyDescription()
      
       this.renderChart();
-          
-
+         
     } catch (err) {
       console.error(err);
     }
@@ -117,7 +128,6 @@ class StockHomepage extends React.Component {
 //     }
 //  }
 
- 
 
   renderChart = () => {
     // if (this.state.chartValuesX.length === 0) {
@@ -135,15 +145,36 @@ class StockHomepage extends React.Component {
         labels: this.state.chartValuesX,
         datasets: [
           {
-            label: this.state.companySymbol.toUpperCase(),
+            label: "high", //this.state.companySymbol.toUpperCase(),
             data: this.state.chartValuesY,
-            backgroundColor: "#03b1fc",
+            // backgroundColor: "blue",
+            borderColor: "blue",
+            fill: true,
+            tension: 0.4,
+            borderWidth:2 ,
+            pointRadius:0,
+          },
+          {
+            label: "low", //this.state.companySymbol.toUpperCase(),
+            data: this.state.chartValuesY2,
+            // backgroundColor:"black",
+            borderColor: "green",
+            fill: true,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius:0,
+          },
+          {
+            label: "close", //this.state.companySymbol.toUpperCase(),
+            data: this.state.chartValuesY3,
+            backgroundColor:"black",
             borderColor: "black",
             fill: true,
-            tension: 0.2,
-            borderWidth: 1,
-            pointRadius:1,
-          },
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius:0,
+          }
+
         ],
       },
       options: {
@@ -152,11 +183,19 @@ class StockHomepage extends React.Component {
             grid: {
               display: false,
             },
-          },
+            ticks: {
+               color:"black",
+               count:5},
+                         
+            },
           y: {
             grid: {
               display: true,
             },
+            ticks: {
+              color:"black",
+            }
+            
           },
         },
       },
@@ -166,7 +205,7 @@ class StockHomepage extends React.Component {
   };
 
   render() {
-    console.log(this.state.companyOverview["Name"])
+    // console.log(this.state.companyOverview["Name"])
     return (
        <div className = "container-infoHomepage">
                         
@@ -174,17 +213,22 @@ class StockHomepage extends React.Component {
          <div><h1>Stock of the day: {this.state.companySymbol}</h1></div>  
             <canvas className = "container-graphStockDay" id="myCanvas"> </canvas>
             <div className  =" cointainer-listInformations">
-            <div className = "stripInformation"> <b>Name:</b> {this.state.companyOverview["Name"]}</div>
-            <div className = "stripInformation"><b>Exchange: </b> {this.state.companyOverview["Exchange"]}</div>
-            <div className = "stripInformation"><b>AssetType:</b> {this.state.companyOverview["AssetType"]}</div>
-            <div className = "stripInformation"> <b>Sector: </b> {this.state.companyOverview["Sector"]}</div>
-            <div className = "stripInformation"><b>MarketCapitalization:</b> {this.state.companyOverview["MarketCapitalization"]}</div>
-            <div className = "stripInformation"><b>DividendPerShare:</b> {this.state.companyOverview["DividendPerShare"]} </div>
+              <div>
+               <div className = "stripInformation"> <b>{this.state.companyOverview["Name"]}</b></div>
+               <div className = "stripInformation"><b>Exchange: </b> {this.state.companyOverview["Exchange"]}  {this.state.companyOverview["AssetType"]}</div>
+               {/* <div className = "stripInformation"><b>AssetType:</b> {this.state.companyOverview["AssetType"]}</div> */}
+                <div className = "stripInformation"> <b>Sector: </b> {this.state.companyOverview["Sector"]}</div>
+                 <div className = "stripInformation"><b>MarketCapitalization:</b> {this.state.companyOverview["MarketCapitalization"]}</div>
+                <div className = "stripInformation"><b>EBITDA:</b> ${this.state.companyOverview["EBITDA"]} </div>
+            </div>
+            <div className = "card-news">
+              <h2>Card news</h2>
+            </div>
             </div>
           </div>
 
           <div className ="container-SigmaInfo">
-            <h1>Your Personal Finance Manager</h1>
+            <h1>Your Finances in One Place</h1>
             <h2 >frase/ imagem</h2>
             <div className = "botao">Sign me up</div>
           </div>

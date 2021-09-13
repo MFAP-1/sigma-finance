@@ -9,9 +9,8 @@ body {
 }
 .canvasGraphic {
  
-    width: 70%;
-    height:40%;
-    background-color: white;
+    width: 50vw;
+    height:50vh;
     margin: 50px auto;
 }
 
@@ -46,8 +45,7 @@ body {
 
 .button-Stocks {
 	box-shadow:inset 0px 1px 0px 0px #97c4fe;
-	background:linear-gradient(to bottom, #000000 5%, #36363a 100%);
-	    
+	background:linear-gradient(to bottom, #090057f3 5%, #0000ad 100%);
 	border:1px solid #000000;
 	display:inline-block;
 	cursor:pointer;
@@ -60,7 +58,7 @@ body {
 	text-shadow:0px 1px 0px #010407;
 }
 .button-Stocks:hover {
-	background:linear-gradient(to bottom, #09172c 5%, #131869 100%);
+	background:linear-gradient(to bottom, #15218b 5%, #2b34e0 100%);
 	
 }
 .button-Stocks:active {
@@ -69,18 +67,42 @@ body {
 }
 
 .inputText-Stocks{
-    font-size:1.1rem;
-	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+     
+        box-shadow:inset 0px 1px 0px 0px #97c4fe;
+        background:linear-gradient(to bottom, #000000 5%, #36363a 100%);
+        border:1px solid #000000;
+        display:inline-block;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:15px;
+        letter-spacing: 1px;
+        padding:6px 24px;
+        text-decoration:none;
+        text-shadow:0px 1px 0px #010407;
 
-	text-decoration:none;
 }
 
 .container-searchResults{
-    display:flex;
+     display:flex; 
     flex-direction: row;
     justify-content:center;
-    background-color: black;
+    background-color: black; 
     /* display:none; */
+
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #000000 5%, #36363a 100%);
+	border:1px solid #000000;
+	/* display:inline-block; */
+	color:#ffffff;
+	font-family:Arial;
+	height:1.9rem;
+    letter-spacing: 1px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #010407;
+
+
+
    
     
 }
