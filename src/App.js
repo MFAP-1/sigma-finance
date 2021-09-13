@@ -6,8 +6,9 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import HomePage from "./components/homepage/Homepage";
-// ...
+// Investments (external API) imports
 import InvestmentListPage from "./components/InvestmentList/InvestmentListPage";
+import CryptoPage from "./components/InvestmentList/CryptoPage";
 // Wallet imports
 import Wallet from "./components/wallet/Wallet";
 import AddAsset from "./components/wallet/AddAsset";
@@ -35,7 +36,10 @@ class App extends React.Component {
         <BrowserRouter>
           <Header state={this.state} />
           <Route exact path="/" component={HomePage} />
+
+          {/* Investments (external API) imports */}
           <Route exact path="/investment-list" component={InvestmentListPage} />
+          <Route exact path="/cryptocurrencies" component={CryptoPage} />
 
           {/* Wallet Routes */}
           <Route
