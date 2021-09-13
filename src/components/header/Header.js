@@ -10,8 +10,11 @@ function Header(props) {
     return (
       <div>
         <nav id="nav-bar-large">
-          <Link to="/investment-list" className="no-link-decoration">
-            Invest. List
+          <Link to="/stocks" className="no-link-decoration">
+            Stocks
+          </Link>
+          <Link to="/cryptocurrencies" className="no-link-decoration">
+            Crypto
           </Link>
           <div id="wallet-nav-div">
             <Link to="/wallet" className="no-link-decoration">
@@ -39,6 +42,12 @@ function Header(props) {
   const renderOfflineNavBar = () => {
     return (
       <nav id="nav-bar-small">
+        <Link to="/stocks" className="no-link-decoration">
+          Stocks
+        </Link>
+        <Link to="/cryptocurrencies" className="no-link-decoration">
+          Crypto
+        </Link>
         <Link to="/login" className="no-link-decoration">
           Login
         </Link>
