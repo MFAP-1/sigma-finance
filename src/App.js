@@ -36,7 +36,7 @@ class App extends React.Component {
         <BrowserRouter>
           <Header state={this.state} />
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/investment-list" component={InvestmentListPage} />
+          <Route exact path="/stocks" component={InvestmentListPage} />
           <Route exact path = "/cryptocurrencies" component = {CryptoPage} />
 
           {/* Wallet Routes */}
