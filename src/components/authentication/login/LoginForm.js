@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-import TextInput from "../forms/TextInput";
+import TextInput from "../../forms/TextInput";
 
 class LoginForm extends React.Component {
   state = {

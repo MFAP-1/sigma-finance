@@ -6,25 +6,28 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import HomePage from "./components/homepage/Homepage";
-// ...
+// Investments (external API) imports
 import InvestmentListPage from "./components/InvestmentList/InvestmentListPage";
+import CryptoPage from "./components/InvestmentList/CryptoPage";
+import CurrencyConverterPage from "./components/InvestmentList/CurrencyConverterPage";
 // Wallet imports
 import Wallet from "./components/wallet/Wallet";
 import AddAsset from "./components/wallet/AddAsset";
 import UpdateAsset from "./components/wallet/UpdateAsset";
 import DeleteAsset from "./components/wallet/DeleteAsset";
-// Authentication imports
-import SignUpPage from "./components/signup/SignUpPage";
-import LoginPage from "./components/login/LoginPage";
-import Logout from "./components/logout/Logout";
 import DetailedAsset from "./components/wallet/DetailedAsset";
-import CryptoPage from "./components/InvestmentList/CryptoPage";
+// Authentication imports
+import SignUpPage from "./components/authentication/signup/SignUpPage";
+import LoginPage from "./components/authentication/login/LoginPage";
+import Logout from "./components/authentication/logout/Logout";
+
 
 class App extends React.Component {
   state = {
     loggedIn: false,
     username: "",
   };
+
 
   updateLoginState = (userName) => {
     this.setState({ loggedIn: !this.state.loggedIn, username: userName });
@@ -36,9 +39,11 @@ class App extends React.Component {
         <BrowserRouter>
           <Header state={this.state} />
           <Route exact path="/" component={HomePage} />
+          
+          {/* Investments (external API) imports */}
           <Route exact path="/stocks" component={InvestmentListPage} />
-          <Route exact path = "/cryptocurrencies" component = {CryptoPage} />
-
+          <Route exact path="/cryptocurrencies" component={CryptoPage} />
+          <Route exact path="/currency-converter" component={CurrencyConverterPage} />
           {/* Wallet Routes */}
           <Route
             exact

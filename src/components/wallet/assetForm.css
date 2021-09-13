@@ -1,0 +1,27 @@
+.add-asset-box {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50vw;
+  border: 1px solid black;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+input,
+select {
+  margin-bottom: 0.7rem;
+  background-color: gray;
+} */
+
+/* label {
+  margin-right: 0.5rem;
+} */

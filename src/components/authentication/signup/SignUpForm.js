@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-import TextInput from "../forms/TextInput";
+import TextInput from "../../forms/TextInput";
 
 class SignUpForm extends React.Component {
   state = {
@@ -14,8 +14,15 @@ class SignUpForm extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault(); // preventing the reload
-    let existUser = false;
+
+    // checking the length of the username
+    if (this.state.name.length <= 3) {
+      alert("This username is too short. Try a longer one.");
+      return 0;
+    }
+
     // Fetching the users from the API to check if it already exists
+    let existUser = false;
     try {
       const response = await axios.get(
         "https://ironrest.herokuapp.com/sigmaFinanceUsers"

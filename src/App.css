@@ -42,3 +42,25 @@
 /* Cinzas */
 /* rgb(107, 107, 108) */
 /* rgb(72, 72, 72) */
+
+/* General button configuration */
+/* button {
+  padding: 3px 10px;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+} */
+/* button:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+
+  transition: all 500ms ease-in-out 0ms;
+}
+button:focus {
+  background-color: lightgray;
+  color: black;
+  border: 1px solid black;
+} */

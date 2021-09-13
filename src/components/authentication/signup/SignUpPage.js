@@ -1,7 +1,5 @@
 import React from "react";
 
-// import Header from "../header/Header";
-import Footer from "../footer/Footer";
 import SignUpForm from "./SignUpForm";
 
 function SignUpPage(props) {
@@ -11,7 +9,6 @@ function SignUpPage(props) {
         <h2>New Here? Please sign up below</h2>
         <SignUpForm history={props.history} />
       </div>
-      <Footer />
     </div>
   );
 }
