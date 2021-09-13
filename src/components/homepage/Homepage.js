@@ -1,4 +1,5 @@
 import React from "react";
+import StockHomepage from "../InvestmentList/StockHomepage";
 
 // import Header from "../header/Header";
 // import Footer from "../footer/Footer";
@@ -6,10 +7,10 @@ import React from "react";
 
 function HomePage() {
   return (
-    <div>
+    <div >
       <div className="center-content">
         <h1>Welcome to Sigma</h1>
-        <p>Trazer conteudo pra cá! Os conteúdos independentes do login</p>
+         <StockHomepage/>
       </div>
     </div>
   );

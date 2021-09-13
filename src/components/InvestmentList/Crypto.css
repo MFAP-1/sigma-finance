@@ -1,33 +1,75 @@
+ body{
+     background-color: rgb(226, 226, 226);
+     text-align: center;  
+ }
+
+ .cryptocurrency-title{
+     margin:1rem;
+
+ }
+
+ .crypto-form {
+     margin-bottom:1rem;
+
+ }
+
+ .search-input {
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #000000 5%, #36363a 100%);
+	border:1px solid #000000;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+    letter-spacing: 1px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #010407;
+}
+
+.button-form {
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #090057f3 5%, #0000ad 100%);
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+    letter-spacing: 1px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #010407;
+}
+
+
+
 .crypto-strip {
     display:flex;
     flex-direction:row;
-    /* justify-items:start; */
     align-items: center;
     height:5rem;
     border-bottom: 1px solid black;
     width:100%;
-    margin-right:1.2rem
-   
+    margin-right:1.2rem;
+    /* background-color: blue; */
 }
 
 .divImgNameSymbol {
     display:flex;
+    justify-content: space-between;
     align-items:center;
     min-width: 18.75rem;
     /* margin:0 20px; */
-    margin:1rem
+    margin:1rem;
+    /* background-color: violet; */
 }
 
 .divImgNameSymbol img {
     height:1.875rem;
     width:1.875rem;
-    margin-right:0.8rem;
-}
-
-.divImgNameSymbol h1 {
-   font-size:1rem;
-   width:9.375rem;
-   margin-right:0.5rem;
+    
+    
 }
 
 .coin-symbol {
@@ -37,20 +79,22 @@
 .coin-data {
     display:flex;
     text-align:center;
-    justify-content: space-between;
-    width:100%
+    justify-content: space-around;
+    width:100%;
+    /* background-color: yellow; */
 }
 
 .coin-price {
     width:6.875rem;
 }
 
-.coin-marketcap{
-    width:12.5rem;
+
+
+.red {
+    color:red;
 }
 
-
-
-
-
-
+.green {
+    color:green;
+   
+}

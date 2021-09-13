@@ -18,6 +18,7 @@ import SignUpPage from "./components/signup/SignUpPage";
 import LoginPage from "./components/login/LoginPage";
 import Logout from "./components/logout/Logout";
 import DetailedAsset from "./components/wallet/DetailedAsset";
+import CryptoPage from "./components/InvestmentList/CryptoPage";
 
 class App extends React.Component {
   state = {
@@ -36,6 +37,7 @@ class App extends React.Component {
           <Header state={this.state} />
           <Route exact path="/" component={HomePage} />
           <Route exact path="/investment-list" component={InvestmentListPage} />
+          <Route exact path = "/cryptocurrencies" component = {CryptoPage} />
 
           {/* Wallet Routes */}
           <Route

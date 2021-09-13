@@ -1,0 +1,65 @@
+.container-infoHomepage {
+       /* background-color: violet; */
+       display:flex;
+       justify-content: space-evenly;
+       height:800px
+}
+
+.container-stockInfo{
+    /* background-color: blue; */
+    width: 45vw;
+    color:black;
+    display:wrap
+
+}
+
+
+.container-SigmaInfo {
+    padding: 2rem;
+    /* background-color: chartreuse; */
+    width: 45vw;
+}
+
+.container-SigmaInfo h2{
+ margin:6rem;
+}
+
+
+
+.stripInformation{
+    border-bottom: solid 1px black;
+}
+
+
+#myCanvas {
+    width:1000px;
+}
+
+.container-graphStockDay{
+    padding:10px;
+}
+
+.botao {
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #000000 5%, #36363a 100%);
+	  margin:4rem;  
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:30px;
+    letter-spacing: 1px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #010407;
+}
+
+.cointainer-listInformations{
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.card-news{
+    background-color: white;
+}
