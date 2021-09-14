@@ -11,7 +11,7 @@ function Header(props) {
       <div>
         <nav id="nav-bar-large">
           <div id="nav-div">
-            <Link to="/to-do" className="no-link-decoration">
+            <Link to="/currency-converter" className="no-link-decoration">
               Converter
             </Link>
             <Link to="/to-do" className="no-link-decoration">
@@ -52,7 +52,7 @@ function Header(props) {
     return (
       <nav id="nav-bar-small">
         <div id="nav-div">
-          <Link to="/to-do" className="no-link-decoration">
+          <Link to="/currency-converter" className="no-link-decoration">
             Converter
           </Link>
           <Link to="/to-do" className="no-link-decoration">
