@@ -1,9 +1,12 @@
 import axios from "axios";
+import formatDataIPCA from "./formatDataIPCA";
 
 const ipcaCalculator2 = async (fromDate, toDate, amount) => {
   try {
-    let initialDate = fromDate.slice(0, 7).split("-").join("")      
-    let endDate = toDate.slice(0, 7).split("-").join("") 
+    // let initialDate = fromDate.slice(0, 7).split("-").join("")      
+    // let endDate = toDate.slice(0, 7).split("-").join("") 
+    let initialDate = formatDataIPCA(fromDate);
+    let endDate = formatDataIPCA(toDate);
 
 
     let url = `https://servicodados.ibge.gov.br/api/v3/agregados/1737/periodos/${initialDate}-${endDate}/variaveis/63?localidades=N1[all]`;
