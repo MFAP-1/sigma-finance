@@ -4,6 +4,7 @@ import axios from "axios";
 //import components
 import BasicInformationTable from "./detailedAssetsTable/BasicInformationTable";
 import YieldAnalysisTable from "./detailedAssetsTable/YieldAnalysisTable";
+import YieldComparisonTable from "./detailedAssetsTable/YieldComparisonTable";
 
 // importing calculator helpers
 import calculateDuration from "../../scripts/calculateDuration";
@@ -95,8 +96,15 @@ class DetailedAsset extends React.Component {
         totalInitialValue) *
       100
     ).toFixed(3);
+    // ipca index doesn't have value for the current month
     const totalValueCorrectedByIPCA = await ipcaCalculator(
-      this.state.dateBought,
+      this.state.dateBought.includes(getTodayDate().slice(0, 7))
+        ? getTodayDate().slice(0, 5) +
+            Number(getTodayDate().slice(6, 7) - 1)
+              .toString()
+              .padStart(2, "0") +
+            "-01"
+        : this.state.dateBought,
       getTodayDate(),
       totalInitialValue
     );
@@ -104,6 +112,7 @@ class DetailedAsset extends React.Component {
       ((totalValueCorrectedByIPCA - totalInitialValue) / totalInitialValue) *
       100
     ).toFixed(3);
+
     this.setState({
       loading: false,
       statistics: {
@@ -124,6 +133,16 @@ class DetailedAsset extends React.Component {
   };
 
   render() {
+    // console.log(getTodayDate().slice(0, 5));
+    // console.log(getTodayDate().slice(6, 7));
+    // console.log(Number(getTodayDate().slice(6, 7)) - 1);
+    // console.log(
+    //   getTodayDate().slice(0, 5) +
+    //     Number(getTodayDate().slice(6, 7) - 1)
+    //       .toString()
+    //       .padStart(2, "0") +
+    //     "-01"
+    // );
     // console.log(this.state); // ---------------------DEBUGGUER
     // console.log("teste formatdate:", formatDate(this.state.dateBought)); // ---------------------DEBUGGUER
     // console.log(this.state.currency); // ---------------------DEBUGGUER
@@ -131,7 +150,7 @@ class DetailedAsset extends React.Component {
     // console.log("today chamando função", getTodayDate()); // ---------------------DEBUGGUER
     return (
       <div>
-        <h1>The details for the '{this.state.assetSymbol}' asset are: </h1>
+        <h2>The details for the '{this.state.assetSymbol}' asset are: </h2>
         <BasicInformationTable
           assetName={this.state.assetName}
           assetType={this.state.assetType}
@@ -178,59 +197,41 @@ class DetailedAsset extends React.Component {
             this.state.statistics.yieldPercentagePerMonth
           }
         />
-        <ul>
-          <hr />
-          <h3>
-            Yield comparison with other indexes. Current corrected total value
-            if invested in:
-          </h3>
-          <li key="comparison1">
-            <strong>
-              Brazil's Savings account - current corrected total (
-              {this.state.currency}):{" "}
-            </strong>
-            {formatMoney(
-              this.state.statistics.totalValueCorrectedBySavingsBrazil,
-              this.state.currency
-            )}
-          </li>
-          <li key="comparison2">
-            <strong>
-              Brazil's Savings account - total yield percentage (%):{" "}
-            </strong>
-            {this.state.statistics.totalYieldPercentageSavingsBrazil}%
-          </li>
-          <li key="comparison3">
-            <strong>Difference yield percentage (%): </strong>
-            {(
-              this.state.statistics.totalYieldPercentage -
-              this.state.statistics.totalYieldPercentageSavingsBrazil
-            ).toFixed(3)}
-            %
-          </li>
-          <li key="comparison4">
-            <strong>
-              Brazil's IPCA+0% - current corrected total ({this.state.currency}
-              ):{" "}
-            </strong>
-            {formatMoney(
-              this.state.statistics.totalValueCorrectedByIPCA,
-              this.state.currency
-            )}
-          </li>
-          <li key="comparison5">
-            <strong>Brazil's IPCA+0% - total yield percentage (%): </strong>
-            {this.state.statistics.totalYieldPercentageIPCA}%
-          </li>
-          <li key="comparison6">
-            <strong>Difference yield percentage (%): </strong>
-            {(
-              this.state.statistics.totalYieldPercentage -
-              this.state.statistics.totalYieldPercentageIPCA
-            ).toFixed(3)}
-            %
-          </li>
-        </ul>
+        <hr />
+        <YieldComparisonTable
+          loading={this.state.loading}
+          totalCurrentValue={formatMoney(
+            this.state.statistics.totalCurrentValue,
+            this.state.currency
+          )}
+          totalYieldPercentage={this.state.statistics.totalYieldPercentage}
+          yieldPercentagePerYear={this.state.statistics.yieldPercentagePerYear}
+          yieldPercentagePerMonth={
+            this.state.statistics.yieldPercentagePerMonth
+          }
+          totalValueCorrectedBySavingsBrazil={formatMoney(
+            this.state.statistics.totalValueCorrectedBySavingsBrazil,
+            this.state.currency
+          )}
+          totalYieldPercentageSavingsBrazil={
+            this.state.statistics.totalYieldPercentageSavingsBrazil
+          }
+          differenceThisAndSavings={(
+            this.state.statistics.totalYieldPercentageSavingsBrazil -
+            this.state.statistics.totalYieldPercentage
+          ).toFixed(3)}
+          totalValueCorrectedByIPCA={formatMoney(
+            this.state.statistics.totalValueCorrectedByIPCA,
+            this.state.currency
+          )}
+          totalYieldPercentageIPCA={
+            this.state.statistics.totalYieldPercentageIPCA
+          }
+          differenceThisAndIPCA={(
+            this.state.statistics.totalYieldPercentageIPCA -
+            this.state.statistics.totalYieldPercentage
+          ).toFixed(3)}
+        />
       </div>
     );
   }

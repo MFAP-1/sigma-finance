@@ -121,7 +121,9 @@ class PortfolioHistory extends React.Component {
     if (this.state.graph) {
       this.state.graph.destroy();
     }
-    let context = document.getElementById("canvas-AssetType").getContext("2d");
+    let context = document
+      .getElementById("canvas-PortfolioHistory")
+      .getContext("2d");
     const assetChart = new Chart(context, {
       type: "line",
       data: {
@@ -156,7 +158,7 @@ class PortfolioHistory extends React.Component {
           style={{ width: "40vw", paddingBottom: "10rem" }}
         >
           <canvas
-            id="canvas-AssetType"
+            id="canvas-PortfolioHistory"
             style={{ border: "1px solid black" }}
           ></canvas>
         </div>

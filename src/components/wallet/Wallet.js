@@ -129,7 +129,7 @@ class Wallet extends React.Component {
           </button>
           <h3>Your summarized portfolio:</h3>
           <div id="portfolio-table-div">{this.renderAssetList()}</div>
-          <div>
+          <div id="canvas-graphs-div">
             {this.state.drawGraph1 ? (
               <AssetTypeChart
                 assetList={this.state.assetList}

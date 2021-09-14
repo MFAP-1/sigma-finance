@@ -8,6 +8,7 @@ function TextInput(props) {
         id={props.id}
         className={props.className}
         min={props.min}
+        max={props.max}
         step={props.step}
         name={props.name}
         onChange={props.onChange}

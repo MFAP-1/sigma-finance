@@ -34,19 +34,25 @@ function YieldAnalysisTable(props) {
             <tr key="detailedAsset-tables-body3-yield-analysis">
               <th>Yield</th>
               <td>{props.unitYield}</td>
-              <td>{props.quantity}</td>
+              <td>-</td>
               <td> {props.totalYield}</td>
             </tr>
             <tr key="detailedAsset-tables-body4-yield-analysis">
-              <th colSpan="3">Total yield percentage(%)</th>
+              <th colSpan="3" style={{ textAlign: "right" }}>
+                Total yield percentage (%)
+              </th>
               <td>{props.totalYieldPercentage}%</td>
             </tr>
-            <tr key="detailedAsset-tables-body4-yield-analysis">
-              <th colSpan="3">Estimated yield percentage per year (%a.a.)</th>
+            <tr key="detailedAsset-tables-body5-yield-analysis">
+              <th colSpan="3" style={{ textAlign: "right" }}>
+                Estimated yield percentage per year (%a.a.)
+              </th>
               <td>{props.yieldPercentagePerYear}%</td>
             </tr>
-            <tr key="detailedAsset-tables-body4-yield-analysis">
-              <th colSpan="3">Estimated yield percentage per month (%a.m.)</th>
+            <tr key="detailedAsset-tables-body6-yield-analysis">
+              <th colSpan="3" style={{ textAlign: "right" }}>
+                Estimated yield percentage per month (%a.m.)
+              </th>
               <td>{props.yieldPercentagePerMonth}%</td>
             </tr>
           </tbody>

@@ -6,6 +6,8 @@ import RadioInput from "../forms/RadioInput";
 
 import "./assetForm.css";
 
+import getTodayDate from "../../scripts/getTodayDate";
+
 function AssetForm(props) {
   return (
     <form onSubmit={props.handleSubmit}>
@@ -143,6 +145,7 @@ function AssetForm(props) {
         type="date"
         id="assetFormDateBought"
         className="input-margin-bottom"
+        max={getTodayDate()}
         label="Date bought"
         name="dateBought"
         onChange={props.handleChange}
