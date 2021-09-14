@@ -1,0 +1,14 @@
+.ipca-form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+       
+}
+
+.amount-input {
+    text-align: center;
+}
+
+.date-input {
+    text-align:center;
+}

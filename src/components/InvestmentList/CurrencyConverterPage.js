@@ -1,8 +1,5 @@
 import React from "react";
 import axios from "axios";
-import ipcaCalculator2 from "../../scripts/ipcaCalculator2";
-import SelicCalculator from "../../scripts/SelicCalculator";
-
 
 
 class CurrencyConverterPage extends React.Component {
@@ -19,7 +16,6 @@ class CurrencyConverterPage extends React.Component {
   
     };
   }
-
 
   getCurrencyData = async () => {
     const url =
