@@ -1,18 +1,20 @@
 import React from "react";
 import axios from "axios";
+import ipcaCalculator from "../../scripts/ipcaCalculator";
 
 
 class CurrencyConverterPage extends React.Component {
   constructor() {
     super();
     this.state = {
+      
       currenciesInformation: {},
       currenciesList:[],
       fromCurrency: "USD",
       toCurrency:"BRL",
       amount: 0,
       finalResult: 0,
-
+  
     };
   }
 
@@ -24,19 +26,16 @@ class CurrencyConverterPage extends React.Component {
     const response = await axios.get(url);
     const currenciesObj = {...response.data["rates"]}
     const currenciesArr = [...Object.keys(currenciesObj)]
+ 
     
-
-      
     this.setState({
         currenciesInformation: {...currenciesObj},
         currenciesList: [...currenciesArr],
-        
-      
+ 
     });
 
     // console.log(this.state.currenciesInformation);
-    console.log(this.state.currenciesInformation)
-   
+ 
   };
  
   Calculate = () => {
@@ -54,8 +53,6 @@ class CurrencyConverterPage extends React.Component {
   componentDidMount = async () => {
     try {
       await this.getCurrencyData();
-
-
     } catch (err) {
       console.error(err);
     }
@@ -110,6 +107,7 @@ handSubmit = (event) =>{
 
         <div>
         <button onClick= {this.handSubmit}>Convert</button>
+        <button onClick= {() => ipcaCalculator("2020-01-01","2020-12-01", 100 )}>ipca</button>
         <div></div>
       </div>
       </div>
