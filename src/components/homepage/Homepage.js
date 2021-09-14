@@ -9,8 +9,7 @@ function HomePage() {
   return (
     <div >
       <div className="center-content">
-        <h1>Welcome to Sigma</h1>
-         <StockHomepage/>
+        <StockHomepage/>
       </div>
     </div>
   );

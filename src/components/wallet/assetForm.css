@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-form {
+/* form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,9 +19,9 @@ form {
 input,
 select {
   margin-bottom: 0.7rem;
-  /* background-color: gray; */
-}
+  background-color: gray;
+} */
 
-label {
+/* label {
   margin-right: 0.5rem;
-}
+} */
