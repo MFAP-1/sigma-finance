@@ -4,7 +4,7 @@ import Chart from "chart.js/auto";
 import "./StockHomepage.css";
 
 
-const randomStockList = ["AAPL", "MSFT", "FB", "GOOG", "GOOGL", "ASML", "INTC", "NFLX", "ADBE", "CSCO", "PEP",  "XOM", "C", "PFE", "GE"]                  
+const randomStockList = ["AAPL", "MSFT", "FB", "GOOG", "GOOGL", "ASML", "INTC", "NFLX", "ADBE", "CSCO", "PEP",  "XOM", "C", "PFE"]                  
 
 class StockHomepage extends React.Component {
      
