@@ -1,7 +1,6 @@
 import React from "react";
 import Chart from "chart.js/auto";
-
-// import convertCurrency from "../../../scripts/convertCurrency";
+import axios from "axios";
 
 class AssetTypeChart extends React.Component {
   state = {
@@ -10,7 +9,12 @@ class AssetTypeChart extends React.Component {
     graph: null,
   };
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
+    try {
+      await this.getCurrencyData();
+    } catch (err) {
+      console.error(err);
+    }
     this.getGraphInformation();
   };
 
@@ -20,30 +24,88 @@ class AssetTypeChart extends React.Component {
     }
   };
 
+  getCurrencyData = async () => {
+    const url =
+      "http://api.exchangeratesapi.io/v1/latest?access_key=ac8ab16193cf913bd7bbf4e56ef3f6c2";
+    const response = await axios.get(url);
+    const currenciesObj = { ...response.data["rates"] };
+    // const currenciesArr = [...Object.keys(currenciesObj)];
+    const usd_brl = currenciesObj["BRL"] / currenciesObj["USD"];
+    const usd_eur = currenciesObj["EUR"] / currenciesObj["USD"];
+    const brl_usd = currenciesObj["USD"] / currenciesObj["BRL"];
+    const brl_eur = currenciesObj["EUR"] / currenciesObj["BRL"];
+    const eur_usd = currenciesObj["USD"] / currenciesObj["EUR"];
+    const eur_brl = currenciesObj["BRL"] / currenciesObj["EUR"];
+    this.setState({
+      // currenciesInformation: { ...currenciesObj }, // ---------------------NOT USED
+      // currenciesList: [...currenciesArr], // ---------------------NOT USED
+      usd_brl: usd_brl,
+      usd_eur: usd_eur,
+      brl_usd: brl_usd,
+      brl_eur: brl_eur,
+      eur_usd: eur_usd,
+      eur_brl: eur_brl,
+    });
+    // console.log(usd_brl); // ---------------------DEBUGGER
+  };
+
+  genericCurrencyConverter = (
+    valueToConvert,
+    currentCurrency,
+    targetCurrency
+  ) => {
+    if (targetCurrency === "USD" || targetCurrency === "") {
+      if (currentCurrency === "BRL") {
+        return valueToConvert * this.state.brl_usd;
+      } else if (currentCurrency === "EUR") {
+        return valueToConvert * this.state.eur_usd;
+      } else {
+        return valueToConvert; //case where its already dolar
+      }
+    } else if (targetCurrency === "BRL") {
+      if (currentCurrency === "USD") {
+        return valueToConvert * this.state.usd_brl;
+      } else if (currentCurrency === "EUR") {
+        return valueToConvert * this.state.eur_brl;
+      } else {
+        return valueToConvert; //case where its already brl
+      }
+    } else if (targetCurrency === "EUR") {
+      if (currentCurrency === "USD") {
+        return valueToConvert * this.state.usd_eur;
+      } else if (currentCurrency === "BRL") {
+        return valueToConvert * this.state.brl_eur;
+      } else {
+        return valueToConvert; //case where its already eur
+      }
+    }
+  };
+
   getGraphInformation = () => {
+    // console.log("entrou no get graph info"); // ---------------------DEBUGGER
     let labelArr = [];
     let dataArr = [];
     this.props.assetList.map((assetObj) => {
       if (assetObj.username === this.props.username) {
         if (!labelArr.includes(assetObj.assetType)) {
           labelArr.push(assetObj.assetType);
-          dataArr.push(assetObj.quantity * Number(assetObj.unitPrice));
-          // dataArr.push(
-          //   convertCurrency(
-          //     assetObj.currency,
-          //     this.props.currency,
-          //     assetObj.quantity * Number(assetObj.unitPrice)
-          //   )
-          // );
+          // dataArr.push(assetObj.quantity * Number(assetObj.unitPrice)); // ---------------------DEBUGGER (No convertion)
+          dataArr.push(
+            this.genericCurrencyConverter(
+              assetObj.quantity * Number(assetObj.unitPrice),
+              assetObj.currency,
+              this.props.currency
+            )
+          );
         } else {
           let currentIndex = labelArr.indexOf(assetObj.assetType);
-          dataArr[currentIndex] +=
-            assetObj.quantity * Number(assetObj.unitPrice);
-          // dataArr[currentIndex] += convertCurrency(
-          //   assetObj.currency,
-          //   this.props.currency,
-          //   assetObj.quantity * Number(assetObj.unitPrice)
-          // );
+          // dataArr[currentIndex] += // ---------------------DEBUGGER (No convertion)
+          //   assetObj.quantity * Number(assetObj.unitPrice);
+          dataArr[currentIndex] += this.genericCurrencyConverter(
+            assetObj.quantity * Number(assetObj.unitPrice),
+            assetObj.currency,
+            this.props.currency
+          );
         }
         return assetObj;
       }
@@ -94,7 +156,8 @@ class AssetTypeChart extends React.Component {
         style={{ flexDirection: "column", alignItems: "center" }}
       >
         <h3 style={{ width: "25rem", padding: "1rem" }}>
-          Asset Type Composition ({this.props.currency})
+          Asset Type Composition (
+          {this.props.currency ? this.props.currency : "USD"})
         </h3>
         <div
           className="center-object"

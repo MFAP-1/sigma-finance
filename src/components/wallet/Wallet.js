@@ -50,7 +50,7 @@ class Wallet extends React.Component {
   };
 
   updateSubtotals = (totalValueUSD, totalValueBRL, totalValueEUR) => {
-    console.log("this.state dolar", this.state.totalValueUSD);
+    console.log("this.state dolar", this.state.totalValueUSD); // ------------------ DEBUGGUER
     if (!this.state.updatedSubtotals) {
       this.setState({
         totalValueUSD: totalValueUSD,
