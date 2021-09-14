@@ -9,13 +9,13 @@
 }
 
 #portfolio-table,
-td,
-th {
+td {
   border: 1px solid black;
 }
 
 thead,
-tfoot {
+tfoot,
+th {
   font-size: 1.1rem;
   font-weight: 900;
   background-color: black;

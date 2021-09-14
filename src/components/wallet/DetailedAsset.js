@@ -3,6 +3,7 @@ import axios from "axios";
 
 //import components
 import BasicInformationTable from "./detailedAssetsTable/BasicInformationTable";
+import YieldAnalysisTable from "./detailedAssetsTable/YieldAnalysisTable";
 
 // importing calculator helpers
 import calculateDuration from "../../scripts/calculateDuration";
@@ -25,14 +26,15 @@ class DetailedAsset extends React.Component {
     dateBought: "",
     additionalComments: "",
     // calculated parameters for statistics
+    loading: false,
     statistics: {
       totalInitialValue: 0,
       totalCurrentValue: 0,
       investmentDuration: 0,
       totalYield: 0,
       totalYieldPercentage: 0,
-      YieldPercentagePerYear: 0,
-      YieldPercentagePerMonth: 0,
+      yieldPercentagePerYear: 0,
+      yieldPercentagePerMonth: 0,
       totalValueCorrectedBySelic: 0,
       totalValueCorrectedBySavingsBrazil: 0,
       totalYieldPercentageSavingsBrazil: 0,
@@ -62,6 +64,7 @@ class DetailedAsset extends React.Component {
 
   // core method to run all the statistics calculations
   runInvestmentStatistic = async () => {
+    this.setState({ loading: true });
     const totalInitialValue = this.state.unitPrice * this.state.quantity;
     const totalCurrentValue =
       (Number(this.state.unitPrice) + 20) * this.state.quantity;
@@ -71,11 +74,11 @@ class DetailedAsset extends React.Component {
       (totalYield / totalInitialValue) *
       100
     ).toFixed(3);
-    const YieldPercentagePerMonth = (
+    const yieldPercentagePerMonth = (
       totalYieldPercentage /
       (investmentDuration / 30)
     ).toFixed(3);
-    const YieldPercentagePerYear = (
+    const yieldPercentagePerYear = (
       totalYieldPercentage /
       (investmentDuration / 365)
     ).toFixed(3);
@@ -102,14 +105,15 @@ class DetailedAsset extends React.Component {
       100
     ).toFixed(3);
     this.setState({
+      loading: false,
       statistics: {
         totalInitialValue: totalInitialValue,
         totalCurrentValue: totalCurrentValue,
         investmentDuration: investmentDuration,
         totalYield: totalYield,
         totalYieldPercentage: totalYieldPercentage,
-        YieldPercentagePerYear: YieldPercentagePerYear,
-        YieldPercentagePerMonth: YieldPercentagePerMonth,
+        yieldPercentagePerYear: yieldPercentagePerYear,
+        yieldPercentagePerMonth: yieldPercentagePerMonth,
         totalValueCorrectedBySelic: totalValueCorrectedBySelic,
         totalValueCorrectedBySavingsBrazil: totalValueCorrectedBySavingsBrazil,
         totalYieldPercentageSavingsBrazil: totalYieldPercentageSavingsBrazil,
@@ -134,68 +138,47 @@ class DetailedAsset extends React.Component {
           assetSymbol={this.state.assetSymbol}
           currency={this.state.currency}
           investmentIndicator={this.state.investmentIndicator}
-          quantity={this.state.quantity}
           additionalComments={this.state.additionalComments}
           dateBought={formatDate(this.state.dateBought)}
           investmentDuration={this.state.statistics.investmentDuration}
+          loading={this.state.loading}
+        />
+        <hr />
+        {/*   +20    ------------------DEBUGGUER*/}
+        <YieldAnalysisTable
+          loading={this.state.loading}
+          quantity={this.state.quantity}
+          initalUnitValue={formatMoney(
+            Number(this.state.unitPrice),
+            this.state.currency
+          )}
+          totalInitialValue={formatMoney(
+            this.state.statistics.totalInitialValue,
+            this.state.currency
+          )}
+          currentUnitValue={formatMoney(
+            Number(this.state.unitPrice) + 20,
+            this.state.currency
+          )}
+          totalCurrentValue={formatMoney(
+            this.state.statistics.totalCurrentValue,
+            this.state.currency
+          )}
+          unitYield={formatMoney(
+            Number(this.state.unitPrice) + 20 - Number(this.state.unitPrice),
+            this.state.currency
+          )}
+          totalYield={formatMoney(
+            this.state.statistics.totalYield,
+            this.state.currency
+          )}
+          totalYieldPercentage={this.state.statistics.totalYieldPercentage}
+          yieldPercentagePerYear={this.state.statistics.yieldPercentagePerYear}
+          yieldPercentagePerMonth={
+            this.state.statistics.yieldPercentagePerMonth
+          }
         />
         <ul>
-          <hr />
-          {/* <h3>TimeFrame:</h3>
-          <li key="date-bought">
-            <strong>Date Bought: </strong>
-            {formatDate(this.state.dateBought)}
-          </li>
-          <li key="investment-time">
-            <strong>Investment time: </strong>
-            {this.state.statistics.investmentDuration} days
-          </li> */}
-          <hr />
-          <h3>Investments values:</h3>
-          <li key="start-unit-price">
-            <strong>Initial unit value: </strong>
-            {formatMoney(Number(this.state.unitPrice), this.state.currency)}
-          </li>
-          <li key="current-unit-price">
-            <strong>Current unit value: </strong>
-            {/*   +20    ------------------DEBUGGUER*/}
-            {formatMoney(
-              Number(this.state.unitPrice) + 20,
-              this.state.currency
-            )}
-          </li>
-          <li key="start-total-value">
-            <strong>Initial total value: </strong>
-            {formatMoney(
-              this.state.statistics.totalInitialValue,
-              this.state.currency
-            )}
-          </li>
-          <li key="current-total-value">
-            <strong>Current total value: </strong>
-            {formatMoney(
-              this.state.statistics.totalCurrentValue,
-              this.state.currency
-            )}
-          </li>
-          <hr />
-          <h3>Yield analysis:</h3>
-          <li key="yield1">
-            <strong>Total yield ({this.state.currency}): </strong>
-            {formatMoney(this.state.statistics.totalYield, this.state.currency)}
-          </li>
-          <li key="yield2">
-            <strong>Total yield percentage (%): </strong>
-            {this.state.statistics.totalYieldPercentage}%
-          </li>
-          <li key="yield3">
-            <strong>Estimated yield per year (%a.a.): </strong>
-            {this.state.statistics.YieldPercentagePerYear}%
-          </li>
-          <li key="yield4">
-            <strong>Estimated yield per month (%a.m.): </strong>
-            {this.state.statistics.YieldPercentagePerMonth}%
-          </li>
           <hr />
           <h3>
             Yield comparison with other indexes. Current corrected total value
