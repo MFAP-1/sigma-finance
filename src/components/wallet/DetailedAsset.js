@@ -1,15 +1,22 @@
 import React from "react";
 import axios from "axios";
 
+//import components
+import BasicInformationTable from "./detailedAssetsTable/BasicInformationTable";
+
+// importing calculator helpers
 import calculateDuration from "../../scripts/calculateDuration";
 import formatMoney from "../../scripts/formatMoney";
 import formatDate from "../../scripts/formatDate";
+import getTodayDate from "../../scripts/getTodayDate.js";
+import ipcaCalculator from "../../scripts/ipcaCalculator";
+import selicCalculator from "../../scripts/selicCalculator";
 
 class DetailedAsset extends React.Component {
   state = {
     // from API
     assetType: "",
-    currency: "USD",
+    currency: "",
     investmentIndicator: "",
     assetName: "",
     assetSymbol: "",
@@ -17,14 +24,20 @@ class DetailedAsset extends React.Component {
     unitPrice: 0,
     dateBought: "",
     additionalComments: "",
-    // calculated parameters
+    // calculated parameters for statistics
     statistics: {
       totalInitialValue: 0,
       totalCurrentValue: 0,
       investmentDuration: 0,
       totalYield: 0,
       totalYieldPercentage: 0,
+      YieldPercentagePerYear: 0,
       YieldPercentagePerMonth: 0,
+      totalValueCorrectedBySelic: 0,
+      totalValueCorrectedBySavingsBrazil: 0,
+      totalYieldPercentageSavingsBrazil: 0,
+      totalValueCorrectedByIPCA: 0,
+      totalYieldPercentageIPCA: 0,
     },
   };
 
@@ -47,7 +60,8 @@ class DetailedAsset extends React.Component {
     }
   };
 
-  runInvestmentStatistic = () => {
+  // core method to run all the statistics calculations
+  runInvestmentStatistic = async () => {
     const totalInitialValue = this.state.unitPrice * this.state.quantity;
     const totalCurrentValue =
       (Number(this.state.unitPrice) + 20) * this.state.quantity;
@@ -61,6 +75,32 @@ class DetailedAsset extends React.Component {
       totalYieldPercentage /
       (investmentDuration / 30)
     ).toFixed(3);
+    const YieldPercentagePerYear = (
+      totalYieldPercentage /
+      (investmentDuration / 365)
+    ).toFixed(3);
+    const totalValueCorrectedBySelic = await selicCalculator(
+      this.state.dateBought,
+      getTodayDate(),
+      totalInitialValue
+    );
+    const totalValueCorrectedBySavingsBrazil =
+      totalInitialValue +
+      (totalValueCorrectedBySelic - totalInitialValue) * 0.7;
+    const totalYieldPercentageSavingsBrazil = (
+      ((totalValueCorrectedBySavingsBrazil - totalInitialValue) /
+        totalInitialValue) *
+      100
+    ).toFixed(3);
+    const totalValueCorrectedByIPCA = await ipcaCalculator(
+      this.state.dateBought,
+      getTodayDate(),
+      totalInitialValue
+    );
+    const totalYieldPercentageIPCA = (
+      ((totalValueCorrectedByIPCA - totalInitialValue) / totalInitialValue) *
+      100
+    ).toFixed(3);
     this.setState({
       statistics: {
         totalInitialValue: totalInitialValue,
@@ -68,7 +108,13 @@ class DetailedAsset extends React.Component {
         investmentDuration: investmentDuration,
         totalYield: totalYield,
         totalYieldPercentage: totalYieldPercentage,
+        YieldPercentagePerYear: YieldPercentagePerYear,
         YieldPercentagePerMonth: YieldPercentagePerMonth,
+        totalValueCorrectedBySelic: totalValueCorrectedBySelic,
+        totalValueCorrectedBySavingsBrazil: totalValueCorrectedBySavingsBrazil,
+        totalYieldPercentageSavingsBrazil: totalYieldPercentageSavingsBrazil,
+        totalValueCorrectedByIPCA: totalValueCorrectedByIPCA,
+        totalYieldPercentageIPCA: totalYieldPercentageIPCA,
       },
     });
   };
@@ -77,41 +123,25 @@ class DetailedAsset extends React.Component {
     // console.log(this.state); // ---------------------DEBUGGUER
     // console.log("teste formatdate:", formatDate(this.state.dateBought)); // ---------------------DEBUGGUER
     // console.log(this.state.currency); // ---------------------DEBUGGUER
+    // console.log("today no statte", this.state.today); // ---------------------DEBUGGUER
+    // console.log("today chamando função", getTodayDate()); // ---------------------DEBUGGUER
     return (
       <div>
         <h1>The details for the '{this.state.assetSymbol}' asset are: </h1>
+        <BasicInformationTable
+          assetName={this.state.assetName}
+          assetType={this.state.assetType}
+          assetSymbol={this.state.assetSymbol}
+          currency={this.state.currency}
+          investmentIndicator={this.state.investmentIndicator}
+          quantity={this.state.quantity}
+          additionalComments={this.state.additionalComments}
+          dateBought={formatDate(this.state.dateBought)}
+          investmentDuration={this.state.statistics.investmentDuration}
+        />
         <ul>
-          <h3>Basic Information:</h3>
-          <li key="asset-name">
-            <strong>Name: </strong>
-            {this.state.assetName}.
-          </li>
-          <li key="asset-type">
-            <strong>Asset Type: </strong>
-            {this.state.assetType}.
-          </li>
-          <li key="symbol">
-            <strong>Symbol: </strong>
-            {this.state.assetSymbol}.
-          </li>
-          <li key="currency">
-            <strong>Currency: </strong>
-            {this.state.currency}.
-          </li>
-          <li key="investment-indicator">
-            <strong>Investment Indicator: </strong>
-            {this.state.investmentIndicator}.
-          </li>
-          <li key="quantity">
-            <strong>Quantity bought (units): </strong>
-            {this.state.quantity}.
-          </li>
-          <li key="additional-comments">
-            <strong>Additional comments: </strong>
-            {this.state.additionalComments}.
-          </li>
           <hr />
-          <h3>TimeFrame:</h3>
+          {/* <h3>TimeFrame:</h3>
           <li key="date-bought">
             <strong>Date Bought: </strong>
             {formatDate(this.state.dateBought)}
@@ -119,7 +149,7 @@ class DetailedAsset extends React.Component {
           <li key="investment-time">
             <strong>Investment time: </strong>
             {this.state.statistics.investmentDuration} days
-          </li>
+          </li> */}
           <hr />
           <h3>Investments values:</h3>
           <li key="start-unit-price">
@@ -149,36 +179,73 @@ class DetailedAsset extends React.Component {
             )}
           </li>
           <hr />
-          <h3>Rendimentos:</h3>
+          <h3>Yield analysis:</h3>
           <li key="yield1">
-            <strong>Rendimento real acumulado: </strong>
+            <strong>Total yield ({this.state.currency}): </strong>
             {formatMoney(this.state.statistics.totalYield, this.state.currency)}
           </li>
           <li key="yield2">
-            <strong>Rendimento percentual total acumulado (%a.a.): </strong>
+            <strong>Total yield percentage (%): </strong>
             {this.state.statistics.totalYieldPercentage}%
           </li>
           <li key="yield3">
-            <strong>Rendimento percentual estimado ao mês (%a.m.): </strong>
+            <strong>Estimated yield per year (%a.a.): </strong>
+            {this.state.statistics.YieldPercentagePerYear}%
+          </li>
+          <li key="yield4">
+            <strong>Estimated yield per month (%a.m.): </strong>
             {this.state.statistics.YieldPercentagePerMonth}%
           </li>
           <hr />
-          <h3>Comparações do redimento com outros indicadores:</h3>
+          <h3>
+            Yield comparison with other indexes. Current corrected total value
+            if invested in:
+          </h3>
           <li key="comparison1">
-            <strong>Valor total se investido na poupança: </strong>
-            {0}
+            <strong>
+              Brazil's Savings account - current corrected total (
+              {this.state.currency}):{" "}
+            </strong>
+            {formatMoney(
+              this.state.statistics.totalValueCorrectedBySavingsBrazil,
+              this.state.currency
+            )}
           </li>
           <li key="comparison2">
-            <strong>Diferença percentual sobre a poupança: </strong>
-            {0}%
+            <strong>
+              Brazil's Savings account - total yield percentage (%):{" "}
+            </strong>
+            {this.state.statistics.totalYieldPercentageSavingsBrazil}%
           </li>
           <li key="comparison3">
-            <strong>Valor total se investido no IPCA+0%: </strong>
-            {0}
+            <strong>Difference yield percentage (%): </strong>
+            {(
+              this.state.statistics.totalYieldPercentage -
+              this.state.statistics.totalYieldPercentageSavingsBrazil
+            ).toFixed(3)}
+            %
           </li>
           <li key="comparison4">
-            <strong>Diferença percentual sobre a IPCA+0%: </strong>
-            {0}%
+            <strong>
+              Brazil's IPCA+0% - current corrected total ({this.state.currency}
+              ):{" "}
+            </strong>
+            {formatMoney(
+              this.state.statistics.totalValueCorrectedByIPCA,
+              this.state.currency
+            )}
+          </li>
+          <li key="comparison5">
+            <strong>Brazil's IPCA+0% - total yield percentage (%): </strong>
+            {this.state.statistics.totalYieldPercentageIPCA}%
+          </li>
+          <li key="comparison6">
+            <strong>Difference yield percentage (%): </strong>
+            {(
+              this.state.statistics.totalYieldPercentage -
+              this.state.statistics.totalYieldPercentageIPCA
+            ).toFixed(3)}
+            %
           </li>
         </ul>
       </div>
