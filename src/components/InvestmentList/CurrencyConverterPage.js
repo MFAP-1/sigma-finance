@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import ipcaCalculator from "../../scripts/ipcaCalculator";
+import ipcaCalculator2 from "../../scripts/ipcaCalculator2";
 
 
 class CurrencyConverterPage extends React.Component {
@@ -107,7 +108,7 @@ handSubmit = (event) =>{
 
         <div>
         <button onClick= {this.handSubmit}>Convert</button>
-        <button onClick= {() => ipcaCalculator("2020-01-01","2020-12-01", 100 )}>ipca</button>
+        <button onClick= {() => ipcaCalculator2("2010-01-01","2021-01-01", 100 )}>ipca</button>
         <div></div>
       </div>
       </div>

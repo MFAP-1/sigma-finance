@@ -6,7 +6,7 @@ const ipcaCalculator = async (fromDate, toDate, amount) => {
       "01/" + fromDate.slice(0, 7).split("-").reverse().join("/");
     let endlDate = "01/" + toDate.slice(0, 7).split("-").reverse().join("/");
 
-    let url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.4175/dados?formato=json&dataInicial=${initialDate}&dataFinal=${endlDate}`;
+    let url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.4448/dados?formato=json&dataInicial=${initialDate}&dataFinal=${endlDate}`;
     console.log(url);
 
     const response = await axios.get(url);
@@ -21,7 +21,7 @@ const ipcaCalculator = async (fromDate, toDate, amount) => {
     console.log(valuesArray);
 
     for (let i = 0; i < valuesArray.length; i++) {
-    //   product = product * (1 + valuesArray[i]);
+      // product = product * (1 + valuesArray[i]);
       sum += valuesArray[i];
     }
 
