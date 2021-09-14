@@ -37,7 +37,7 @@ function YieldComparisonTable(props) {
               <td
                 style={{
                   backgroundColor:
-                    props.differenceThisAndSavings < 0 ? "lightgreen" : "red",
+                    props.differenceThisAndSavings >= 0 ? "lightgreen" : "red",
                 }}
               >
                 {props.differenceThisAndSavings}%
@@ -45,7 +45,7 @@ function YieldComparisonTable(props) {
               <td
                 style={{
                   backgroundColor:
-                    props.differenceThisAndIPCA < 0 ? "lightgreen" : "red",
+                    props.differenceThisAndIPCA >= 0 ? "lightgreen" : "red",
                 }}
               >
                 {props.differenceThisAndIPCA}%

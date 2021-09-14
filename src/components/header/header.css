@@ -20,7 +20,10 @@
   justify-content: left;
   align-items: center;
   letter-spacing: 0.1rem;
-  font-size: 0.8rem;
+}
+
+#logo-div > h2 {
+  font-size: calc(1rem + 0.75vmin);
 }
 
 /* Styling for links  */

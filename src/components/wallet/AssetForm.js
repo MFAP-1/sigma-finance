@@ -10,7 +10,7 @@ import getTodayDate from "../../scripts/getTodayDate";
 
 function AssetForm(props) {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={props.handleSubmit} className="asset-form">
       <div
         style={{
           display: "flex",
@@ -28,8 +28,9 @@ function AssetForm(props) {
             "Stock",
             "Stock Fund",
             "Bond",
+            "Crypto",
             "Savings account",
-            "ETFs",
+            "ETF",
             "Other",
           ]}
           placeholder="Select Asset Type"
@@ -120,6 +121,7 @@ function AssetForm(props) {
         <TextInput
           type="number"
           min="0"
+          step="0.001"
           id="assetFormQuantity"
           className="input-margin-bottom"
           label="Quantity"

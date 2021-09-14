@@ -4,7 +4,8 @@
 
 ## About the application
 
-Sigma Finance is a ...
+Sigma Finance is a ... finance helper, portfolio tracker... front-end web application educational project.
+Your finances in one place.
 
 ## Test it now!
 
@@ -12,7 +13,7 @@ Just follow the live link: <a href="https://sigma-finance.netlify.app">Sigma Fin
 
 ## Installing
 
-Clone or download this repository. Run the index.html and let me know what you think.
+Clone or download this repository. Run the 'npm start' command and let me know what you think.
 
 ## Contributing
 

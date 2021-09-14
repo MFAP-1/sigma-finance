@@ -85,7 +85,7 @@ function Header(props) {
       <Link to="/" className="no-link-decoration-logo">
         <div id="logo-div">
           <img src={sigmaIcon} alt="sigma-icon" id="logoImg" />
-          <h1>Sigma Finance</h1>
+          <h2>Sigma Finance</h2>
         </div>
       </Link>
       {props.state.loggedIn ? renderOnlineNavBar() : renderOfflineNavBar()}

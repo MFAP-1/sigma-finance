@@ -20,7 +20,7 @@ function YieldAnalysisTable(props) {
           </thead>
           <tbody>
             <tr key="detailedAsset-tables-body1-yield-analysis">
-              <th>Inital</th>
+              <th>Initial</th>
               <td>{props.initalUnitValue}</td>
               <td>{props.quantity}</td>
               <td> {props.totalInitialValue}</td>

@@ -16,7 +16,7 @@ import selicCalculator from "../../scripts/selicCalculator";
 
 class DetailedAsset extends React.Component {
   state = {
-    // from API
+    // from our core API
     assetType: "",
     currency: "",
     investmentIndicator: "",
@@ -26,6 +26,10 @@ class DetailedAsset extends React.Component {
     unitPrice: 0,
     dateBought: "",
     additionalComments: "",
+    manualUpdatedUnitPrice: 0,
+    dateManualUpdate: "",
+    // from external API
+    currentUnitPrice: 0,
     // calculated parameters for statistics
     loading: false,
     statistics: {
@@ -44,8 +48,9 @@ class DetailedAsset extends React.Component {
     },
   };
 
-  // Get the asset's information from the API by its ID
+  // Core method. Loads all of this Component's state
   componentDidMount = async () => {
+    // Get the asset's information from our API by its ID
     try {
       const response = await axios.get(
         `https://ironrest.herokuapp.com/sigmaFinanceAssets/${this.props.match.params.assetId}`
@@ -54,11 +59,83 @@ class DetailedAsset extends React.Component {
     } catch (err) {
       console.error(err);
     }
+
+    // Get asset's current unit price from external API (TYPE = Stock)
+    if (this.state.assetType === "Stock") {
+      try {
+        const response = await axios.get(
+          `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${this.state.assetSymbol}&apikey=R2P4F9RG0EKKWZEU`
+        );
+        this.setState({
+          currentUnitPrice: response.data["Global Quote"]["08. previous close"],
+        });
+      } catch (err) {
+        console.error(err);
+      }
+
+      // Get asset's current unit price from external API (TYPE = Crypto)
+    } else if (this.state.assetType === "Crypto") {
+      try {
+        const response = await axios.get(
+          `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${this.state.assetSymbol}&to_currency=${this.state.currency}&apikey=R2P4F9RG0EKKWZEU`
+        );
+        this.setState({
+          currentUnitPrice:
+            response.data["Realtime Currency Exchange Rate"][
+              "5. Exchange Rate"
+            ],
+        });
+      } catch (err) {
+        console.error(err);
+      }
+
+      // Get asset's current unit price from external API (TYPE = Savings account)
+    } else if (this.state.assetType === "Savings account") {
+      const totalInitialValue =
+        Number(this.state.unitPrice) * this.state.quantity;
+      const totalValueCorrectedBySelic = await selicCalculator(
+        this.state.dateBought,
+        getTodayDate(),
+        totalInitialValue
+      );
+      const totalValueCorrectedBySavingsBrazil =
+        totalInitialValue +
+        (totalValueCorrectedBySelic - totalInitialValue) * 0.7;
+      this.setState({
+        currentUnitPrice: totalValueCorrectedBySavingsBrazil,
+      });
+
+      // Get asset's current unit price from  our API (TYPE = Stock Fund or ETF or Other or Bond)
+    } else if (
+      this.state.assetType === "Stock Fund" ||
+      this.state.assetType === "ETF" ||
+      this.state.assetType === "Other" ||
+      this.state.assetType === "Bond"
+    ) {
+      if (this.state.manualUpdatedUnitPrice !== 0) {
+        this.setState({
+          currentUnitPrice: this.state.manualUpdatedUnitPrice,
+        });
+      } else {
+        alert("Sorry. You need to manually update this asset at least once.");
+        this.props.history.push(
+          `/wallet/manualupdate/${this.props.match.params.assetId}`
+        );
+      }
+      // Get asset's current unit price (fallback for undeterminated types)
+    } else {
+      this.setState({
+        currentUnitPrice: Number(this.state.unitPrice) + 20, // + 20 is a fallback/debugger
+      });
+    }
   };
 
   //
   componentDidUpdate = (prevProps, prevStats) => {
-    if (prevStats.assetName !== this.state.assetName) {
+    if (
+      prevStats.assetName !== this.state.assetName ||
+      prevStats.currentUnitPrice !== this.state.currentUnitPrice
+    ) {
       this.runInvestmentStatistic();
     }
   };
@@ -68,7 +145,7 @@ class DetailedAsset extends React.Component {
     this.setState({ loading: true });
     const totalInitialValue = this.state.unitPrice * this.state.quantity;
     const totalCurrentValue =
-      (Number(this.state.unitPrice) + 20) * this.state.quantity;
+      Number(this.state.currentUnitPrice) * Number(this.state.quantity);
     const investmentDuration = calculateDuration(this.state.dateBought);
     const totalYield = totalCurrentValue - totalInitialValue;
     const totalYieldPercentage = (
@@ -133,6 +210,7 @@ class DetailedAsset extends React.Component {
   };
 
   render() {
+    console.log("total current value", this.state.totalCurrentValue);
     // console.log(getTodayDate().slice(0, 5));
     // console.log(getTodayDate().slice(6, 7));
     // console.log(Number(getTodayDate().slice(6, 7)) - 1);
@@ -163,7 +241,6 @@ class DetailedAsset extends React.Component {
           loading={this.state.loading}
         />
         <hr />
-        {/*   +20    ------------------DEBUGGUER*/}
         <YieldAnalysisTable
           loading={this.state.loading}
           quantity={this.state.quantity}
@@ -176,7 +253,7 @@ class DetailedAsset extends React.Component {
             this.state.currency
           )}
           currentUnitValue={formatMoney(
-            Number(this.state.unitPrice) + 20,
+            Number(this.state.currentUnitPrice),
             this.state.currency
           )}
           totalCurrentValue={formatMoney(
@@ -184,7 +261,7 @@ class DetailedAsset extends React.Component {
             this.state.currency
           )}
           unitYield={formatMoney(
-            Number(this.state.unitPrice) + 20 - Number(this.state.unitPrice),
+            Number(this.state.currentUnitPrice) - Number(this.state.unitPrice),
             this.state.currency
           )}
           totalYield={formatMoney(
@@ -217,8 +294,8 @@ class DetailedAsset extends React.Component {
             this.state.statistics.totalYieldPercentageSavingsBrazil
           }
           differenceThisAndSavings={(
-            this.state.statistics.totalYieldPercentageSavingsBrazil -
-            this.state.statistics.totalYieldPercentage
+            this.state.statistics.totalYieldPercentage -
+            this.state.statistics.totalYieldPercentageSavingsBrazil
           ).toFixed(3)}
           totalValueCorrectedByIPCA={formatMoney(
             this.state.statistics.totalValueCorrectedByIPCA,
@@ -228,8 +305,8 @@ class DetailedAsset extends React.Component {
             this.state.statistics.totalYieldPercentageIPCA
           }
           differenceThisAndIPCA={(
-            this.state.statistics.totalYieldPercentageIPCA -
-            this.state.statistics.totalYieldPercentage
+            this.state.statistics.totalYieldPercentage -
+            this.state.statistics.totalYieldPercentageIPCA
           ).toFixed(3)}
         />
       </div>

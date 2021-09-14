@@ -69,8 +69,8 @@ class Wallet extends React.Component {
             <th>Asset Type</th>
             <th>Asset Name</th>
             <th>Asset Symbol</th>
-            <th>Quantity</th>
             <th>Unit Price</th>
+            <th>Quantity</th>
             <th>Total Value</th>
             <th>Date bought</th>
             <th colSpan="3">Actions</th>

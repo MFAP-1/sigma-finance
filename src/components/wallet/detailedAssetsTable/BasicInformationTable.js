@@ -26,7 +26,9 @@ function BasicInformationTable(props) {
             <td> {props.assetName}</td>
             <td>{props.assetSymbol}</td>
             <td>{props.currency}</td>
-            <td>{props.investmentIndicator}</td>
+            <td>
+              {props.investmentIndicator ? props.investmentIndicator : "-"}
+            </td>
             <td>{props.additionalComments}</td>
             <td>{props.dateBought}</td>
             <td>{props.loading ? "..." : props.investmentDuration} days</td>
