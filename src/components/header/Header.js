@@ -10,30 +10,39 @@ function Header(props) {
     return (
       <div>
         <nav id="nav-bar-large">
-          <Link to="/stocks" className="no-link-decoration">
-            Stocks
-          </Link>
-          <Link to="/cryptocurrencies" className="no-link-decoration">
-            Crypto
-          </Link>
-          <div id="wallet-nav-div">
-            <Link to="/wallet" className="no-link-decoration">
-              [Wallet]
+          <div id="nav-div">
+            <Link to="/to-do" className="no-link-decoration">
+              Converter
             </Link>
-            <Link to="/wallet" className="no-link-decoration">
-              <small>Portfolio</small>
-            </Link>
-            <Link to="/wallet/add" className="no-link-decoration">
-              <small>Add asset</small>
+            <Link to="/to-do" className="no-link-decoration">
+              Correction
             </Link>
           </div>
-          <span style={{ textDecoration: "underline" }}>
-            <i className="fas fa-user"></i>
-            {props.state.username}
-          </span>
-          <Link to="/logout" className="no-link-decoration">
-            Logout
-          </Link>
+          <div id="nav-div">
+            <Link to="/stocks" className="no-link-decoration">
+              Stocks
+            </Link>
+            <Link to="/cryptocurrencies" className="no-link-decoration">
+              Crypto
+            </Link>
+          </div>
+          <div id="nav-div">
+            <Link to="/wallet" className="no-link-decoration">
+              <i className="fas fa-wallet"></i> Portfolio
+            </Link>
+            <Link to="/wallet/add" className="no-link-decoration">
+              Add asset
+            </Link>
+          </div>
+          <div id="nav-div">
+            <span style={{ textDecoration: "underline" }}>
+              <i className="fas fa-user"></i>
+              {props.state.username}
+            </span>
+            <Link to="/logout" className="no-link-decoration">
+              Logout
+            </Link>
+          </div>
         </nav>
       </div>
     );
@@ -42,19 +51,31 @@ function Header(props) {
   const renderOfflineNavBar = () => {
     return (
       <nav id="nav-bar-small">
-        <Link to="/stocks" className="no-link-decoration">
-          Stocks
-        </Link>
-        <Link to="/cryptocurrencies" className="no-link-decoration">
-          Crypto
-        </Link>
-        <Link to="/login" className="no-link-decoration">
-          Login
-        </Link>
-        <span> </span>
-        <Link to="/signup" className="no-link-decoration">
-          SignUp
-        </Link>
+        <div id="nav-div">
+          <Link to="/to-do" className="no-link-decoration">
+            Converter
+          </Link>
+          <Link to="/to-do" className="no-link-decoration">
+            Correction
+          </Link>
+        </div>
+        <div id="nav-div">
+          <Link to="/stocks" className="no-link-decoration">
+            Stocks
+          </Link>
+          <Link to="/cryptocurrencies" className="no-link-decoration">
+            Crypto
+          </Link>
+        </div>
+        <div id="nav-div-small">
+          <Link to="/login" className="no-link-decoration">
+            Login
+          </Link>
+          <span> </span>
+          <Link to="/signup" className="no-link-decoration">
+            SignUp
+          </Link>
+        </div>
       </nav>
     );
   };

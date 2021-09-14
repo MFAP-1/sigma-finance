@@ -17,6 +17,7 @@ function AssetForm(props) {
       >
         <SelectInput
           name="assetType"
+          className="input-margin-bottom"
           id="selectInputAssetType"
           label="Asset Type"
           value={props.state.assetType}
@@ -35,9 +36,10 @@ function AssetForm(props) {
         <SelectInput
           name="currency"
           id="selectInputCurrency"
+          className="input-margin-bottom"
           value={props.state.currency}
           onChange={props.handleChange}
-          items={["USD", "EUR", "BRL"]}
+          items={["USD", "BRL", "EUR"]}
           placeholder="Currency"
           required
         />
@@ -88,6 +90,7 @@ function AssetForm(props) {
         <TextInput
           type="text"
           id="assetFormAssetName"
+          className="input-margin-bottom"
           label="Name of the asset"
           name="assetName"
           onChange={props.handleChange}
@@ -97,6 +100,7 @@ function AssetForm(props) {
         <TextInput
           type="text"
           id="assetFormAssetSymbol"
+          className="input-margin-bottom"
           label="Asset symbol"
           name="assetSymbol"
           placeholder="ex: AAPL"
@@ -115,6 +119,7 @@ function AssetForm(props) {
           type="number"
           min="0"
           id="assetFormQuantity"
+          className="input-margin-bottom"
           label="Quantity"
           name="quantity"
           onChange={props.handleChange}
@@ -126,6 +131,7 @@ function AssetForm(props) {
           min="0"
           step="0.01"
           id="assetFormUnitPrice"
+          className="input-margin-bottom"
           label="Unit Price"
           name="unitPrice"
           onChange={props.handleChange}
@@ -136,6 +142,7 @@ function AssetForm(props) {
       <TextInput
         type="date"
         id="assetFormDateBought"
+        className="input-margin-bottom"
         label="Date bought"
         name="dateBought"
         onChange={props.handleChange}

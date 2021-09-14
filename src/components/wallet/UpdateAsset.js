@@ -57,7 +57,7 @@ class UpdateAsset extends React.Component {
   };
 
   render() {
-    console.log("state no Upadate:", this.state); // ---------------------DEBUGGUER
+    // console.log("state no Upadate:", this.state); // ---------------------DEBUGGUER
     return (
       <div className="center-content add-asset-box">
         <h2>Check the selected asset for updating</h2>

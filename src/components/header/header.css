@@ -10,7 +10,7 @@
 }
 
 #logoImg {
-  width: 30px;
+  width: 2rem;
   margin-right: 1rem;
 }
 
@@ -53,17 +53,27 @@
 }
 
 #nav-bar-small {
-  width: 30vw;
+  width: 45vw;
 }
 
 #nav-bar-large {
-  width: 40vw;
+  width: 65vw;
 }
 
-#wallet-nav-div {
-  width: 20vw;
+#nav-div {
+  width: 15vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid white;
+  padding: 5px;
+}
+
+#nav-div-small {
+  width: 10vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   border: 1px solid white;
   padding: 5px;
 }

@@ -76,7 +76,7 @@ class DetailedAsset extends React.Component {
   render() {
     // console.log(this.state); // ---------------------DEBUGGUER
     // console.log("teste formatdate:", formatDate(this.state.dateBought)); // ---------------------DEBUGGUER
-    console.log(this.state.currency); // ---------------------DEBUGGUER
+    // console.log(this.state.currency); // ---------------------DEBUGGUER
     return (
       <div>
         <h1>The details for the '{this.state.assetSymbol}' asset are: </h1>
@@ -172,11 +172,11 @@ class DetailedAsset extends React.Component {
             <strong>Diferença percentual sobre a poupança: </strong>
             {0}%
           </li>
-          <li key="comparison1">
+          <li key="comparison3">
             <strong>Valor total se investido no IPCA+0%: </strong>
             {0}
           </li>
-          <li key="comparison2">
+          <li key="comparison4">
             <strong>Diferença percentual sobre a IPCA+0%: </strong>
             {0}%
           </li>

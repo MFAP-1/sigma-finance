@@ -16,8 +16,7 @@
   font-size: 0.9rem;
 }
 
-input,
-select {
+.input-margin-bottom {
   margin-bottom: 0.7rem;
   background-color: gray;
 } */
