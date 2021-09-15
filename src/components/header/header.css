@@ -20,7 +20,10 @@
   justify-content: left;
   align-items: center;
   letter-spacing: 0.1rem;
-  font-size: 0.8rem;
+}
+
+#logo-div > h2 {
+  font-size: calc(1rem + 0.75vmin);
 }
 
 /* Styling for links  */
@@ -53,11 +56,11 @@
 }
 
 #nav-bar-small {
-  width: 45vw;
+  width: 50vw;
 }
 
 #nav-bar-large {
-  width: 65vw;
+  width: 70vw;
 }
 
 #nav-div {

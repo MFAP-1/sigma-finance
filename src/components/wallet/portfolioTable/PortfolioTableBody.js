@@ -33,10 +33,10 @@ function PortfolioTableBody(props) {
               <td>{assetObj.assetType}</td>
               <td>{assetObj.assetName}</td>
               <td>{assetObj.assetSymbol}</td>
-              <td>{assetObj.quantity}</td>
               <td>
                 {formatMoney(Number(assetObj.unitPrice), assetObj.currency)}
               </td>
+              <td>{assetObj.quantity}</td>
               <td>
                 {formatMoney(
                   assetObj.quantity * assetObj.unitPrice,
@@ -54,7 +54,7 @@ function PortfolioTableBody(props) {
                 </td>
               </Link>
               <Link
-                to={`/wallet/update/${assetObj._id}`}
+                to={`/wallet/edit/${assetObj._id}`}
                 className="no-link-decoration-black"
               >
                 <td style={{ width: "25px" }} className="tooltip">
@@ -83,7 +83,7 @@ function PortfolioTableBody(props) {
             </tr>
           );
         } else {
-          return <></>;
+          return "";
         }
       })}
       <tr key="add new asset btn">
@@ -96,7 +96,7 @@ function PortfolioTableBody(props) {
       {totalValueUSD !== 0 ? (
         <tr key="total-Value-in-USD">
           <td colSpan="6" style={{ textAlign: "right" }}>
-            Portfolio value in USD:
+            Portfolio value for USD assets:
           </td>
           <td>{formatMoney(totalValueUSD, "USD")}</td>
           <td colSpan="2"></td>
@@ -107,7 +107,7 @@ function PortfolioTableBody(props) {
       {totalValueBRL !== 0 ? (
         <tr key="total-Value-in-BRL">
           <td colSpan="6" style={{ textAlign: "right" }}>
-            Portfolio value in BRL:
+            Portfolio value for BRL assets:
           </td>
           <td>{formatMoney(totalValueBRL, "BRL")}</td>
           <td colSpan="2"></td>
@@ -118,7 +118,7 @@ function PortfolioTableBody(props) {
       {totalValueEUR !== 0 ? (
         <tr key="total-Value-in-EUR">
           <td colSpan="6" style={{ textAlign: "right" }}>
-            Portfolio value in EUR:
+            Portfolio value for EUR assets:
           </td>
           <td>{formatMoney(totalValueEUR, "EUR")}</td>
           <td colSpan="2"></td>

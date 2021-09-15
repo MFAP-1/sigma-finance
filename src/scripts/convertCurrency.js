@@ -8,7 +8,6 @@ const convertCurrency = async (fromCurrency, toCurrency, amount) => {
     const exchangeRate =
       response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
     const convertedAmount = exchangeRate * amount;
-    console.log(convertedAmount);
     return convertedAmount;
   } catch (err) {
     console.error(err);

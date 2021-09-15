@@ -14,11 +14,14 @@ function Header(props) {
             <Link to="/currency-converter" className="no-link-decoration">
               Converter
             </Link>
-            <Link to="/to-do" className="no-link-decoration">
+            <Link to="/correction" className="no-link-decoration">
               Correction
             </Link>
           </div>
           <div id="nav-div">
+            <Link to="/news" className="no-link-decoration">
+              News
+            </Link>
             <Link to="/stocks" className="no-link-decoration">
               Stocks
             </Link>
@@ -55,11 +58,14 @@ function Header(props) {
           <Link to="/currency-converter" className="no-link-decoration">
             Converter
           </Link>
-          <Link to="/to-do" className="no-link-decoration">
+          <Link to="/correction" className="no-link-decoration">
             Correction
           </Link>
         </div>
         <div id="nav-div">
+          <Link to="/news" className="no-link-decoration">
+            News
+          </Link>
           <Link to="/stocks" className="no-link-decoration">
             Stocks
           </Link>
@@ -85,7 +91,7 @@ function Header(props) {
       <Link to="/" className="no-link-decoration-logo">
         <div id="logo-div">
           <img src={sigmaIcon} alt="sigma-icon" id="logoImg" />
-          <h1>Sigma Finance</h1>
+          <h2>Sigma Finance</h2>
         </div>
       </Link>
       {props.state.loggedIn ? renderOnlineNavBar() : renderOfflineNavBar()}

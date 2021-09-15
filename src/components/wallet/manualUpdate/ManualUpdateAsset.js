@@ -1,27 +1,26 @@
 import React from "react";
 import axios from "axios";
 
-import AssetForm from "./AssetForm";
+import ManualUpdateForm from "./ManualUpdateForm";
 
-import "./assetForm.css";
-
-class UpdateAsset extends React.Component {
+class ManualUpdateAsset extends React.Component {
   state = {
-    // comes from props
+    // comes from props (read-only)
     _id: "",
     username: "",
-    //comes from form!
+    //comes from API (read-only)!
     assetType: "",
     currency: "",
-    investmentIndicator: "",
     assetName: "",
     assetSymbol: "",
-    quantity: 0,
-    unitPrice: 0,
+    unitPrice: "",
     dateBought: "",
-    additionalComments: "",
+    // new value from form
+    manualUpdatedUnitPrice: "",
+    dateManualUpdate: "",
   };
 
+  // Loading the current asset information into the state
   componentDidMount = async () => {
     try {
       const response = await axios.get(
@@ -56,19 +55,51 @@ class UpdateAsset extends React.Component {
     }
   };
 
-  render() {
-    // console.log("state no Upadate:", this.state); // ---------------------DEBUGGUER
+  needsManualUpdate = () => {
+    if (
+      this.state.assetType === "Stock Fund" ||
+      this.state.assetType === "ETF" ||
+      this.state.assetType === "Other" ||
+      this.state.assetType === "Bond"
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  renderManualUpdateForm = () => {
     return (
       <div className="center-content add-asset-box">
-        <h2>Check the selected asset for updating</h2>
-        <AssetForm
+        <h2>Input the current value for the asset</h2>
+        <ManualUpdateForm
           state={this.state}
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
         />
       </div>
     );
+  };
+
+  noNeedForManualUpdateForm = () => {
+    return (
+      <div className="center-content add-asset-box">
+        <h2>
+          For this asset, there is no need for Manual Update.
+          <br /> It is 100% automated.
+        </h2>
+      </div>
+    );
+  };
+
+  render() {
+    return (
+      <div>
+        {this.needsManualUpdate()
+          ? this.renderManualUpdateForm()
+          : this.noNeedForManualUpdateForm()}
+      </div>
+    );
   }
 }
 
-export default UpdateAsset;
+export default ManualUpdateAsset;

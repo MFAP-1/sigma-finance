@@ -9,13 +9,13 @@
 }
 
 #portfolio-table,
-td,
-th {
+td {
   border: 1px solid black;
 }
 
 thead,
-tfoot {
+tfoot,
+th {
   font-size: 1.1rem;
   font-weight: 900;
   background-color: black;
@@ -65,4 +65,11 @@ tfoot {
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+/* Canvas div */
+
+#canvas-graphs-div {
+  display: flex;
+  flex-direction: row;
 }

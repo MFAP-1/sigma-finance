@@ -16,21 +16,20 @@ import News from "./components/InvestmentList/News";
 // Wallet imports
 import Wallet from "./components/wallet/Wallet";
 import AddAsset from "./components/wallet/AddAsset";
-import UpdateAsset from "./components/wallet/UpdateAsset";
+import EditAsset from "./components/wallet/EditAsset";
 import DeleteAsset from "./components/wallet/DeleteAsset";
 import DetailedAsset from "./components/wallet/DetailedAsset";
+import ManualUpdateAsset from "./components/wallet/manualUpdate/ManualUpdateAsset";
 // Authentication imports
 import SignUpPage from "./components/authentication/signup/SignUpPage";
 import LoginPage from "./components/authentication/login/LoginPage";
 import Logout from "./components/authentication/logout/Logout";
-
 
 class App extends React.Component {
   state = {
     loggedIn: false,
     username: "",
   };
-
 
   updateLoginState = (userName) => {
     this.setState({ loggedIn: !this.state.loggedIn, username: userName });
@@ -42,14 +41,18 @@ class App extends React.Component {
         <BrowserRouter>
           <Header state={this.state} />
           <Route exact path="/" component={HomePage} />
-          
+
           {/* Investments (external API) imports */}
           <Route exact path="/stocks" component={InvestmentListPage} />
           <Route exact path="/cryptocurrencies" component={CryptoPage} />
-          <Route exact path="/currency-converter" component={CurrencyConverterPage} />
+          <Route
+            exact
+            path="/currency-converter"
+            component={CurrencyConverterPage}
+          />
           <Route exact path="/correction" component={Correction} />
           <Route exact path="/news" component={News} />
-      
+
           {/* Wallet Routes */}
           <Route
             exact
@@ -75,9 +78,15 @@ class App extends React.Component {
             )}
           />
           <Route
-            path="/wallet/update/:assetId"
+            path="/wallet/edit/:assetId"
             render={(props) => (
-              <UpdateAsset {...props} username={this.state.username} />
+              <EditAsset {...props} username={this.state.username} />
+            )}
+          />
+          <Route
+            path="/wallet/manualupdate/:assetId"
+            render={(props) => (
+              <ManualUpdateAsset {...props} username={this.state.username} />
             )}
           />
           <Route

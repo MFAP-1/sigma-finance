@@ -1,7 +1,9 @@
 import React from "react";
 import "./correction.css";
+
 import ipcaCalculator from "../../../scripts/ipcaCalculator";
 import selicCalculator from "../../../scripts/selicCalculator";
+import getTodayDate from "../../../scripts/getTodayDate";
 
 class Correction extends React.Component {
   constructor() {
@@ -43,7 +45,10 @@ class Correction extends React.Component {
         this.state.toDate,
         this.state.amount
       );
-      if (result === undefined || (this.state.fromDate === "" && this.state.toDate === "")) {
+      if (
+        result === undefined ||
+        (this.state.fromDate === "" && this.state.toDate === "")
+      ) {
         this.setState({
           finalAmount: 0,
         });
@@ -55,14 +60,14 @@ class Correction extends React.Component {
       finalAmount: formatedResult,
     });
     console.log(this.state.finalAmount);
-    console.log(this.state.fromDate)
+    console.log(this.state.fromDate);
   };
 
   //DATE FORMAT: YYYY-MM-DD 2020-01-29
   render() {
     return (
       <div>
-        <h1 className = "title-page">Monetary Correction</h1>
+        <h1 className="title-page">Monetary Correction</h1>
 
         <div className="ipca-form">
           <select
@@ -86,6 +91,7 @@ class Correction extends React.Component {
           <input
             type="date"
             name="fromDate"
+            max={getTodayDate()}
             // value= {this.state.fromDate}
             className="date-input"
             onChange={this.handleChange}
@@ -95,6 +101,7 @@ class Correction extends React.Component {
           <input
             type="date"
             name="toDate"
+            max={getTodayDate()}
             // value= {this.state.toDate}
             className="date-input"
             onChange={this.handleChange}

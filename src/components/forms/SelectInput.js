@@ -10,7 +10,7 @@ function SelectInput(props) {
         onChange={props.onChange}
         required={props.required}
       >
-        <option value="" key="placeholder" disabled selected hidden>
+        <option value="" key="placeholder" disabled hidden>
           {props.placeholder}
         </option>
         {props.items.map((item) => {
