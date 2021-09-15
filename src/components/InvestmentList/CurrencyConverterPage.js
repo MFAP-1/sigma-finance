@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
-// import ipcaCalculator2 from "../../scripts/ipcaCalculator2";
-// import SelicCalculator from "../../scripts/SelicCalculator";
+
 
 class CurrencyConverterPage extends React.Component {
   constructor() {
@@ -15,6 +14,10 @@ class CurrencyConverterPage extends React.Component {
       finalResult: 0,
     };
   }
+
+
+  //https://v6.exchangerate-api.com/v6/0643403684aee3640b113f6c/latest/EUR
+
 
   getCurrencyData = async () => {
     const url =

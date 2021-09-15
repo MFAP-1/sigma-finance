@@ -1,5 +1,6 @@
 * {
   margin: 0;
+
   font-family: "Poppins", sans-serif;
   font-size: calc(0.75rem + 0.5vmin);
 }
@@ -27,6 +28,12 @@
     #283048 */
 /* ); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+
 } */
+/* Azul da logo */
+/* rgb(40, 48, 72) */
+
+/* Cinzas */
+/* rgb(107, 107, 108) */
+/* rgb(72, 72, 72) */
 
 .center-content {
   text-align: center;
@@ -37,13 +44,6 @@
   justify-content: center;
 }
 
-/* Azul da logo */
-/* rgb(40, 48, 72) */
-
-/* Cinzas */
-/* rgb(107, 107, 108) */
-/* rgb(72, 72, 72) */
-
 /* General button configuration */
 button {
   padding: 5px 15px;
@@ -53,7 +53,7 @@ button {
   border-radius: 0.5rem;
   cursor: pointer;
 }
-/* button:hover {
+button:hover {
   background-color: white;
   color: black;
   border: 1px solid black;
@@ -64,4 +64,4 @@ button:focus {
   background-color: lightgray;
   color: black;
   border: 1px solid black;
-} */
+}
