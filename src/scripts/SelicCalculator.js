@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const SelicCalculator = async (fromDate, toDate, amount) => {
+const selicCalculator = async (fromDate, toDate, amount) => {
   try {
     let initialDate = fromDate.split("-").reverse().join("/")
     let endDate = toDate.split("-").reverse().join("/")
@@ -15,14 +15,10 @@ const SelicCalculator = async (fromDate, toDate, amount) => {
       
     for(let i = 0; i< response.data.length; i++){
         product = product*(1+parseFloat(response.data[i]["valor"])/100 )
-     
     }
-  
-
-
-     console.log(product*amount);
-     
-  
+    
+    //  console.log(product*amount);
+   
     return product*amount;
    
   } catch (err) {
@@ -30,4 +26,4 @@ const SelicCalculator = async (fromDate, toDate, amount) => {
   }
 };
 
-export default SelicCalculator;
+export default selicCalculator;
