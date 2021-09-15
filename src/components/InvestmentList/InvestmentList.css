@@ -19,7 +19,7 @@
     background-color: white;
     overflow: hidden;
     overflow-y: auto;
-   
+       
 }
 
   .inputText-Stocks {
@@ -48,7 +48,7 @@
 
 #myCanvas {
     width: 43.75;
-    height:rem;
+    height:25rem;
     border: 1px solid black;
   
 }

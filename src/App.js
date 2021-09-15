@@ -11,6 +11,7 @@ import InvestmentListPage from "./components/InvestmentList/InvestmentListPage";
 import CryptoPage from "./components/InvestmentList/CryptoPage";
 import CurrencyConverterPage from "./components/InvestmentList/CurrencyConverterPage";
 import Correction from "./components/InvestmentList/monetary-correction/Correction";
+import News from "./components/InvestmentList/News";
 
 // Wallet imports
 import Wallet from "./components/wallet/Wallet";
@@ -47,6 +48,7 @@ class App extends React.Component {
           <Route exact path="/cryptocurrencies" component={CryptoPage} />
           <Route exact path="/currency-converter" component={CurrencyConverterPage} />
           <Route exact path="/correction" component={Correction} />
+          <Route exact path="/news" component={News} />
       
           {/* Wallet Routes */}
           <Route

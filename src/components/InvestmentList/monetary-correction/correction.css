@@ -1,3 +1,6 @@
+.title-page{
+    margin:1rem;
+}
 .ipca-form{
     display:flex;
     flex-direction: column;

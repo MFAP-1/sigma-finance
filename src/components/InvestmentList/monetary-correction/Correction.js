@@ -43,7 +43,7 @@ class Correction extends React.Component {
         this.state.toDate,
         this.state.amount
       );
-      if (result === undefined) {
+      if (result === undefined || (this.state.fromDate === "" && this.state.toDate === "")) {
         this.setState({
           finalAmount: 0,
         });
@@ -62,7 +62,7 @@ class Correction extends React.Component {
   render() {
     return (
       <div>
-        <h1>Monetary Correction</h1>
+        <h1 className = "title-page">Monetary Correction</h1>
 
         <div className="ipca-form">
           <select
