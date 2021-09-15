@@ -32,11 +32,10 @@ class AddAsset extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault(); // preventing the reload
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://ironrest.herokuapp.com/sigmaFinanceAssets",
         this.state
       );
-      console.log(response);
       this.props.history.push("/wallet");
     } catch (err) {
       console.error(err);

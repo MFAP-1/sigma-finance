@@ -83,7 +83,7 @@ function PortfolioTableBody(props) {
             </tr>
           );
         } else {
-          return "";
+          return null;
         }
       })}
       <tr key="add new asset btn">
