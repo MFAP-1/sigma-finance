@@ -26,7 +26,9 @@ function YieldAnalysisTable(props) {
               <td> {props.totalInitialValue}</td>
             </tr>
             <tr key="detailedAsset-tables-body2-yield-analysis">
-              <th>Current</th>
+              <th>
+                Current{props.dateManualUpdate !== "" ? <span>*</span> : ""}
+              </th>
               <td>{props.currentUnitValue}</td>
               <td>{props.quantity}</td>
               <td> {props.totalCurrentValue}</td>
@@ -56,6 +58,17 @@ function YieldAnalysisTable(props) {
               <td>{props.yieldPercentagePerMonth}%</td>
             </tr>
           </tbody>
+          {props.dateManualUpdate !== "" ? (
+            <tfoot>
+              <tr key="detailedAsset-tables-footer-yield-analysis">
+                <td colSpan="4" style={{ textAlign: "right" }}>
+                  <small>*Last updated at {props.dateManualUpdate}</small>
+                </td>
+              </tr>
+            </tfoot>
+          ) : (
+            ""
+          )}
         </table>
       )}
     </div>

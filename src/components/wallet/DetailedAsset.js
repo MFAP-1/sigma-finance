@@ -210,22 +210,6 @@ class DetailedAsset extends React.Component {
   };
 
   render() {
-    console.log("total current value", this.state.totalCurrentValue);
-    // console.log(getTodayDate().slice(0, 5));
-    // console.log(getTodayDate().slice(6, 7));
-    // console.log(Number(getTodayDate().slice(6, 7)) - 1);
-    // console.log(
-    //   getTodayDate().slice(0, 5) +
-    //     Number(getTodayDate().slice(6, 7) - 1)
-    //       .toString()
-    //       .padStart(2, "0") +
-    //     "-01"
-    // );
-    // console.log(this.state); // ---------------------DEBUGGUER
-    // console.log("teste formatdate:", formatDate(this.state.dateBought)); // ---------------------DEBUGGUER
-    // console.log(this.state.currency); // ---------------------DEBUGGUER
-    // console.log("today no statte", this.state.today); // ---------------------DEBUGGUER
-    // console.log("today chamando função", getTodayDate()); // ---------------------DEBUGGUER
     return (
       <div>
         <h2>The details for the '{this.state.assetSymbol}' asset are: </h2>
@@ -273,6 +257,7 @@ class DetailedAsset extends React.Component {
           yieldPercentagePerMonth={
             this.state.statistics.yieldPercentagePerMonth
           }
+          dateManualUpdate={this.state.dateManualUpdate}
         />
         <hr />
         <YieldComparisonTable
