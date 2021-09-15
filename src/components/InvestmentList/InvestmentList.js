@@ -22,30 +22,32 @@ class StockList extends React.Component {
       isLoaded: null,
       searchEndPoint:"",
       bestMatches:[],
+      displaySearchbar: false,
+      displayMessage:false,
         
   }
 
-  getRandomStocks = () => {
-    let randomStocks = []
-    for (let i = 0; i < 5; i++){
-      randomStocks.push(randomStockList[Math.floor(Math.random()* randomStockList.length)])
-    }
-    console.log(randomStocks)
- }
+//   getRandomStocks = () => {
+//     let randomStocks = []
+//     for (let i = 0; i < 5; i++){
+//       randomStocks.push(randomStockList[Math.floor(Math.random()* randomStockList.length)])
+//     }
+//     console.log(randomStocks)
+//  }
 
 
   getChartData = async () => {
     const apiKey = "R2P4F9RG0EKKWZEU";
 
-    let url = `https://www.alphavantage.co/query?function=${
-      this.state.typeInformation
-    }&symbol=${this.state.companySymbol.toUpperCase()}&outputsize=${
-      this.state.outputsize
-    }&apikey=${apiKey}`;
-    console.log(url)
+    // let url = `https://www.alphavantage.co/query?function=${
+    //   this.state.typeInformation
+    // }&symbol=${this.state.companySymbol.toUpperCase()}&outputsize=${
+    //   this.state.outputsize
+    // }&apikey=${apiKey}`;
+    // console.log(url)
 
     //teste para não passar do limite de requisições
-    // let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
+    let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
 
     const response = await axios.get(url);
 
@@ -80,7 +82,7 @@ class StockList extends React.Component {
     try {
       await this.getChartData();
       this.renderChart();
-      this.getRandomStocks()
+      // this.getRandomStocks()
      
 
     } catch (err) {
@@ -94,8 +96,7 @@ class StockList extends React.Component {
     }
  }
 
-  
-
+ 
   renderChart = () => {
     if (this.state.chartValuesX.length === 0) {
       return alert("Couldn't find information about this stock at the moment. Please try again or search for another");
@@ -161,7 +162,6 @@ class StockList extends React.Component {
     }
   };
 
-
 ////////////////////////////SEARCH BAR BY NAME////////////////////////////////////
 
 getSearchData = async () => {
@@ -191,7 +191,11 @@ handleInput2 = (event) => {
 };
 
 handleFind2 = () => {
- 
+
+  this.setState ({
+    displaySearchbar:!this.state.displaySearchbar,
+  }) 
+
   if(this.state.searchEndPoint !== ""){
      this.getSearchData();
 
@@ -202,40 +206,45 @@ handleFind2 = () => {
   }
 }
 
-
 handleSubmitSearch = (event) => {
   this.setState({
-    companySymbol: event.target.name
+    companySymbol: event.target.name,
+    displaySearchbar:!this.state.displaySearchbar,
+    
   });
 
 
 }
 
-
-
 //   componentDidUpdate = (prevProps, prevState) => {
 //     if (prevState.bestMatches !== this.state.bestMatches ) {
-     
 //   };
 //   }
-
 //   renderSearchBar = () =>{
-    
 //     this.state.bestMatches.map((match) => {
-    
 //       console.log(` busca: ${match["2. name"]}`)
 //     })
 //   }
-
-
 //////////////////////////END//////////////////////////////////
 
   render() {
     return (
       <div className="container">
         
-        <h1>Stock Informations</h1>
-      <div className = "container-searchBars">
+        <h1 className="title-stocks">Stock Informations</h1>
+  <div className = "divideTwoSections">
+    <div className = "container-searchByName">
+    <div className="searchBar">
+          <input
+            id="companySymbolInput"
+            className="inputText-Stocks"
+            onChange={this.handleInput}
+            value={this.state.companySymbol}
+          />
+          <button className="button-Stocks"  onClick={this.handleFind}>
+            Find
+          </button>
+         </div>
         <div className="searchBar">
           <input
             id="companySymbolInput2"
@@ -243,32 +252,20 @@ handleSubmitSearch = (event) => {
             onChange={this.handleInput2}
             placeholder="Ticker Symbol Lookup"
           />
+         
           <button className="button-Stocks" onClick={this.handleFind2}>
-            Search by name
+            Search name
           </button>
+        
          </div>
-
-         <div className="searchBar">
-          <input
-            id="companySymbolInput"
-            className="inputText-Stocks"
-            onChange={this.handleInput}
-            value={this.state.companySymbol}
-          />
-          <button className="button-Stocks" onClick={this.handleFind}>
-            Find
-          </button>
-        </div>
-  
-    </div>
-
-    <div className ="container-searchResults">
+         {(this.state.displaySearchbar === false || this.state.bestMatches.length === 0)? "" :
+        <div className="dataResult" >
            {this.state.bestMatches.map((match) => {
                 return (
-                  <div key ={match["1. symbol"]}>
+                  <div key ={match["1. symbol"]} className = "dataItem">
                     <button 
-                     
-                       className = "no-button-decoration listSearch-style"
+                    //  ou aqui dataItem
+                       className = "no-button-decoration " 
                        name = {match["1. symbol"]}
                        onClick = {this.handleSubmitSearch}
                     >
@@ -276,11 +273,15 @@ handleSubmitSearch = (event) => {
                   </div>
                 );
               })}
-         </div>
- 
-         <div className="canvasGraphic">
+         </div> }
+  </div>
+
+
+       <div className="canvasGraphic">
           <canvas id="myCanvas"> </canvas>
-        </div>
+       </div>
+  
+  </div>
       </div>
     );
   }

@@ -1,7 +1,11 @@
 * {
   margin: 0;
+
   font-family: "Poppins", sans-serif;
 }
+
+
+
 
 .main-container {
   max-width: 100%;
@@ -44,14 +48,14 @@
 /* rgb(72, 72, 72) */
 
 /* General button configuration */
-button {
+/* button {
   padding: 5px 15px;
   background-color: black;
   color: white;
   border: 1px solid white;
   border-radius: 0.5rem;
   cursor: pointer;
-}
+} */
 /* button:hover {
   background-color: white;
   color: black;

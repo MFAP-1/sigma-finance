@@ -32,17 +32,17 @@ class StockHomepage extends React.Component {
     const random = this.getRandomStocks()
        
 //FUNCIONANDO
-    let url = `https://www.alphavantage.co/query?function=${
-      this.state.typeInformation
-    }&symbol=${random}&outputsize=${
-      this.state.outputsize
-    }&apikey=${apiKey}`;
-    console.log(url)
+    // let url = `https://www.alphavantage.co/query?function=${
+    //   this.state.typeInformation
+    // }&symbol=${random}&outputsize=${
+    //   this.state.outputsize
+    // }&apikey=${apiKey}`;
+    // console.log(url)
 
     // let  url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${random}&apikey=${apiKey}`
 
     //USAR PARA NÃO ATINGIR O LIMITE DE APIS
-    // let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
+    let url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22"
 
     const response = await axios.get(url);
    
@@ -65,12 +65,12 @@ class StockHomepage extends React.Component {
   getCompanyDescription = async () => {
     const apiKey = "R2P4F9RG0EKKWZEU";
 //FUNCIONANDO LIMITE DE APIS 
-  let url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.companySymbol}&apikey=${apiKey}`
-   console.log(url2)
+  // let url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.companySymbol}&apikey=${apiKey}`
+  //  console.log(url2)
    
  /// USAR QUANDO LIMITE DE APIS FOR ATINGIDO 
-    // let url2 = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo"
-    // console.log(url2)
+    let url2 = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo"
+    console.log(url2)
   
     const response2 = await axios.get(url2);
  
