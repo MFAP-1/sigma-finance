@@ -52,7 +52,7 @@ class Correction extends React.Component {
         this.setState({
           finalAmount: 0,
         });
-        return;
+        return null;
       }
     }
     let formatedResult = result.toFixed(2);
