@@ -8,7 +8,7 @@
 .container-searchByName {
     display:flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     
 }
 
@@ -30,7 +30,7 @@
     width: 100%;
     height: 50px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     color:black;
 }
 
@@ -56,7 +56,7 @@
 
 .searchBar {
     display:flex;
-    justify-content:start;
+    justify-content:flex-start;
     margin-bottom:0.3rem;
 }
 

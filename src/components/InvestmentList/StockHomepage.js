@@ -3,6 +3,8 @@ import axios from "axios";
 import Chart from "chart.js/auto";
 import "./StockHomepage.css";
 
+import LoadingAnimation from "../loading/LoadingAnimation";
+
 const randomStockList = [
   "AAPL",
   "MSFT",
@@ -32,6 +34,7 @@ class StockHomepage extends React.Component {
     isLoaded: null,
     companyOverview: {},
     topArticles: [],
+    loading: false,
   };
 
   getRandomStocks = () => {
@@ -46,14 +49,14 @@ class StockHomepage extends React.Component {
     let articlesArr = [...response.data];
     console.log(response.data);
 
-    // let articlesArr = [...response.data["articles"]];
+    // let articlesArr = [...response.data["articles"]]
 
     this.setState({
       topArticles: [articlesArr[0]],
-      //   topArticles: [...articlesArr],
+      // topArticles: [...articlesArr],
     });
     //  console.log(this.state.topArticles.length);
-    console.log(this.state.topArticles[0]["image"]);
+    // console.log(this.state.topArticles[0]["image"]);
     console.log(url);
   };
 
@@ -139,6 +142,7 @@ class StockHomepage extends React.Component {
   };
 
   componentDidMount = async () => {
+    this.setState({ loading: true });
     try {
       await this.getChartData();
 
@@ -146,6 +150,7 @@ class StockHomepage extends React.Component {
 
       await this.getNewsData();
 
+      this.setState({ loading: false });
       this.renderChart();
     } catch (err) {
       console.error(err);
@@ -167,7 +172,7 @@ class StockHomepage extends React.Component {
       this.state.isLoaded.destroy();
     }
 
-    const chart = new Chart(document.getElementById("myCanvas"), {
+    const chart = new Chart(document.getElementById("myCanvas3"), {
       type: "line",
 
       data: {
@@ -211,9 +216,10 @@ class StockHomepage extends React.Component {
             grid: {
               display: false,
             },
+
             ticks: {
               color: "black",
-              count: 5,
+              display: false,
             },
           },
           y: {
@@ -222,9 +228,11 @@ class StockHomepage extends React.Component {
             },
             ticks: {
               color: "black",
+              display: false,
             },
           },
         },
+        maintainAspectRatio: false,
       },
     });
 
@@ -232,72 +240,90 @@ class StockHomepage extends React.Component {
   };
 
   render() {
-
-    // console.log(this.state.companyOverview["Name"])
     return (
-      <div className="container-infoHomepage">
-        <div className="container-stockInfo">
-          <div>
-            <h1>Stock of the day: {this.state.companySymbol}</h1>
+      <div className="container-homepage">
+        {this.state.loading ? (
+          <div style={{ marginLeft: "auto", marginRight: "auto" }}>
+            <LoadingAnimation />
           </div>
-          <canvas className="container-graphStockDay" id="myCanvas">
-            {" "}
-          </canvas>
-          <div className=" cointainer-listNews">
-            <div className ="container-strips">
-              <div className="stripInformation">
-                {" "}
-                <b>{this.state.companyOverview["Name"]}</b>
-              </div>
-              <div className="stripInformation">
-                <b>Exchange: </b> {this.state.companyOverview["Exchange"]}{" "}
-                {this.state.companyOverview["AssetType"]}
-              </div>
-              {/* <div className = "stripInformation"><b>AssetType:</b> {this.state.companyOverview["AssetType"]}</div> */}
-              <div className="stripInformation">
-                {" "}
-                <b>Sector: </b> {this.state.companyOverview["Sector"]}
-              </div>
-              <div className="stripInformation">
-                {" "}
-                <b>52WeekHigh: </b> {this.state.companyOverview["52WeekHigh"]}
-              </div>
-              <div className="stripInformation">
-                {" "}
-                <b>52WeekLow: </b> {this.state.companyOverview["52WeekLow"]}
-              </div>
-              <div className="stripInformation">
-                <b>MarketCapitalization:</b>{" "}
-                {this.state.companyOverview["MarketCapitalization"]}
-              </div>
-              <div className="stripInformation">
-                <b>EBITDA:</b> ${this.state.companyOverview["EBITDA"]}{" "}
-              </div>
+        ) : (
+          <div className="container-stockOfDay">
+            <div className="title-stockofDay">
+              <h1>Stock of the day: {this.state.companySymbol}</h1>
+            </div>
+            <div className="container-canvas">
+              <canvas id="myCanvas3"></canvas>
             </div>
 
-            <div className="cards-container2">
-              {this.state.topArticles.map((article) => {
-                return (
-                  <div key={article["id"]} className="card-body2">
-                    <div className="card-image2">
-                      <img
-                        className="imgNews2"
-                        alt={article["related"]}
-                        src={article["image"]}
-                      />
+            <div className="cointainer-infoImg">
+              <div className="container-strips">
+                <div className="stripInformation">
+                  <h2>{this.state.companyOverview["Name"]}</h2>
+                </div>
+                <br />
+                <div className="stripInformation">
+                  <b>Exchange: </b> {this.state.companyOverview["Exchange"]}{" "}
+                  {this.state.companyOverview["AssetType"]}
+                </div>
+                <div className="stripInformation">
+                  {" "}
+                  <b>Sector: </b> {this.state.companyOverview["Sector"]}
+                </div>
+                <div className="stripInformation">
+                  {" "}
+                  <b>52-Week High: </b>${" "}
+                  {this.state.companyOverview["52WeekHigh"]}
+                </div>
+                <div className="stripInformation">
+                  {" "}
+                  <b>52-Week Low: </b> ${" "}
+                  {this.state.companyOverview["52WeekLow"]}
+                </div>
+                <div className="stripInformation">
+                  <b>MarketCapitalization:</b> $
+                  {this.state.companyOverview["MarketCapitalization"]}
+                </div>
+                <div className="last-div">
+                  <b>EBITDA:</b> $ {this.state.companyOverview["EBITDA"]}{" "}
+                </div>
+              </div>
+              <div className="cards-container2">
+                {this.state.topArticles.map((article) => {
+                  return (
+                    <div key={article["id"]} className="card-body2">
+                      {article["image"] === "" || article["image"] === null ? (
+                        <div className="card-image2">
+                          <img
+                            className="imgNews2"
+                            alt={article["related"]}
+                            src={
+                              "https://s.yimg.com/uu/api/res/1.2/T44Iwg7RbRrkaTIYz_liyQ--~B/aD00Njk7dz05MDA7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/en/zacks.com/737ffb82e07dc8bffb77e72d153c91f2"
+                            }
+                          />
+                        </div>
+                      ) : (
+                        <div className="card-image2">
+                          <img
+                            className="imgNews2"
+                            alt={article["related"]}
+                            src={article["image"]}
+                          />
+                        </div>
+                      )}
+                      <div className="card-text2">
+                        <h2>{article["headline"]}</h2>
+                        <a target="_blank" href={article["url"]}>
+                          Read More...
+                        </a>
+                      </div>
                     </div>
-
-                    <div className="card-text2">
-                      <h2>{article["headline"]}</h2>
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="container-SigmaInfo">
+        )}
+        <div className="container-OurCompany">
           <h1>Your Finances in One Place</h1>
           <h2>frase/ imagem</h2>
           <div className="botao">Sign me up</div>

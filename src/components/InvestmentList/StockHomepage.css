@@ -1,84 +1,138 @@
-.container-infoHomepage {
-       /* background-color: violet; */
-       display:flex;
-       justify-content: space-evenly;
-       height:800px
+.container-homepage {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
 }
 
-.container-stockInfo{
-    /* background-color: blue; */
-    width: 45vw;
-    color:black;
-    display:wrap
+.container-canvas {
+  width: 90%;
+  min-height: 250px;
 
+  /* border:1px solid black; */
+  border-radius: 1rem;
 }
 
+.container-stockOfDay {
+  /* relacionado a responsividade da homepage (tem que ser vh ao inves de %)*/
+  /* background-color: blue; */
+  width: 48%;
+  height: 80vh;
+  /* border: 3px solid black; */
+  /* border:1px solid black; */
+  border-radius: 1rem;
 
-.container-SigmaInfo {
-    padding: 2rem;
-    width: 45vw;
+  /* relacionado a responsividade da do container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.cointainer-infoImg {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* border: 1px solid black */
+}
+
+.cards-container2 {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  /* border:1px solid black; */
+  border-radius: 1rem;
+  margin-left: 0.2rem;
+  background-color: black;
+  color: white;
+}
+
+.card-body2 h2 {
+  font-size: 1rem;
+  word-wrap: break-word;
+}
+
+.container-strips {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+
+  margin-right: 0.2rem;
+  background-color: black;
+  color: white;
+  border-radius: 1rem;
+}
+
+.imgNews2 {
+  width: 100%;
+  max-height: 20%;
+  border-radius: 1rem 1rem 0 0;
+  border-bottom: solid 1px white;
+}
+
+.container-OurCompany {
+  /* background-color: violet; */
+  width: 48%;
+  height: 80vh;
+  /* border: 3px solid black; */
+
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  .container-stockOfDay {
+    width: 100%;
+    height: 83vh;
+  }
+  .container-OurCompany {
+    width: 100%;
+    height: 83vh;
+  }
+
+  .cards-container2 {
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 90px;
+  }
+
+  .container-strips {
+    margin-top: 20px;
+    width: 80%;
+    color: white;
+  }
+}
+
+.stripInformation {
+  border-bottom: solid 1px white;
+}
+
+/* 
 .container-SigmaInfo h2{
  margin:6rem;
 }
 
 
-.stripInformation{
-    border-bottom: solid 1px black;
-}
 
-
-/* #myCanvas {
-    width:1000px;
-} */
 
 .container-graphStockDay{
     padding:10px;
 }
 
-.botao {
-	box-shadow:inset 0px 1px 0px 0px #97c4fe;
-	background:linear-gradient(to bottom, #000000 5%, #36363a 100%);
-	  margin:4rem;  
-	border:1px solid #000000;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:30px;
-    letter-spacing: 1px;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #010407;
-}
 
-.cointainer-listNews{
-    /* background-color: blue; */
-    align-items:top;
-    border:1px solid center;
-    grid-template-rows: 300px;
-    grid-template-columns: 400px 130px  ;
-    overflow: hidden;
-    display: grid;
-}
+
+
 
 .card-news{
     background-color: white;
 }
 
 .container-strips {
-    /* background-color: blueviolet; */
+   
     margin-bottom:3px
 }
 
-/* /////////////////NEWS CARD////////////////////// */
 
-.imgNews2 {
-    width:100%;
-    height:100%; 
-    
-  }
+
 
     .card-body2 {
     
@@ -88,9 +142,13 @@
 
     grid-template-rows: 105px 125px;
     grid-template-columns: 130px;
-
+background-color: blueviolet;
     text-align: center;
   
+  }
+
+  .cards-container2{
+      background-color: chartreuse;
   }
 
 
@@ -103,8 +161,6 @@
   }
   
    
-  .card-text2 h2{
-    font-size: 0.7rem;
-  } 
-  
 
+  
+ */

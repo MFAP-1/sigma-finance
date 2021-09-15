@@ -66,13 +66,13 @@ class CryptoList extends React.Component {
         <div className="coin-search">
           <h1 className="cryptocurrency-title">Cryptocurrencies</h1>
           <form className="crypto-form" onSubmit={this.handleSubmit}>
-            <button className="button-form">Search</button>
             <input
               type="text"
               placeholder="Find a crypto"
               className="search-input"
               onChange={this.handleChange}
             />
+            <button className="button-form">Search</button>
           </form>
         </div>
         {this.state.coins.map((coin) => {
