@@ -1,42 +1,26 @@
+/* General configs */
 * {
   margin: 0;
-
   font-family: "Poppins", sans-serif;
   font-size: calc(0.75rem + 0.5vmin);
 }
 
 .main-container {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 92%;
   width: 100vw;
-  height: 100vh;
+  height: 92vh;
 }
 
 .bg-titanium {
   background-color: rgb(226, 226, 226);
+  /* background-color: rgb(245, 249, 254); */
 }
-/* .bg-titanium {
-  background: #283048; fallback for old browsers */
-/* background: -webkit-linear-gradient(
-    to bottom,
-    #859398,
-    #283048 */
-/* ); Chrome 10-25, Safari 5.1-6 */
-/* background: linear-gradient(
-    to bottom,
-    #859398,
-    #283048 */
-/* ); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+
-} */
-/* Azul da logo */
-/* rgb(40, 48, 72) */
 
-/* Cinzas */
-/* rgb(107, 107, 108) */
-/* rgb(72, 72, 72) */
-
+/* centering objects */
 .center-content {
   text-align: center;
+  padding-top: 10vh;
 }
 
 .center-object {
@@ -44,9 +28,17 @@
   justify-content: center;
 }
 
-/* General button configuration */
+/* General text configs */
+h1 {
+  font-size: calc(1.25rem + 1vmin);
+}
+h2 {
+  font-size: calc(1rem + 0.75vmin);
+}
+
+/* Button configuration */
 button {
-  padding: 5px 15px;
+  padding: 0.3rem 0.9rem;
   background-color: black;
   color: white;
   border: 1px solid white;
@@ -64,4 +56,16 @@ button:focus {
   background-color: lightgray;
   color: black;
   border: 1px solid black;
+}
+
+/* Input configuration */
+input,
+select,
+textarea {
+  border: 1px solid rgb(72, 72, 72);
+  background-color: rgb(236, 236, 236);
+  border-radius: 0.2rem;
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0.8rem;
+  transition: border 0.3s ease;
 }

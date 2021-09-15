@@ -121,7 +121,7 @@ class Wallet extends React.Component {
   renderOnlineWallet = () => {
     return (
       <div>
-        <div className="center-content">
+        <div>
           <h1>{this.props.username}, this is your wallet</h1>
           <button onClick={this.showAssetTypeGraph}>Show asset's graph</button>
           <button onClick={this.showPortfolioHistory}>
@@ -136,18 +136,14 @@ class Wallet extends React.Component {
                 username={this.props.username}
                 currency={this.state.currency}
               />
-            ) : (
-              ""
-            )}
+            ) : null}
             {this.state.drawGraph2 ? (
               <PortfolioHistory
                 assetList={this.state.assetList}
                 username={this.props.username}
                 currency={this.state.currency}
               />
-            ) : (
-              ""
-            )}
+            ) : null}
           </div>
         </div>
       </div>

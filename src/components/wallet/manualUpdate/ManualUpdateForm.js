@@ -34,12 +34,7 @@ function ManualUpdateForm(props) {
           </tbody>
         </table>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-        }}
-      >
+      <div className="asset-form-couple-div">
         <TextInput
           type="number"
           min="0"
@@ -64,12 +59,7 @@ function ManualUpdateForm(props) {
           required
         />
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-        }}
-      >
+      <div className="asset-form-couple-div">
         <TextInput
           type="date"
           id="assetFormDateBought"

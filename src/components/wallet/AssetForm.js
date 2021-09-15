@@ -11,17 +11,11 @@ import getTodayDate from "../../scripts/getTodayDate";
 function AssetForm(props) {
   return (
     <form onSubmit={props.handleSubmit} className="asset-form">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-        }}
-      >
+      <div className="asset-form-couple-div">
         <SelectInput
           name="assetType"
           className="input-margin-bottom"
           id="selectInputAssetType"
-          label="Asset Type"
           value={props.state.assetType}
           onChange={props.handleChange}
           items={[
@@ -33,7 +27,7 @@ function AssetForm(props) {
             "ETF",
             "Other",
           ]}
-          placeholder="Select Asset Type"
+          placeholder="Asset Type"
           required
         />
         <SelectInput
@@ -47,9 +41,7 @@ function AssetForm(props) {
           required
         />
       </div>
-      {props.state.assetType !== "Bond" ? (
-        ""
-      ) : (
+      {props.state.assetType !== "Bond" ? null : (
         <div
           style={{
             display: "flex",
@@ -84,17 +76,12 @@ function AssetForm(props) {
           />
         </div>
       )}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-        }}
-      >
+      <div className="asset-form-couple-div">
         <TextInput
           type="text"
           id="assetFormAssetName"
           className="input-margin-bottom"
-          label="Name of the asset"
+          label="Asset name"
           name="assetName"
           onChange={props.handleChange}
           value={props.state.assetName}
@@ -112,12 +99,7 @@ function AssetForm(props) {
           required
         />
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-        }}
-      >
+      <div className="asset-form-couple-div">
         <TextInput
           type="number"
           min="0"

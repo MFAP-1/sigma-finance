@@ -26,6 +26,7 @@ th {
 .select-currency-input {
   width: auto;
   text-align: center;
+  margin-bottom: 0;
 }
 
 /* Tooltips texts style */

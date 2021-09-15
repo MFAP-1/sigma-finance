@@ -68,7 +68,7 @@ class ManualUpdateAsset extends React.Component {
 
   renderManualUpdateForm = () => {
     return (
-      <div className="center-content add-asset-box">
+      <div className="asset-form-box">
         <h2>Input the current value for the asset</h2>
         <ManualUpdateForm
           state={this.state}
@@ -81,7 +81,7 @@ class ManualUpdateAsset extends React.Component {
 
   noNeedForManualUpdateForm = () => {
     return (
-      <div className="center-content add-asset-box">
+      <div className="asset-form-box">
         <h2>
           For this asset, there is no need for Manual Update.
           <br /> It is 100% automated.

@@ -247,9 +247,7 @@ class StockList extends React.Component {
               </button>
             </div>
             {this.state.displaySearchbar === false ||
-            this.state.bestMatches.length === 0 ? (
-              ""
-            ) : (
+            this.state.bestMatches.length === 0 ? null : (
               <div className="dataResult">
                 {this.state.bestMatches.map((match) => {
                   return (

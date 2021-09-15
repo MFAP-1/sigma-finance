@@ -3,6 +3,8 @@ import axios from "axios";
 
 import TextInput from "../../forms/TextInput";
 
+import "../authentication.css";
+
 class LoginForm extends React.Component {
   state = {
     name: "",
@@ -43,29 +45,18 @@ class LoginForm extends React.Component {
   };
 
   render() {
-    // console.log(this.state.name);
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label>Enter your name</label>
-            <div>
-              <TextInput
-                className="input"
-                type="text"
-                placeholder="Insert a username"
-                name="name"
-                onChange={this.handleChange}
-                value={this.state.name}
-                required
-              />
-            </div>
-          </div>
-          <div>
-            <button type="submit">Login</button>
-          </div>
-        </form>
-      </div>
+      <form onSubmit={this.handleSubmit} className="authentication-form-box">
+        <TextInput
+          type="text"
+          placeholder="Your username"
+          name="name"
+          onChange={this.handleChange}
+          value={this.state.name}
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
     );
   }
 }

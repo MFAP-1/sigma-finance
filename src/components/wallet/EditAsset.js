@@ -58,7 +58,7 @@ class EditAsset extends React.Component {
 
   render() {
     return (
-      <div className="center-content add-asset-box">
+      <div className="asset-form-box">
         <h2>Check the selected asset for updating</h2>
         <AssetForm
           state={this.state}

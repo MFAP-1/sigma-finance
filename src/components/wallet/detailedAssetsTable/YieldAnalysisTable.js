@@ -1,10 +1,12 @@
 import React from "react";
 
+import LoadingAnimation from "../../loading/LoadingAnimation";
+
 function YieldAnalysisTable(props) {
   return (
     <div className="center-object">
       {props.loading ? (
-        "LOADING TABLE"
+        <LoadingAnimation />
       ) : (
         <table>
           <thead>
@@ -27,7 +29,7 @@ function YieldAnalysisTable(props) {
             </tr>
             <tr key="detailedAsset-tables-body2-yield-analysis">
               <th>
-                Current{props.dateManualUpdate !== "" ? <span>*</span> : ""}
+                Current{props.dateManualUpdate !== "" ? <span>*</span> : null}
               </th>
               <td>{props.currentUnitValue}</td>
               <td>{props.quantity}</td>
@@ -66,9 +68,7 @@ function YieldAnalysisTable(props) {
                 </td>
               </tr>
             </tfoot>
-          ) : (
-            ""
-          )}
+          ) : null}
         </table>
       )}
     </div>

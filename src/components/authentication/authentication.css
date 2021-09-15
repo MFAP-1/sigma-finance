@@ -1,0 +1,21 @@
+.authentication-form-box {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 3vh;
+}
+
+.authentication-form-box input {
+  width: calc(30vw - 1.8rem - 2px);
+}
+
+@media screen and (max-width: 540px) {
+  .authentication-form-box {
+    width: 50vw;
+  }
+  .authentication-form-box input {
+    width: calc(50vw - 1.8rem - 2px);
+  }
+}
