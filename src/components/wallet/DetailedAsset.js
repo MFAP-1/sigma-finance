@@ -12,7 +12,7 @@ import formatMoney from "../../scripts/formatMoney";
 import formatDate from "../../scripts/formatDate";
 import getTodayDate from "../../scripts/getTodayDate.js";
 import ipcaCalculator from "../../scripts/ipcaCalculator";
-import selicCalculator from "../../scripts/selicCalculator";
+import selicCalculator from "../../scripts/selicCalculator.js";
 
 class DetailedAsset extends React.Component {
   state = {
