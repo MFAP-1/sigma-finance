@@ -109,7 +109,7 @@ class AssetTypeChart extends React.Component {
         }
         return assetObj;
       }
-      return <></>;
+      return null;
     });
     this.setState({
       chartLabels: [...labelArr],

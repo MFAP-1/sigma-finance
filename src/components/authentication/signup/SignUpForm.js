@@ -39,11 +39,10 @@ class SignUpForm extends React.Component {
     // In case where the user doesn´t exist, post it to the API
     if (!existUser) {
       try {
-        const response = await axios.post(
+        await axios.post(
           "https://ironrest.herokuapp.com/sigmaFinanceUsers",
           this.state
         );
-        console.log(response);
         this.props.history.push("/login");
       } catch (err) {
         console.error(err);
