@@ -1,5 +1,7 @@
 import React from "react";
 
+import LoadingAnimationLinear from "../../loading/LoadingAnimationLinear";
+
 function BasicInformationTable(props) {
   return (
     <div className="center-object">
@@ -31,7 +33,14 @@ function BasicInformationTable(props) {
             </td>
             <td>{props.additionalComments}</td>
             <td>{props.dateBought}</td>
-            <td>{props.loading ? "..." : props.investmentDuration} days</td>
+            <td>
+              {props.loading ? (
+                <LoadingAnimationLinear color={"black"} />
+              ) : (
+                props.investmentDuration
+              )}{" "}
+              days
+            </td>
           </tr>
         </tbody>
       </table>

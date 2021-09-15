@@ -101,9 +101,7 @@ function PortfolioTableBody(props) {
           <td>{formatMoney(totalValueUSD, "USD")}</td>
           <td colSpan="2"></td>
         </tr>
-      ) : (
-        ""
-      )}
+      ) : null}
       {totalValueBRL !== 0 ? (
         <tr key="total-Value-in-BRL">
           <td colSpan="6" style={{ textAlign: "right" }}>
@@ -112,9 +110,7 @@ function PortfolioTableBody(props) {
           <td>{formatMoney(totalValueBRL, "BRL")}</td>
           <td colSpan="2"></td>
         </tr>
-      ) : (
-        ""
-      )}
+      ) : null}
       {totalValueEUR !== 0 ? (
         <tr key="total-Value-in-EUR">
           <td colSpan="6" style={{ textAlign: "right" }}>
@@ -123,12 +119,10 @@ function PortfolioTableBody(props) {
           <td>{formatMoney(totalValueEUR, "EUR")}</td>
           <td colSpan="2"></td>
         </tr>
-      ) : (
-        ""
-      )}
+      ) : null}
       {totalValueEUR !== 0 || totalValueBRL !== 0 || totalValueUSD !== 0
         ? props.updateSubtotals(totalValueUSD, totalValueBRL, totalValueEUR)
-        : ""}
+        : null}
     </tbody>
   );
 }

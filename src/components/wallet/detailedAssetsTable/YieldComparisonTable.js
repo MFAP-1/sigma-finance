@@ -1,10 +1,12 @@
 import React from "react";
 
+import LoadingAnimation from "../../loading/LoadingAnimation";
+
 function YieldComparisonTable(props) {
   return (
     <div className="center-object">
       {props.loading ? (
-        "LOADING TABLE"
+        <LoadingAnimation />
       ) : (
         <table>
           <thead>
