@@ -2,7 +2,7 @@ import React from "react";
 import "./correction.css";
 
 import ipcaCalculator from "../../../scripts/ipcaCalculator";
-import selicCalculator from "../../../scripts/selicCalculator";
+import selicCalculator from "../../../scripts/selicCalculator.js";
 import getTodayDate from "../../../scripts/getTodayDate";
 
 class Correction extends React.Component {
