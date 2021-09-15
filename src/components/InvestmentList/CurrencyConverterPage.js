@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 
-
 class CurrencyConverterPage extends React.Component {
   constructor() {
     super();
@@ -15,13 +14,11 @@ class CurrencyConverterPage extends React.Component {
     };
   }
 
-
   //https://v6.exchangerate-api.com/v6/0643403684aee3640b113f6c/latest/EUR
-
 
   getCurrencyData = async () => {
     const url =
-      "http://api.exchangeratesapi.io/v1/latest?access_key=ac8ab16193cf913bd7bbf4e56ef3f6c2";
+      "https://api.exchangeratesapi.io/v1/latest?access_key=ac8ab16193cf913bd7bbf4e56ef3f6c2";
 
     const response = await axios.get(url);
     const currenciesObj = { ...response.data["rates"] };

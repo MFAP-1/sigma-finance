@@ -26,7 +26,7 @@ class AssetTypeChart extends React.Component {
 
   getCurrencyData = async () => {
     const url =
-      "http://api.exchangeratesapi.io/v1/latest?access_key=ac8ab16193cf913bd7bbf4e56ef3f6c2";
+      "https://api.exchangeratesapi.io/v1/latest?access_key=ac8ab16193cf913bd7bbf4e56ef3f6c2";
     const response = await axios.get(url);
     const currenciesObj = { ...response.data["rates"] };
     // const currenciesArr = [...Object.keys(currenciesObj)];
