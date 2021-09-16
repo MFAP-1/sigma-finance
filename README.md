@@ -1,7 +1,8 @@
 # Sigma Finance
 
-<div style="display:flex; justify-content:space-between;">
-  <img src="/src/assets/images/demoSS1.jpg" width="35%"/>  
+<div align="center">
+  <img src="/src/assets/images/demoSS1.jpg" width="31.5%"/> 
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="/src/assets/images/demoSS2.jpg" width="50%"/>
 </div>
 
