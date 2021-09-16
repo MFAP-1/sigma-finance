@@ -13,14 +13,14 @@ class News extends React.Component {
 
     const response = await axios.get(url);
 
-    console.log(response.data);
+    // console.log(response.data);
     let articlesArr = [...response.data["articles"]];
 
     this.setState({
  
          topArticles: [...articlesArr],
     });
-    console.log(this.state.topArticles.length);
+    // console.log(this.state.topArticles.length);
   };
 
   componentDidMount = async () => {

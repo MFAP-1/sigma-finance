@@ -103,15 +103,8 @@ class StockList extends React.Component {
       },
       options: {
         scales: {
-          x: {
-            type: "time",
-
-           
-              type: 'time',
-              time: {
-                  unit: 'month'
-              
-            },
+          x:                     
+           {
             grid: {
               display: false,
             },
@@ -163,7 +156,7 @@ class StockList extends React.Component {
     const apiKey = "R2P4F9RG0EKKWZEU";
 
     let url2 = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${this.state.searchEndPoint}&apikey=${apiKey}`;
-    console.log(url2);
+    // console.log(url2);
 
     const response2 = await axios.get(url2);
 
