@@ -25,7 +25,7 @@ function PortfolioTableBody(props) {
               totalValueEUR += currentValue;
               break;
             default:
-              console.log("erro");
+              return null;
           }
           return (
             <tr key={assetObj._id}>

@@ -2,9 +2,12 @@ import React from "react";
 import axios from "axios";
 import "./News.css";
 
+import LoadingAnimation from "../loading/LoadingAnimation";
+
 class News extends React.Component {
   state = {
     topArticles: [],
+    loading: false,
   };
 
   getNewsData = async () => {
@@ -13,14 +16,13 @@ class News extends React.Component {
 
     const response = await axios.get(url);
 
-    // console.log(response.data);
+   
     let articlesArr = [...response.data];
 
     this.setState({
- 
-         topArticles: [...articlesArr],
+      topArticles: [...articlesArr],
     });
-     console.log(this.state.topArticles);
+    this.setState({ loading: false });
   };
 
   componentDidMount = async () => {
@@ -31,15 +33,17 @@ class News extends React.Component {
     }
   };
 
-render() {
-    return (
-    <div>
+  render() {
+    return this.state.loading ? (
+      <LoadingAnimation />
+    ) : (
+      <div className="news-main-div">
         <h1>News of the Day</h1>
 
         <div className="cards-container">
-
           {this.state.topArticles.map((article) => {
             return (
+              <div>
                 <div key={article["headline"]} className="card-body">
 
                    <div className="card-image" >
@@ -51,13 +55,13 @@ render() {
                   </div>
 
                 </div>
+              </div>
             );
           })}
         </div>
-    </div>
+      </div>
     );
   }
 }
 
 export default News;
-

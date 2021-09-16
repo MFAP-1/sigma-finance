@@ -129,6 +129,13 @@ class DetailedAsset extends React.Component {
         currentUnitPrice: Number(this.state.unitPrice) + 20, // + 20 is a fallback/debugger
       });
     }
+    // fallback for when the users inputed a crypto or a stock without the correct symbol
+    if (this.state.currentUnitPrice === 0) {
+      this.setState({ currentUnitPrice: this.state.unitPrice });
+      alert(
+        "Sorry. You inputed an incorrect symbol. To get the correct current value, edit it."
+      );
+    }
   };
 
   //

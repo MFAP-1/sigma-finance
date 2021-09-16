@@ -133,7 +133,7 @@ class Header extends React.Component {
             SignUp
           </Link>
         </div>
-        
+
         <div className="link-mobile">
           <Link to="/currency-converter" className="no-link-decoration">
             Converter
@@ -218,7 +218,6 @@ class Header extends React.Component {
   };
 
   toggleBurger = () => {
-    // console.log("teste");
     this.setState({
       haveBurger: !this.state.haveBurger,
     });

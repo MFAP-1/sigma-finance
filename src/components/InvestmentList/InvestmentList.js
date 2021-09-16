@@ -25,7 +25,10 @@ class StockList extends React.Component {
     }&symbol=${this.state.companySymbol.toUpperCase()}&outputsize=${
       this.state.outputsize
     }&apikey=${apiKey}`;
+<<<<<<< HEAD
     console.log(url)
+=======
+>>>>>>> 4bab1b8f5b0a19fc36feed295bf9971703ffca82
 
     //teste para não passar do limite de requisições
     // let url =
@@ -103,14 +106,13 @@ class StockList extends React.Component {
       },
       options: {
         scales: {
-          x:                     
-           {
+          x: {
             grid: {
               display: false,
             },
             ticks: {
               color: "black",
-              maxTicksLimit:10,
+              maxTicksLimit: 10,
             },
           },
           y: {
@@ -121,10 +123,10 @@ class StockList extends React.Component {
               color: "black",
             },
             title: {
-             text: "Price(U$)",
-             display:true,
-             color:"black",
-             font:20
+              text: "Price(U$)",
+              display: true,
+              color: "black",
+              font: 20,
             },
           },
         },
@@ -156,7 +158,6 @@ class StockList extends React.Component {
     const apiKey = "R2P4F9RG0EKKWZEU";
 
     let url2 = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${this.state.searchEndPoint}&apikey=${apiKey}`;
-    // console.log(url2);
 
     const response2 = await axios.get(url2);
 
