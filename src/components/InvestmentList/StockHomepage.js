@@ -312,7 +312,7 @@ class StockHomepage extends React.Component {
                       )}
                       <div className="card-text2">
                         <h2>{article["headline"]}</h2>
-                        <a target="_blank" href={article["url"]}>
+                        <a rel="noopener noreferrer" href={article["url"]}>
                           Read More...
                         </a>
                       </div>
