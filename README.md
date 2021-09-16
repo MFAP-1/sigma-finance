@@ -46,7 +46,6 @@ The Sigma Finance project was built solely for education purposes. Thus, I do no
 You can find the used APIs and background-image in the following links:
 
 > - https://www.alphavantage.co/query
-> - https://newsapi.org/v2/
 > - https://finnhub.io/api/v1/company-news
 > - https://api.coingecko.com/api/v3/coins/markets
 > - https://api.exchangeratesapi.io/v1/latest
