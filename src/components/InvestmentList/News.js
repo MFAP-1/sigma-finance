@@ -11,12 +11,13 @@ class News extends React.Component {
   };
 
   getNewsData = async () => {
-    this.setState({ loading: true });
-    let url =
-      "https://newsapi.org/v2/top-headlines?country=br&category=business&apiKey=442e00c92b0148c7a2e35cc749651cf3";
+    
+    let url = "https://finnhub.io/api/v1/news?category=business&token=c50ojj2ad3ic9bdldmog";
 
     const response = await axios.get(url);
-    let articlesArr = [...response.data["articles"]];
+
+   
+    let articlesArr = [...response.data];
 
     this.setState({
       topArticles: [...articlesArr],
@@ -42,17 +43,17 @@ class News extends React.Component {
         <div className="cards-container">
           {this.state.topArticles.map((article) => {
             return (
-              <div key={article["url"]} className="card-body">
-                <div className="card-image">
-                  <img
-                    className="imgNews"
-                    alt={article["title"]}
-                    src={article["urlToImage"]}
-                  />
-                </div>
-                <div className="card-text">
-                  <h2>{article["title"]}</h2>
-                  <p>{article["description"]}</p>
+              <div>
+                <div key={article["headline"]} className="card-body">
+
+                   <div className="card-image" >
+                      <img className="imgNews" alt= {article["headline"]} src={article["image"]} />
+                  </div>
+                  <div className="card-text">
+                    <a className = "linkNews" href= {article["url"]}><h2>{article["headline"]}</h2></a>
+                    <p>{article["summary"]}</p>
+                  </div>
+
                 </div>
               </div>
             );
