@@ -4,8 +4,18 @@
 
 ## About the application
 
-Sigma Finance is a ... finance helper, portfolio tracker... front-end web application educational project.
-Your finances in one place.
+Your finances in one place. Sigma Finance is a finance helper. It is a front-end web application educational project.
+**His main features are:**
+
+> - Multi-currency portfolio;
+> - 100% automated tracking (stocks, crypto and savings acc);
+> - Statistics and comparisons for every asset;
+> - Dynamic graphs;
+> - Currency convertion;
+> - Monetary correction;
+> - Top trending investment news;
+> - Stock finder;
+> - Crypto finder.
 
 ## Test it now!
 
@@ -18,7 +28,6 @@ Clone or download this repository. Run the 'npm start' command and let me know w
 ## Contributing
 
 This is an open source project, feel free to fork it, make improvements and submit a pull request.
-
 **Feedback are more than welcome!** Just keep in mind that this was a one-week educational project.
 
 ## Find more about this project
@@ -28,7 +37,7 @@ For an enhanced experience, watch it in the 'presentation mode'. There are impor
 
 ## Disclaimer
 
-The Sigma Finance project was inspired.... , and it was built solely for education purposes. Thus, I do not own any copyrights to APIs used in this project.
+The Sigma Finance project was built solely for education purposes. Thus, I do not own any copyrights to APIs used in this project.
 
 You can find the used APIs and background-image in the following links:
 

@@ -1,6 +1,9 @@
 body {
-  background-color: rgb(226, 226, 226);
   text-align: center;
+}
+
+.main-crypto-page-div {
+  margin: 1rem 1.5rem;
 }
 
 .horizontal-div {
@@ -13,7 +16,7 @@ body {
 }
 
 .ImgNameSymbol-div {
-  width:30%;
+  width: 30%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,21 +25,21 @@ body {
 .ImgNameSymbol-div img {
   height: 1.875rem;
   width: 1.875rem;
-  margin-left:1rem
+  margin-left: 1rem;
 }
 
 .coinData-div {
-  width:70%;
+  width: 70%;
   display: flex;
   justify-content: space-between;
   text-align: center;
   width: 100%;
-  padding-left:10%;
-  padding-right:5%
+  padding-left: 10%;
+  padding-right: 5%;
 }
 
 .marketCap-div {
-  margin-right:8rem;
+  margin-right: 8rem;
 }
 
 .coin-symbol {
@@ -51,39 +54,33 @@ body {
   margin-bottom: 1rem;
 }
 
-
 .red {
   color: red;
-
 }
 
 .green {
   color: green;
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .marketCapRank-div {
-    display:none;
+    display: none;
   }
   .marketCap-div {
-    display:none;
+    display: none;
   }
 
   .coin-name {
-    display:none
+    display: none;
   }
 
   .price-div {
-    margin-right:3rem;
+    margin-right: 3rem;
   }
-  
+
   .coinData-div {
-    width:50%;
-    padding-left:20%;
-    padding-right:10%
+    width: 50%;
+    padding-left: 20%;
+    padding-right: 10%;
   }
 }
-
-
-
-
