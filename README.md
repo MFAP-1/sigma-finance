@@ -1,9 +1,10 @@
 # Sigma Finance
 
-<div style="display:flex;">
+<div style="display:flex; justify-content:space-between;">
 <img src="/src/assets/images/demoSS1.jpg" width="30%"/>  
 <img src="/src/assets/images/demoSS2.jpg" width="50%"/>
 </div>
+
 ## About the application
 
 Your finances in one place. Sigma Finance is a portfolio tracker/helper, and much more.
