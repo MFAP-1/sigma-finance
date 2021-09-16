@@ -1,8 +1,8 @@
 # Sigma Finance
 
 <div style="display:flex; justify-content:space-between;">
-<img src="/src/assets/images/demoSS1.jpg" width="30%"/>  
-<img src="/src/assets/images/demoSS2.jpg" width="50%"/>
+  <img src="/src/assets/images/demoSS1.jpg" width="35%"/>  
+  <img src="/src/assets/images/demoSS2.jpg" width="50%"/>
 </div>
 
 ## About the application
