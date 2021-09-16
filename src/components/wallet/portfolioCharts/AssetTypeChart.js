@@ -29,7 +29,6 @@ class AssetTypeChart extends React.Component {
       "https://api.exchangeratesapi.io/v1/latest?access_key=ac8ab16193cf913bd7bbf4e56ef3f6c2";
     const response = await axios.get(url);
     const currenciesObj = { ...response.data["rates"] };
-    // const currenciesArr = [...Object.keys(currenciesObj)];
     const usd_brl = currenciesObj["BRL"] / currenciesObj["USD"];
     const usd_eur = currenciesObj["EUR"] / currenciesObj["USD"];
     const brl_usd = currenciesObj["USD"] / currenciesObj["BRL"];
@@ -37,8 +36,6 @@ class AssetTypeChart extends React.Component {
     const eur_usd = currenciesObj["USD"] / currenciesObj["EUR"];
     const eur_brl = currenciesObj["BRL"] / currenciesObj["EUR"];
     this.setState({
-      // currenciesInformation: { ...currenciesObj }, // ---------------------NOT USED
-      // currenciesList: [...currenciesArr], // ---------------------NOT USED
       usd_brl: usd_brl,
       usd_eur: usd_eur,
       brl_usd: brl_usd,
@@ -46,7 +43,6 @@ class AssetTypeChart extends React.Component {
       eur_usd: eur_usd,
       eur_brl: eur_brl,
     });
-    // console.log(usd_brl); // ---------------------DEBUGGER
   };
 
   genericCurrencyConverter = (
@@ -82,14 +78,12 @@ class AssetTypeChart extends React.Component {
   };
 
   getGraphInformation = () => {
-    // console.log("entrou no get graph info"); // ---------------------DEBUGGER
     let labelArr = [];
     let dataArr = [];
     this.props.assetList.map((assetObj) => {
       if (assetObj.username === this.props.username) {
         if (!labelArr.includes(assetObj.assetType)) {
           labelArr.push(assetObj.assetType);
-          // dataArr.push(assetObj.quantity * Number(assetObj.unitPrice)); // ---------------------DEBUGGER (No convertion)
           dataArr.push(
             this.genericCurrencyConverter(
               assetObj.quantity * Number(assetObj.unitPrice),
@@ -99,8 +93,6 @@ class AssetTypeChart extends React.Component {
           );
         } else {
           let currentIndex = labelArr.indexOf(assetObj.assetType);
-          // dataArr[currentIndex] += // ---------------------DEBUGGER (No convertion)
-          //   assetObj.quantity * Number(assetObj.unitPrice);
           dataArr[currentIndex] += this.genericCurrencyConverter(
             assetObj.quantity * Number(assetObj.unitPrice),
             assetObj.currency,
@@ -149,7 +141,6 @@ class AssetTypeChart extends React.Component {
   };
 
   render() {
-    // console.log("renderizou o gráfico"); // ---------------------DEBUGGER
     return (
       <div
         className="center-object"
@@ -159,10 +150,7 @@ class AssetTypeChart extends React.Component {
           Asset Type Composition (
           {this.props.currency ? this.props.currency : "USD"})
         </h3>
-        <div
-          className="center-object"
-          style={{ width: "25vw", paddingBottom: "10rem" }}
-        >
+        <div className="center-object" id="canvas-AssetType-id">
           <canvas
             id="canvas-AssetType"
             style={{ border: "1px solid black" }}

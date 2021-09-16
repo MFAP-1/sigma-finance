@@ -91,29 +91,29 @@ class Header extends React.Component {
           </div>
         </div>
         <div className="linksLargeContainer">
-        <div>
-          <Link to="/wallet" className="no-link-decoration">
-            <i className="fas fa-wallet"></i> Portfolio
-          </Link>
-        </div>
-        <div>
-          <Link to="/wallet/add" className="no-link-decoration">
-            Add asset
-          </Link>
-        </div>
+          <div>
+            <Link to="/wallet" className="no-link-decoration">
+              <i className="fas fa-wallet"></i> Portfolio
+            </Link>
+          </div>
+          <div>
+            <Link to="/wallet/add" className="no-link-decoration">
+              Add asset
+            </Link>
+          </div>
         </div>
         <div className="linksLargeContainer">
-        <div>
-          <span style={{ textDecoration: "underline" }}>
-            <i className="fas fa-user "></i>
-            {this.props.state.username}
-          </span>
-        </div>
-        <div>
-          <Link to="/logout" className="no-link-decoration">
-            Logout
-          </Link>
-        </div>
+          <div>
+            <span style={{ textDecoration: "underline" }}>
+              <i className="fas fa-user "></i>
+              {this.props.state.username}
+            </span>
+          </div>
+          <div>
+            <Link to="/logout" className="no-link-decoration">
+              Logout
+            </Link>
+          </div>
         </div>
       </nav>
     );
@@ -122,6 +122,18 @@ class Header extends React.Component {
   renderMobileOfflineNavBar = () => {
     return (
       <nav id="nav-bar-small-mobile" onClick={this.toggleBurger}>
+        <div className="link-mobile">
+          <Link to="/login" className="no-link-decoration">
+            Login
+          </Link>
+        </div>
+
+        <div className="link-mobile">
+          <Link to="/signup" className="no-link-decoration">
+            SignUp
+          </Link>
+        </div>
+        <hr />
         <div className="link-mobile">
           <Link to="/currency-converter" className="no-link-decoration">
             Converter
@@ -145,17 +157,6 @@ class Header extends React.Component {
         <div className="link-mobile">
           <Link to="/cryptocurrencies" className="no-link-decoration">
             Crypto
-          </Link>
-        </div>
-        <div className="link-mobile">
-          <Link to="/login" className="no-link-decoration">
-            Login
-          </Link>
-        </div>
-
-        <div className="link-mobile">
-          <Link to="/signup" className="no-link-decoration">
-            SignUp
           </Link>
         </div>
       </nav>

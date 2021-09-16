@@ -1,6 +1,10 @@
 import React from "react";
 import axios from "axios";
 
+import formatMoney from "../../scripts/formatMoney";
+
+import "./CurrencyConverterPage.css";
+
 class CurrencyConverterPage extends React.Component {
   constructor() {
     super();
@@ -60,61 +64,73 @@ class CurrencyConverterPage extends React.Component {
   };
 
   handSubmit = (event) => {
+    event.preventDefault();
     this.Calculate();
   };
 
   render() {
     return (
-      <div>
-        <h1>Currency Converter</h1>
+      <div className="converter-form-box">
         <div>
-          <input
-            value={this.state.amount}
-            type="number"
-            className="currencyConverter-input"
-            onChange={this.handleAmount}
-          />
-          <select
-            name="fromCurrency"
-            className="select-currency"
-            value={this.state.fromCurrency}
-            onChange={this.handleCurrency}
-          >
-            {this.state.currenciesList.map((currency) => {
-              return (
-                <option key={currency} value={currency}>
-                  {currency}
-                </option>
-              );
-            })}
-          </select>
+          <h2>Currency Converter</h2>
+          <p>
+            <br />
+            Input the value and the currency that you want to convert.
+            <br />
+            Then, input the target currency.
+          </p>
         </div>
-        <div>
-          <h1>
-            {this.state.finalResult} {this.state.toCurrency}
-          </h1>
-
-          <select
-            className="select-currency"
-            name="toCurrency"
-            value={this.state.toCurrency}
-            onChange={this.handleCurrency}
-          >
-            {this.state.currenciesList.map((currency) => {
-              return (
-                <option key={currency} value={currency}>
-                  {currency}
-                </option>
-              );
-            })}
-          </select>
-
-          <div>
-            <button onClick={this.handSubmit}>Convert</button>
-
-            <div></div>
+        <form className="converter-form" onSubmit={this.handSubmit}>
+          <div className="converter-form-couple-div">
+            <input
+              value={this.state.amount}
+              type="number"
+              min="0"
+              step="0.01"
+              className="currencyConverter-input"
+              onChange={this.handleAmount}
+              required
+            />
+            <select
+              className="select-currency"
+              name="fromCurrency"
+              value={this.state.fromCurrency}
+              onChange={this.handleCurrency}
+            >
+              {this.state.currenciesList.map((currency) => {
+                return (
+                  <option key={currency} value={currency}>
+                    {currency}
+                  </option>
+                );
+              })}
+            </select>
           </div>
-        </div>
+          <div className="converter-form-couple-div">
+            <h2>
+              {formatMoney(this.state.finalResult, this.state.toCurrency)}{" "}
+              {this.state.toCurrency}
+            </h2>
+
+            <select
+              className="select-currency"
+              name="toCurrency"
+              value={this.state.toCurrency}
+              onChange={this.handleCurrency}
+            >
+              {this.state.currenciesList.map((currency) => {
+                return (
+                  <option key={currency} value={currency}>
+                    {currency}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <button>
+            Convert: {this.state.fromCurrency} to {this.state.toCurrency}
+          </button>
+        </form>
       </div>
     );
   }

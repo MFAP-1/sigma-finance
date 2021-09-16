@@ -9,6 +9,7 @@ import AssetTypeChart from "./portfolioCharts/AssetTypeChart";
 import PortfolioHistory from "./portfolioCharts/PortfolioHistory";
 import TotalPortfolioValue from "./portfolioTable/TotalPortfolioValue";
 import PortfolioTableBody from "./portfolioTable/PortfolioTableBody";
+import LoggedOffPage from "../authentication/loggedoff/LoggedOffPage";
 
 class Wallet extends React.Component {
   state = {
@@ -50,7 +51,6 @@ class Wallet extends React.Component {
   };
 
   updateSubtotals = (totalValueUSD, totalValueBRL, totalValueEUR) => {
-    // console.log("this.state dolar", this.state.totalValueUSD); // ------------------ DEBUGGUER
     if (!this.state.updatedSubtotals) {
       this.setState({
         totalValueUSD: totalValueUSD,
@@ -64,6 +64,9 @@ class Wallet extends React.Component {
     return (
       <table id="portfolio-table">
         <thead>
+          <tr key="table-title">
+            <th colSpan="9">Summarized portfolio</th>
+          </tr>
           <tr key="table-header">
             <th>#</th>
             <th>Asset Type</th>
@@ -121,30 +124,29 @@ class Wallet extends React.Component {
   renderOnlineWallet = () => {
     return (
       <div>
-        <div>
-          <h1>{this.props.username}, this is your wallet</h1>
+        <div id="wallet-menu-div">
           <button onClick={this.showAssetTypeGraph}>Show asset's graph</button>
+          <h1>{this.props.username}, this is your portfolio</h1>
           <button onClick={this.showPortfolioHistory}>
             Show portfolio history
           </button>
-          <h3>Your summarized portfolio:</h3>
-          <div id="portfolio-table-div">{this.renderAssetList()}</div>
-          <div id="canvas-graphs-div">
-            {this.state.drawGraph1 ? (
-              <AssetTypeChart
-                assetList={this.state.assetList}
-                username={this.props.username}
-                currency={this.state.currency}
-              />
-            ) : null}
-            {this.state.drawGraph2 ? (
-              <PortfolioHistory
-                assetList={this.state.assetList}
-                username={this.props.username}
-                currency={this.state.currency}
-              />
-            ) : null}
-          </div>
+        </div>
+        <div id="portfolio-table-div">{this.renderAssetList()}</div>
+        <div id="canvas-graphs-div">
+          {this.state.drawGraph1 ? (
+            <AssetTypeChart
+              assetList={this.state.assetList}
+              username={this.props.username}
+              currency={this.state.currency}
+            />
+          ) : null}
+          {this.state.drawGraph2 ? (
+            <PortfolioHistory
+              assetList={this.state.assetList}
+              username={this.props.username}
+              currency={this.state.currency}
+            />
+          ) : null}
         </div>
       </div>
     );
@@ -152,7 +154,7 @@ class Wallet extends React.Component {
   renderOfflineWallet = () => {
     return (
       <div className="center-content">
-        To check your wallet, login at:
+        To check your portfolio, login at:
         <br />
         <Link to="/login" className="no-link-decoration-black">
           <button>Login</button>
@@ -162,9 +164,7 @@ class Wallet extends React.Component {
   };
 
   render() {
-    return this.props.loggedIn
-      ? this.renderOnlineWallet()
-      : this.renderOfflineWallet();
+    return this.props.loggedIn ? this.renderOnlineWallet() : <LoggedOffPage />;
   }
 }
 

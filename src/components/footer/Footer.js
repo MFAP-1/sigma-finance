@@ -4,7 +4,7 @@ import "./footer.css";
 
 function Footer() {
   return (
-    <div id="footer-div">
+    <footer id="footer-div">
       <span>&#169;</span>
       <a
         href="https://github.com/MFAP-1/sigma-finance"
@@ -13,7 +13,7 @@ function Footer() {
         Sigma Finance.
       </a>
       <span>Copyright 2021: Manoel and Raul.</span>
-    </div>
+    </footer>
   );
 }
 
