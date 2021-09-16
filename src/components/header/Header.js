@@ -218,7 +218,7 @@ class Header extends React.Component {
   };
 
   toggleBurger = () => {
-    console.log("teste");
+    // console.log("teste");
     this.setState({
       haveBurger: !this.state.haveBurger,
     });
