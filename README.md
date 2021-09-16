@@ -1,6 +1,6 @@
 # Sigma Finance
 
-<img src="/src/assets/images/demoSS.jpg" width="40%"/>  
+<img src="/src/assets/images/demoSS1.jpg" width="40%"/>  
 <img src="/src/assets/images/demoSS2.jpg" width="60%"/>
 
 ## About the application
