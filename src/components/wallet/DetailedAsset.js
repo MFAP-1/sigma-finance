@@ -212,7 +212,7 @@ class DetailedAsset extends React.Component {
 
   render() {
     return this.props.loggedIn ? (
-      <div>
+      <div id="detailed-asset-main-div">
         <h1>The details for the '{this.state.assetSymbol}' asset are: </h1>
         <BasicInformationTable
           assetName={this.state.assetName}

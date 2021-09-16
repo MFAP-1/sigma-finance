@@ -108,8 +108,7 @@ class CurrencyConverterPage extends React.Component {
           </div>
           <div className="converter-form-couple-div">
             <h2>
-              {formatMoney(this.state.finalResult, this.state.toCurrency)}{" "}
-              {this.state.toCurrency}
+              {formatMoney(this.state.finalResult, this.state.toCurrency)}
             </h2>
 
             <select

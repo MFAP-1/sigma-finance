@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
 import Chart from "chart.js/auto";
-import "./StockHomepage.css";
+import "./homepage.css";
 
-import LoadingAnimation from "../loading/LoadingAnimation";
+import LoadingAnimationWhite from "../loading/LoadingAnimationWhite";
+import formatMoney from "../../scripts/formatMoney";
 
 const randomStockList = [
   "AAPL",
@@ -240,93 +241,90 @@ class StockHomepage extends React.Component {
   };
 
   render() {
-    return (
-      <div className="container-homepage">
-        {this.state.loading ? (
-          <div style={{ marginLeft: "auto", marginRight: "auto" }}>
-            <LoadingAnimation />
-          </div>
-        ) : (
-          <div className="container-stockOfDay">
-            <div className="title-stockofDay">
-              <h1>Stock of the day: {this.state.companySymbol}</h1>
-            </div>
-            <div className="container-canvas">
-              <canvas id="myCanvas3"></canvas>
-            </div>
+    return this.state.loading ? (
+      <div style={{ marginLeft: "auto", marginRight: "auto" }}>
+        <LoadingAnimationWhite />
+      </div>
+    ) : (
+      <div className="container-stockOfDay">
+        <div className="title-stockofDay">
+          <h1>Stock of the day: {this.state.companySymbol}</h1>
+        </div>
+        <div className="container-canvas">
+          <canvas id="myCanvas3"></canvas>
+        </div>
 
-            <div className="cointainer-infoImg">
-              <div className="container-strips">
-                <div className="stripInformation">
-                  <h2>{this.state.companyOverview["Name"]}</h2>
-                </div>
-                <br />
-                <div className="stripInformation">
-                  <b>Exchange: </b> {this.state.companyOverview["Exchange"]}{" "}
-                  {this.state.companyOverview["AssetType"]}
-                </div>
-                <div className="stripInformation">
-                  {" "}
-                  <b>Sector: </b> {this.state.companyOverview["Sector"]}
-                </div>
-                <div className="stripInformation">
-                  {" "}
-                  <b>52-Week High: </b>${" "}
-                  {this.state.companyOverview["52WeekHigh"]}
-                </div>
-                <div className="stripInformation">
-                  {" "}
-                  <b>52-Week Low: </b> ${" "}
-                  {this.state.companyOverview["52WeekLow"]}
-                </div>
-                <div className="stripInformation">
-                  <b>MarketCapitalization:</b> $
-                  {this.state.companyOverview["MarketCapitalization"]}
-                </div>
-                <div className="last-div">
-                  <b>EBITDA:</b> $ {this.state.companyOverview["EBITDA"]}{" "}
-                </div>
-              </div>
-              <div className="cards-container2">
-                {this.state.topArticles.map((article) => {
-                  return (
-                    <div key={article["id"]} className="card-body2">
-                      {article["image"] === "" || article["image"] === null ? (
-                        <div className="card-image2">
-                          <img
-                            className="imgNews2"
-                            alt={article["related"]}
-                            src={
-                              "https://s.yimg.com/uu/api/res/1.2/T44Iwg7RbRrkaTIYz_liyQ--~B/aD00Njk7dz05MDA7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/en/zacks.com/737ffb82e07dc8bffb77e72d153c91f2"
-                            }
-                          />
-                        </div>
-                      ) : (
-                        <div className="card-image2">
-                          <img
-                            className="imgNews2"
-                            alt={article["related"]}
-                            src={article["image"]}
-                          />
-                        </div>
-                      )}
-                      <div className="card-text2">
-                        <h2>{article["headline"]}</h2>
-                        <a rel="noopener noreferrer" href={article["url"]}>
-                          Read More...
-                        </a>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+        <div className="cointainer-infoImg">
+          <div className="container-strips">
+            <div>
+              <h3>{this.state.companyOverview["Name"]}</h3>
+            </div>
+            <div className="stripInformation">
+              <span>Exchange: </span> {this.state.companyOverview["Exchange"]}{" "}
+              {this.state.companyOverview["AssetType"]}
+            </div>
+            <div className="stripInformation">
+              <span>Sector: </span> {this.state.companyOverview["Sector"]}
+            </div>
+            <div className="stripInformation">
+              <span>52-Week High: </span>
+              {formatMoney(
+                Number(this.state.companyOverview["52WeekHigh"]),
+                "USD"
+              )}
+            </div>
+            <div className="stripInformation">
+              <span>52-Week Low: </span>
+              {formatMoney(
+                Number(this.state.companyOverview["52WeekLow"]),
+                "USD"
+              )}
+            </div>
+            <div className="stripInformation">
+              <span>MarketCapitalization: </span>
+              {formatMoney(
+                Number(this.state.companyOverview["MarketCapitalization"]),
+                "USD"
+              )}
+            </div>
+            <div className="last-div">
+              <span>EBITDA: </span>
+              {formatMoney(Number(this.state.companyOverview["EBITDA"]), "USD")}
             </div>
           </div>
-        )}
-        <div className="container-OurCompany">
-          <h1>Your Finances in One Place</h1>
-          <h2>frase/ imagem</h2>
-          <div className="botao">Sign me up</div>
+          <div className="cards-container2">
+            {this.state.topArticles.map((article) => {
+              return (
+                <div key={article["id"]} className="card-body2">
+                  {article["image"] === "" || article["image"] === null ? (
+                    <div className="card-image2">
+                      <img
+                        className="imgNews2"
+                        alt={article["related"]}
+                        src={
+                          "https://s.yimg.com/uu/api/res/1.2/T44Iwg7RbRrkaTIYz_liyQ--~B/aD00Njk7dz05MDA7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/en/zacks.com/737ffb82e07dc8bffb77e72d153c91f2"
+                        }
+                      />
+                    </div>
+                  ) : (
+                    <div className="card-image2">
+                      <img
+                        className="imgNews2"
+                        alt={article["related"]}
+                        src={article["image"]}
+                      />
+                    </div>
+                  )}
+                  <div className="card-text2">
+                    <h2>{article["headline"]}</h2>
+                    <a rel="noopener noreferrer" href={article["url"]}>
+                      Read More...
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );

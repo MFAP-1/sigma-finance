@@ -69,7 +69,11 @@ class App extends React.Component {
             <Route
               path="/wallet/add"
               render={(props) => (
-                <AddAsset {...props} username={this.state.username} />
+                <AddAsset
+                  {...props}
+                  username={this.state.username}
+                  loggedIn={this.state.loggedIn}
+                />
               )}
             />
             <Route
@@ -85,13 +89,21 @@ class App extends React.Component {
             <Route
               path="/wallet/edit/:assetId"
               render={(props) => (
-                <EditAsset {...props} username={this.state.username} />
+                <EditAsset
+                  {...props}
+                  username={this.state.username}
+                  loggedIn={this.state.loggedIn}
+                />
               )}
             />
             <Route
               path="/wallet/manualupdate/:assetId"
               render={(props) => (
-                <ManualUpdateAsset {...props} username={this.state.username} />
+                <ManualUpdateAsset
+                  {...props}
+                  username={this.state.username}
+                  loggedIn={this.state.loggedIn}
+                />
               )}
             />
             <Route

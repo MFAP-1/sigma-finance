@@ -5,7 +5,7 @@ function LoggedOffPage() {
   return (
     <div>
       <div className="asset-form-box" style={{ width: "40vw" }}>
-        <i class="fas fa-tools fa-5x"></i>
+        <i class="fas fa-sign-in-alt fa-5x"></i>
         <h2>
           Opps..!
           <br />

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import ManualUpdateForm from "./ManualUpdateForm";
+import LoggedOffPage from "../../authentication/loggedoff/LoggedOffPage";
 
 class ManualUpdateAsset extends React.Component {
   state = {
@@ -99,12 +100,14 @@ class ManualUpdateAsset extends React.Component {
   };
 
   render() {
-    return (
+    return this.props.loggedIn ? (
       <div>
         {this.needsManualUpdate()
           ? this.renderManualUpdateForm()
           : this.noNeedForManualUpdateForm()}
       </div>
+    ) : (
+      <LoggedOffPage />
     );
   }
 }

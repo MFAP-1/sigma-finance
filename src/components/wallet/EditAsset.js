@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import AssetForm from "./AssetForm";
+import LoggedOffPage from "../authentication/loggedoff/LoggedOffPage";
 
 import "./assetForm.css";
 
@@ -57,7 +58,7 @@ class EditAsset extends React.Component {
   };
 
   render() {
-    return (
+    return this.props.loggedIn ? (
       <div className="asset-form-box">
         <h2>Check the selected asset for updating</h2>
         <AssetForm
@@ -66,6 +67,8 @@ class EditAsset extends React.Component {
           handleChange={this.handleChange}
         />
       </div>
+    ) : (
+      <LoggedOffPage />
     );
   }
 }

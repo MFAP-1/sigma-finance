@@ -30,10 +30,10 @@ For an enhanced experience, watch it in the 'presentation mode'. There are impor
 
 The Sigma Finance project was inspired.... , and it was built solely for education purposes. Thus, I do not own any copyrights to APIs used in this project.
 
-You can find the used APIs in the following links:
+You can find the used APIs and background-image in the following links:
 
 > - x
 > - x
 > - x
 > - x
-> - x
+> - https://www.freepik.com/vectors/background
