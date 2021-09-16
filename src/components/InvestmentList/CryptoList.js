@@ -23,8 +23,6 @@ class CryptoList extends React.Component {
     this.setState({
       coins: [...coinsObj],
     });
-
-    console.log(this.state.coins);
   };
 
   componentDidMount = async () => {
@@ -54,7 +52,6 @@ class CryptoList extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.search);
     let filteredCoinArr = this.state.coins.filter((coin) => {
       return coin.name.toLowerCase().includes(this.state.search.toLowerCase());
     });

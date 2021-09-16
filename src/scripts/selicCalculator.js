@@ -8,15 +8,12 @@ const selicCalculator = async (fromDate, toDate, amount) => {
     let product = 1;
 
     let url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados?formato=json&dataInicial=${initialDate}&dataFinal=${endDate}`;
-    // console.log(url);
 
     const response = await axios.get(url);
 
     for (let i = 0; i < response.data.length; i++) {
       product = product * (1 + parseFloat(response.data[i]["valor"]) / 100);
     }
-
-    // console.log(product * amount);
 
     return product * amount;
   } catch (err) {

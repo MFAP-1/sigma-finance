@@ -16,14 +16,11 @@ class News extends React.Component {
       "https://newsapi.org/v2/top-headlines?country=br&category=business&apiKey=442e00c92b0148c7a2e35cc749651cf3";
 
     const response = await axios.get(url);
-
-    console.log(response.data);
     let articlesArr = [...response.data["articles"]];
 
     this.setState({
       topArticles: [...articlesArr],
     });
-    // console.log(this.state.topArticles.length);
     this.setState({ loading: false });
   };
 

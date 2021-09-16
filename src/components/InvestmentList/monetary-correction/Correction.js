@@ -66,8 +66,6 @@ class Correction extends React.Component {
       finalAmount: formatedResult,
     });
     this.setState({ loading: false });
-    // console.log(this.state.finalAmount);
-    // console.log(this.state.fromDate);
   };
 
   //DATE FORMAT: YYYY-MM-DD 2020-01-29

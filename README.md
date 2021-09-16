@@ -1,10 +1,11 @@
 # Sigma Finance
 
-<p align='center'> <img src="/"/> Add gif aqui </p>
+<p align='center'> <img src="/src/assets/images/demoSS.jpg"/>  </p>
+<p align='center'> <img src="/src/assets/images/demoSS2.jpg"/>  </p>
 
 ## About the application
 
-Your finances in one place. Sigma Finance is a finance helper. It is a front-end web application educational project.
+Your finances in one place. Sigma Finance is a portfolio helper.
 **His main features are:**
 
 > - Multi-currency portfolio;
@@ -23,12 +24,12 @@ Just follow the live link: <a href="https://sigma-finance.netlify.app">Sigma Fin
 
 ## Installing
 
-Clone or download this repository. Run the 'npm start' command and let me know what you think.
+Clone or download this repository. Run the 'npm install' and then 'npm start' command and let me know what you think.
 
 ## Contributing
 
 This is an open source project, feel free to fork it, make improvements and submit a pull request.
-**Feedback are more than welcome!** Just keep in mind that this was a one-week educational project.
+**Feedback are more than welcome!** Just keep in mind that this was a front-end web application educational project, developed in a one-week timeframe.
 
 ## Find more about this project
 
@@ -41,8 +42,11 @@ The Sigma Finance project was built solely for education purposes. Thus, I do no
 
 You can find the used APIs and background-image in the following links:
 
-> - x
-> - x
-> - x
-> - x
+> - https://www.alphavantage.co/query?
+> - https://newsapi.org/v2/
+> - https://finnhub.io/api/v1/company-news?
+> - https://api.coingecko.com/api/v3/coins/markets?
+> - https://api.exchangeratesapi.io/v1/latest?
+> - https://servicodados.ibge.gov.br/api/v3/agregados/1737/
+> - https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados?
 > - https://www.freepik.com/vectors/background

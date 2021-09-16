@@ -18,18 +18,17 @@ class StockList extends React.Component {
   };
 
   getChartData = async () => {
-    // const apiKey = "R2P4F9RG0EKKWZEU";
+    const apiKey = "R2P4F9RG0EKKWZEU";
 
-    // let url = `https://www.alphavantage.co/query?function=${
-    //   this.state.typeInformation
-    // }&symbol=${this.state.companySymbol.toUpperCase()}&outputsize=${
-    //   this.state.outputsize
-    // }&apikey=${apiKey}`;
-    // console.log(url)
+    let url = `https://www.alphavantage.co/query?function=${
+      this.state.typeInformation
+    }&symbol=${this.state.companySymbol.toUpperCase()}&outputsize=${
+      this.state.outputsize
+    }&apikey=${apiKey}`;
 
     //teste para não passar do limite de requisições
-    let url =
-      "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22";
+    // let url =
+    //   "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22";
 
     const response = await axios.get(url);
 
@@ -104,20 +103,12 @@ class StockList extends React.Component {
       options: {
         scales: {
           x: {
-            type: "time",
-
-           
-              type: 'time',
-              time: {
-                  unit: 'month'
-              
-            },
             grid: {
               display: false,
             },
             ticks: {
               color: "black",
-              maxTicksLimit:10,
+              maxTicksLimit: 10,
             },
           },
           y: {
@@ -128,10 +119,10 @@ class StockList extends React.Component {
               color: "black",
             },
             title: {
-             text: "Price(U$)",
-             display:true,
-             color:"black",
-             font:20
+              text: "Price(U$)",
+              display: true,
+              color: "black",
+              font: 20,
             },
           },
         },
@@ -163,7 +154,6 @@ class StockList extends React.Component {
     const apiKey = "R2P4F9RG0EKKWZEU";
 
     let url2 = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${this.state.searchEndPoint}&apikey=${apiKey}`;
-    console.log(url2);
 
     const response2 = await axios.get(url2);
 

@@ -34,7 +34,7 @@ function SigmaFinancePresentation() {
             <tr>Dynamic graphs</tr>
             <tr>Currency convertion</tr>
             <tr>Monetary correction</tr>
-            <tr>Top treading investment news</tr>
+            <tr>Top trending investment news</tr>
             <tr>Stock finder</tr>
             <tr>Crypto finder</tr>
           </tbody>

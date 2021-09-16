@@ -1,6 +1,6 @@
 /* Main div */
 .container-homepage {
-  min-height: 79.9vh;
+  min-height: 80.7vh;
   display: flex;
   flex-wrap: wrap-reverse;
   justify-content: space-between;
@@ -88,7 +88,6 @@
   flex-direction: column;
   align-items: center;
   width: 48%;
-  /* border: 1px solid red; */
   color: white;
   border-radius: 2rem;
 }

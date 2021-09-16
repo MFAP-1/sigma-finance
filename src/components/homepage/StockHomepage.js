@@ -48,17 +48,10 @@ class StockHomepage extends React.Component {
     let url = `https://finnhub.io/api/v1/company-news?symbol=${this.state.companySymbol}&from=2021-09-01&to=2021-09-14&token=c50ojj2ad3ic9bdldmog`;
     const response = await axios.get(url);
     let articlesArr = [...response.data];
-    console.log(response.data);
-
-    // let articlesArr = [...response.data["articles"]]
 
     this.setState({
       topArticles: [articlesArr[0]],
-      // topArticles: [...articlesArr],
     });
-    //  console.log(this.state.topArticles.length);
-    // console.log(this.state.topArticles[0]["image"]);
-    console.log(url);
   };
 
   //////////////NEWS CARD END //////////////////
@@ -68,18 +61,13 @@ class StockHomepage extends React.Component {
     const random = this.getRandomStocks();
 
     //FUNCIONANDO
-    // let url = `https://www.alphavantage.co/query?function=${
-    //   this.state.typeInformation
-    // }&symbol=${random}&outputsize=${
-    //   this.state.outputsize
-    // }&apikey=${apiKey}`;
-    // console.log(url)
+    let url = `https://www.alphavantage.co/query?function=${this.state.typeInformation}&symbol=${random}&outputsize=${this.state.outputsize}&apikey=${apiKey}`;
 
     // let  url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${random}&apikey=${apiKey}`
 
     //USAR PARA NÃO ATINGIR O LIMITE DE APIS
-    let url =
-      "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22";
+    // let url =
+    //   "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22";
 
     const response = await axios.get(url);
 
@@ -100,18 +88,15 @@ class StockHomepage extends React.Component {
   getCompanyDescription = async () => {
     const apiKey = "R2P4F9RG0EKKWZEU";
     //FUNCIONANDO LIMITE DE APIS
-    // let url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.companySymbol}&apikey=${apiKey}`
-    //  console.log(url2)
+    let url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.companySymbol}&apikey=${apiKey}`;
 
     /// USAR QUANDO LIMITE DE APIS FOR ATINGIDO
-    let url2 =
-      "https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo";
-    console.log(url2);
+    // let url2 =
+    //   "https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo";
 
     const response2 = await axios.get(url2);
 
     const companyInformations = { ...response2.data };
-    // console.log(companyInformations)
     this.setState({
       companyOverview: companyInformations,
     });
@@ -222,6 +207,12 @@ class StockHomepage extends React.Component {
               color: "black",
               display: false,
             },
+            title: {
+              text: "Last 100 Days",
+              display: true,
+              color: "black",
+              font: 20,
+            },
           },
           y: {
             grid: {
@@ -229,7 +220,13 @@ class StockHomepage extends React.Component {
             },
             ticks: {
               color: "black",
-              display: false,
+              display: true,
+            },
+            title: {
+              text: "Price(U$)",
+              display: true,
+              color: "black",
+              font: 20,
             },
           },
         },
