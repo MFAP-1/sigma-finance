@@ -110,7 +110,6 @@ class CurrencyConverterPage extends React.Component {
             <h2>
               {formatMoney(this.state.finalResult, this.state.toCurrency)}
             </h2>
-
             <select
               className="select-currency"
               name="toCurrency"
