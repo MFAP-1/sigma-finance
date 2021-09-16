@@ -3,12 +3,6 @@ import axios from "axios";
 import Chart from "chart.js/auto";
 import "./InvestmentList.css";
 
-// const randomStockList = ["AAPL", "MSFT", "AMZN", "FB", "GOOG", "GOOGL", "TSLA", "NVIDIA", "PYPL",
-//                       "ASML", "INTC", "NFLX", "ADBE", "CSCO", "PEP",   "XOM", "C", "PFE", "GE",
-//                       "AIG", "WMT", "IBM", "BAC", "JNJ", "GS", "CVX", "PG",  "JPM",
-//                       "COP", "VALE3.SA", "ITUB4.SA", "PETR4.SA", "B3SA3.SA", "BBDC4.SA", "PETR3.SA",
-//                       "ABEV3.SA", "WEGE3.SA", "MGLU3.SA", "GNDI3.SA", "CASH3.SA"	]
-
 class StockList extends React.Component {
   state = {
     chartValuesX: [],
@@ -22,14 +16,6 @@ class StockList extends React.Component {
     displaySearchbar: false,
     displayMessage: false,
   };
-
-  //   getRandomStocks = () => {
-  //     let randomStocks = []
-  //     for (let i = 0; i < 5; i++){
-  //       randomStocks.push(randomStockList[Math.floor(Math.random()* randomStockList.length)])
-  //     }
-  //     console.log(randomStocks)
-  //  }
 
   getChartData = async () => {
     // const apiKey = "R2P4F9RG0EKKWZEU";
@@ -77,7 +63,6 @@ class StockList extends React.Component {
     try {
       await this.getChartData();
       this.renderChart();
-      // this.getRandomStocks()
     } catch (err) {
       console.error(err);
     }
@@ -91,9 +76,7 @@ class StockList extends React.Component {
 
   renderChart = () => {
     if (this.state.chartValuesX.length === 0) {
-      return alert(
-        "Couldn't find information about this stock at the moment. Please try again or search for another"
-      );
+      return null; //alert("Couldn't find information about this stock at the moment. Please try again or search for another" );
     }
 
     if (this.state.isLoaded) {
@@ -137,6 +120,7 @@ class StockList extends React.Component {
             },
           },
         },
+        maintainAspectRatio: false,
       },
     });
 
@@ -149,11 +133,12 @@ class StockList extends React.Component {
     });
   };
 
-  handleFind = () => {
+  handleFind = async () => {
+    //coloquei um async/await
     if (this.state.companySymbol === "") {
-      alert("Please write a valid stock name");
+      //alert("Please write a valid stock name");
     } else {
-      this.getChartData();
+      await this.getChartData();
     }
   };
 
@@ -166,15 +151,13 @@ class StockList extends React.Component {
     console.log(url2);
 
     const response2 = await axios.get(url2);
-    console.log(response2.data["bestMatches"]);
+
+    if (response2.data["bestMatches"] === undefined) {
+      return null;
+    }
     const matches = [...response2.data["bestMatches"]];
     this.setState({
       bestMatches: [...matches],
-    });
-
-    this.state.bestMatches.map((match) => {
-      console.log(`${match["2. name"]}`);
-      return 1;
     });
   };
 
@@ -184,18 +167,14 @@ class StockList extends React.Component {
     });
   };
 
-  handleFind2 = () => {
+  handleFind2 = async () => {
+    //coloquei um async/await
     this.setState({
       displaySearchbar: !this.state.displaySearchbar,
     });
 
     if (this.state.searchEndPoint !== "") {
-      this.getSearchData();
-
-      this.state.bestMatches.map((match) => {
-        console.log(` busca: ${match["2. name"]}`);
-        return 1; // para evitar erro
-      });
+      await this.getSearchData();
     }
   };
 
@@ -206,15 +185,6 @@ class StockList extends React.Component {
     });
   };
 
-  //   componentDidUpdate = (prevProps, prevState) => {
-  //     if (prevState.bestMatches !== this.state.bestMatches ) {
-  //   };
-  //   }
-  //   renderSearchBar = () =>{
-  //     this.state.bestMatches.map((match) => {
-  //       console.log(` busca: ${match["2. name"]}`)
-  //     })
-  //   }
   //////////////////////////END//////////////////////////////////
 
   render() {
@@ -247,13 +217,13 @@ class StockList extends React.Component {
               </button>
             </div>
             {this.state.displaySearchbar === false ||
-            this.state.bestMatches.length === 0 ? null : (
+            this.state.bestMatches.length === 0 ||
+            this.state.bestMatches === undefined ? null : (
               <div className="dataResult">
                 {this.state.bestMatches.map((match) => {
                   return (
                     <div key={match["1. symbol"]} className="dataItem">
                       <button
-                        //  ou aqui dataItem
                         className="no-button-decoration "
                         name={match["1. symbol"]}
                         onClick={this.handleSubmitSearch}

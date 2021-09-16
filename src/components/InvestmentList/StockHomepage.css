@@ -16,6 +16,7 @@
   /* relacionado a responsividade da homepage (tem que ser vh ao inves de %)*/
   /* background-color: blue; */
   width: 48%;
+  height: 80vh;
   /* border: 3px solid black; */
   /* border:1px solid black; */
   border-radius: 1rem;
@@ -71,7 +72,7 @@
 .container-OurCompany {
   /* background-color: violet; */
   width: 48%;
-  height: 80vh; /* ------ ---- - --DEBUGGER -REMOVER */
+  height: 80vh;
   /* border: 3px solid black; */
 
   border: 1px solid black;
@@ -81,15 +82,17 @@
 @media screen and (max-width: 800px) {
   .container-stockOfDay {
     width: 100%;
+    height: 83vh;
   }
   .container-OurCompany {
     width: 100%;
+    height: 83vh;
   }
 
   .cards-container2 {
     width: 80%;
     margin-top: 20px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 90px;
   }
 
   .container-strips {
@@ -102,3 +105,62 @@
 .stripInformation {
   border-bottom: solid 1px white;
 }
+
+/* 
+.container-SigmaInfo h2{
+ margin:6rem;
+}
+
+
+
+
+.container-graphStockDay{
+    padding:10px;
+}
+
+
+
+
+
+.card-news{
+    background-color: white;
+}
+
+.container-strips {
+   
+    margin-bottom:3px
+}
+
+
+
+
+    .card-body2 {
+    
+    word-wrap: break-word;
+    overflow: hidden;
+    display: grid;
+
+    grid-template-rows: 105px 125px;
+    grid-template-columns: 130px;
+background-color: blueviolet;
+    text-align: center;
+  
+  }
+
+  .cards-container2{
+      background-color: chartreuse;
+  }
+
+
+  .card-text2 {
+    text-align: center;
+    word-wrap: break-word;
+    display:flex;
+    align-items: center;;
+    border:1px solid black;
+  }
+  
+   
+
+  
+ */

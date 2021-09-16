@@ -133,7 +133,7 @@ class Header extends React.Component {
             SignUp
           </Link>
         </div>
-        <hr />
+        
         <div className="link-mobile">
           <Link to="/currency-converter" className="no-link-decoration">
             Converter
