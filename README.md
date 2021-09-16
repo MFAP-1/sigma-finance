@@ -1,7 +1,7 @@
 # Sigma Finance
 
-<p align='center'> <img src="/src/assets/images/demoSS.jpg"/>  </p>
-<p align='center'> <img src="/src/assets/images/demoSS2.jpg"/>  </p>
+<p align='center'> <img src="/src/assets/images/demoSS.jpg" width="50%"/>  </p>
+<p align='center'> <img src="/src/assets/images/demoSS2.jpg" width="50%"/>  </p>
 
 ## About the application
 
@@ -42,11 +42,11 @@ The Sigma Finance project was built solely for education purposes. Thus, I do no
 
 You can find the used APIs and background-image in the following links:
 
-> - https://www.alphavantage.co/query?
+> - https://www.alphavantage.co/query
 > - https://newsapi.org/v2/
-> - https://finnhub.io/api/v1/company-news?
-> - https://api.coingecko.com/api/v3/coins/markets?
-> - https://api.exchangeratesapi.io/v1/latest?
+> - https://finnhub.io/api/v1/company-news
+> - https://api.coingecko.com/api/v3/coins/markets
+> - https://api.exchangeratesapi.io/v1/latest
 > - https://servicodados.ibge.gov.br/api/v3/agregados/1737/
-> - https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados?
+> - https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados
 > - https://www.freepik.com/vectors/background
