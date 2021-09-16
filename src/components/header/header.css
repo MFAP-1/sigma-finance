@@ -1,3 +1,7 @@
+#logo-div > h2 {
+  font-size: calc(1rem + 0.75vmin);
+}
+
 #header-div {
   display: flex;
   align-items: center;
@@ -22,19 +26,16 @@
   letter-spacing: 0.1rem;
 }
 
-#logo-div > h2 {
-  font-size: calc(1rem + 0.75vmin);
-}
 
 #nav-bar-small{
   display:flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   width:60%;
 }
 
 #nav-bar-large{
   display:flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   width:80%;
 }
 
@@ -48,6 +49,64 @@
   height:3px;
   background-color:white;
   margin:5px;
+}
+
+.linksSmallContainer {
+  display:inline-flex;
+  border: 1px solid white;
+  overflow-x: hidden;
+  flex-wrap: nowrap;
+  margin-right:5%;
+
+}
+
+
+.linksLargeContainer {
+  display:inline-flex;
+  border: 1px solid white;
+  overflow-x: hidden;
+  flex-wrap: nowrap;
+  margin-right:5%;
+
+}
+
+.linksLargeContainer-infoSection{
+  display:inline-flex;
+  border: 1px solid white;
+  overflow-x: hidden;
+  flex-wrap: nowrap;
+  margin-right:5%;
+}
+
+@media screen and (max-width:1080px) {
+
+  #nav-bar-small{
+    display:flex;
+    justify-content: flex-end;
+    width:70%;
+  }
+
+  .linksSmallContainer {
+    display:inline-flex;
+    border: 1px solid white;
+    overflow-x: hidden;
+    flex-wrap: nowrap;
+    margin-right:2%;
+   }
+
+   #nav-bar-large{
+    width:70%;
+  }
+   .linksLargeContainer {
+    margin-right:1%;
+    }
+
+    #nav-bar-large{
+      width:70%;
+    }
+    .linksLargeContainer-infoSection{
+      display:none;
+    }
 }
 
 
@@ -65,11 +124,11 @@
         flex-direction: column;
         align-items: center;
         width:60%;
-        opacity:0.80;
+        opacity:0.9;
       
   } 
   .link-mobile{
-    margin:6%;
+    margin:5%;
    
   }
 
@@ -85,9 +144,8 @@
     flex-direction: column;
     align-items: center;
     width:60%;
-    opacity:0.80;
+    opacity:0.9;
 } 
-
 
   #nav-bar-small{
     display:none;
@@ -112,6 +170,7 @@
 .no-link-decoration {
   text-decoration: none;
   color: white;
+  margin:0.5rem;
 }
 
 .no-link-decoration:hover {

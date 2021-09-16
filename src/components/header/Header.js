@@ -11,41 +11,48 @@ class Header extends React.Component {
   renderOfflineNavBar = () => {
     return (
       <nav id="nav-bar-small">
-        <div>
-          <Link to="/currency-converter" className="no-link-decoration">
-            Converter
-          </Link>
-        </div>
-        <div>
-          <Link to="/correction" className="no-link-decoration">
-            Correction
-          </Link>
-        </div>
-        <div>
-          <Link to="/news" className="no-link-decoration">
-            News
-          </Link>
-        </div>
-        <div>
-          <Link to="/stocks" className="no-link-decoration">
-            Stocks
-          </Link>
-        </div>
-        <div>
-          <Link to="/cryptocurrencies" className="no-link-decoration">
-            Crypto
-          </Link>
-        </div>
-        <div>
-          <Link to="/login" className="no-link-decoration">
-            Login
-          </Link>
+        <div className="linksSmallContainer">
+          <div>
+            <Link to="/currency-converter" className="no-link-decoration">
+              Converter
+            </Link>
+          </div>
+          <div>
+            <Link to="/correction" className="no-link-decoration">
+              Correction
+            </Link>
+          </div>
         </div>
 
-        <div>
-          <Link to="/signup" className="no-link-decoration">
-            SignUp
-          </Link>
+        <div className="linksSmallContainer">
+          <div>
+            <Link to="/news" className="no-link-decoration">
+              News
+            </Link>
+          </div>
+          <div>
+            <Link to="/stocks" className="no-link-decoration">
+              Stocks
+            </Link>
+          </div>
+          <div>
+            <Link to="/cryptocurrencies" className="no-link-decoration">
+              Crypto
+            </Link>
+          </div>
+        </div>
+        <div className="linksSmallContainer">
+          <div>
+            <Link to="/login" className="no-link-decoration">
+              Login
+            </Link>
+          </div>
+
+          <div>
+            <Link to="/signup" className="no-link-decoration">
+              Sign Up
+            </Link>
+          </div>
         </div>
       </nav>
     );
@@ -54,32 +61,36 @@ class Header extends React.Component {
   renderOnlineNavBar = () => {
     return (
       <nav id="nav-bar-large">
-        <div>
-          <Link to="/currency-converter" className="no-link-decoration">
-            Converter
-          </Link>
+        <div className="linksLargeContainer">
+          <div>
+            <Link to="/currency-converter" className="no-link-decoration">
+              Converter
+            </Link>
+          </div>
+          <div>
+            <Link to="/correction" className="no-link-decoration">
+              Correction
+            </Link>
+          </div>
         </div>
-        <div>
-          <Link to="/correction" className="no-link-decoration">
-            Correction
-          </Link>
+        <div className="linksLargeContainer-infoSection">
+          <div>
+            <Link to="/news" className="no-link-decoration">
+              News
+            </Link>
+          </div>
+          <div>
+            <Link to="/stocks" className="no-link-decoration">
+              Stocks
+            </Link>
+          </div>
+          <div>
+            <Link to="/cryptocurrencies" className="no-link-decoration">
+              Crypto
+            </Link>
+          </div>
         </div>
-
-        <div>
-          <Link to="/news" className="no-link-decoration">
-            News
-          </Link>
-        </div>
-        <div>
-          <Link to="/stocks" className="no-link-decoration">
-            Stocks
-          </Link>
-        </div>
-        <div>
-          <Link to="/cryptocurrencies" className="no-link-decoration">
-            Crypto
-          </Link>
-        </div>
+        <div className="linksLargeContainer">
         <div>
           <Link to="/wallet" className="no-link-decoration">
             <i className="fas fa-wallet"></i> Portfolio
@@ -90,9 +101,11 @@ class Header extends React.Component {
             Add asset
           </Link>
         </div>
+        </div>
+        <div className="linksLargeContainer">
         <div>
           <span style={{ textDecoration: "underline" }}>
-            <i className="fas fa-user"></i>
+            <i className="fas fa-user "></i>
             {this.props.state.username}
           </span>
         </div>
@@ -100,6 +113,7 @@ class Header extends React.Component {
           <Link to="/logout" className="no-link-decoration">
             Logout
           </Link>
+        </div>
         </div>
       </nav>
     );
@@ -212,7 +226,7 @@ class Header extends React.Component {
   render() {
     return (
       <div id="header-div">
-        <div>
+        <div className="sigmaFinance">
           <Link to="/" className="no-link-decoration-logo">
             <div id="logo-div">
               <img src={sigmaIcon} alt="sigma-icon" id="logoImg" />
