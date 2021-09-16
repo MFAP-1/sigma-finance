@@ -9,7 +9,7 @@
 ## About the application
 
 Your finances in one place. Sigma Finance is a portfolio tracker/helper, and much more.
-**His main features are:**
+**Its main features are:**
 
 > - Multi-currency portfolio;
 > - 100% automated tracking (stocks, crypto and savings acc);
