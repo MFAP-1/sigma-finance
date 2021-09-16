@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import ManualUpdateForm from "./ManualUpdateForm";
@@ -81,11 +82,18 @@ class ManualUpdateAsset extends React.Component {
 
   noNeedForManualUpdateForm = () => {
     return (
-      <div className="asset-form-box">
-        <h2>
-          For this asset, there is no need for Manual Update.
-          <br /> It is 100% automated.
-        </h2>
+      <div>
+        <div className="asset-form-box">
+          <h2>
+            For this asset, there is no need for Manual Update.
+            <br /> It is 100% automated (check detailed section).
+          </h2>
+        </div>
+        <div style={{ marginTop: "3vh" }}>
+          <Link to="/wallet" className="no-link-decoration-black">
+            <i className="fas fa-wallet"></i> Back to Portfolio
+          </Link>
+        </div>
       </div>
     );
   };

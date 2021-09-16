@@ -13,6 +13,7 @@ import formatDate from "../../scripts/formatDate";
 import getTodayDate from "../../scripts/getTodayDate.js";
 import ipcaCalculator from "../../scripts/ipcaCalculator";
 import selicCalculator from "../../scripts/selicCalculator.js";
+import LoggedOffPage from "../authentication/loggedoff/LoggedOffPage";
 
 class DetailedAsset extends React.Component {
   state = {
@@ -210,9 +211,9 @@ class DetailedAsset extends React.Component {
   };
 
   render() {
-    return (
+    return this.props.loggedIn ? (
       <div>
-        <h2>The details for the '{this.state.assetSymbol}' asset are: </h2>
+        <h1>The details for the '{this.state.assetSymbol}' asset are: </h1>
         <BasicInformationTable
           assetName={this.state.assetName}
           assetType={this.state.assetType}
@@ -224,7 +225,7 @@ class DetailedAsset extends React.Component {
           investmentDuration={this.state.statistics.investmentDuration}
           loading={this.state.loading}
         />
-        <hr />
+        <hr className="center-object" />
         <YieldAnalysisTable
           loading={this.state.loading}
           quantity={this.state.quantity}
@@ -295,6 +296,8 @@ class DetailedAsset extends React.Component {
           ).toFixed(3)}
         />
       </div>
+    ) : (
+      <LoggedOffPage />
     );
   }
 }

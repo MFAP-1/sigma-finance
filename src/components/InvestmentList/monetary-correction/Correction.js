@@ -1,9 +1,12 @@
 import React from "react";
-import "./correction.css";
+
+import "../CurrencyConverterPage.css";
 
 import ipcaCalculator from "../../../scripts/ipcaCalculator";
 import selicCalculator from "../../../scripts/selicCalculator.js";
 import getTodayDate from "../../../scripts/getTodayDate";
+import formatMoney from "../../../scripts/formatMoney";
+import LoadingAnimationLinear from "../../loading/LoadingAnimationLinear";
 
 class Correction extends React.Component {
   constructor() {
@@ -14,6 +17,7 @@ class Correction extends React.Component {
       toDate: "",
       finalAmount: 0,
       correctionType: "IPCA",
+      loading: false,
     };
   }
 
@@ -24,6 +28,8 @@ class Correction extends React.Component {
   };
 
   handleSubmit = async (event) => {
+    event.preventDefault();
+    this.setState({ loading: true });
     let result;
     if (this.state.correctionType === "IPCA") {
       result = await ipcaCalculator(
@@ -59,58 +65,80 @@ class Correction extends React.Component {
     this.setState({
       finalAmount: formatedResult,
     });
-    console.log(this.state.finalAmount);
-    console.log(this.state.fromDate);
+    this.setState({ loading: false });
+    // console.log(this.state.finalAmount);
+    // console.log(this.state.fromDate);
   };
 
   //DATE FORMAT: YYYY-MM-DD 2020-01-29
   render() {
     return (
-      <div>
-        <h1 className="title-page">Monetary Correction</h1>
-
-        <div className="ipca-form">
-          <select
-            name="correctionType"
-            className="select-correction"
-            onChange={this.handleChange}
-          >
-            <option>IPCA</option>
-            <option>Selic</option>
-          </select>
-
-          <label>Amount:</label>
-          <input
-            type="number"
-            className="amount-input"
-            name="amount"
-            onChange={this.handleChange}
-          />
-
-          <label>From date:</label>
-          <input
-            type="date"
-            name="fromDate"
-            max={getTodayDate()}
-            // value= {this.state.fromDate}
-            className="date-input"
-            onChange={this.handleChange}
-          />
-
-          <label>To date:</label>
-          <input
-            type="date"
-            name="toDate"
-            max={getTodayDate()}
-            // value= {this.state.toDate}
-            className="date-input"
-            onChange={this.handleChange}
-          />
-
-          <button onClick={this.handleSubmit}>Correct</button>
-
-          <h2>R$ {this.state.finalAmount}</h2>
+      <div className="converter-form-box">
+        <div>
+          <h2>Monetary Correction</h2>
+          <p>
+            <br />
+            Input the value that you want to correct.
+            <br />
+            Input the target correction index.
+            <br />
+            Then, set the time-frame.
+          </p>
         </div>
+        <form className="converter-form" onSubmit={this.handleSubmit}>
+          <div className="converter-form-couple-div">
+            <div>
+              <label>Amount</label>
+              <input
+                type="number"
+                name="amount"
+                min="0"
+                step="0.01"
+                value={this.state.amount}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <label>Index</label>
+              <select name="correctionType" onChange={this.handleChange}>
+                <option>IPCA</option>
+                <option>Selic</option>
+              </select>
+            </div>
+          </div>
+          <div className="converter-form-couple-div">
+            <div>
+              <label>From</label>
+              <input
+                type="date"
+                name="fromDate"
+                max={getTodayDate()}
+                // value= {this.state.fromDate}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label>To</label>
+              <input
+                type="date"
+                name="toDate"
+                max={getTodayDate()}
+                // value= {this.state.toDate}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+          </div>
+          <button>Correction: using {this.state.correctionType}</button>
+          {this.state.loading ? (
+            <div className="center-object">
+              <LoadingAnimationLinear color={"black"} />
+            </div>
+          ) : (
+            <h2>{formatMoney(Number(this.state.finalAmount), "BRL")}</h2>
+          )}
+        </form>
       </div>
     );
   }

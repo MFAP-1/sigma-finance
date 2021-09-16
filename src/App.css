@@ -43,6 +43,7 @@ button {
   border: 1px solid white;
   border-radius: 0.5rem;
   cursor: pointer;
+  transition: all 500ms ease-in-out 0ms;
 }
 button:hover {
   background-color: white;
@@ -51,8 +52,8 @@ button:hover {
 
   transition: all 500ms ease-in-out 0ms;
 }
-button:focus {
-  background-color: lightgray;
+button:active {
+  background-color: rgb(168, 12, 12);
   color: black;
   border: 1px solid black;
 }
@@ -67,4 +68,19 @@ textarea {
   margin-bottom: 0.5rem;
   padding: 0.2rem 0.8rem;
   transition: border 0.3s ease;
+}
+
+select {
+  cursor: pointer;
+}
+
+/* ruler */
+hr {
+  width: 100vw;
+  overflow: hidden;
+  height: 1px;
+  /* text-align: center; */
+  /* font-size: 0.2rem; */
+  border-top: 1px dashed black;
+  margin: 3vh 0;
 }

@@ -124,7 +124,7 @@ class PortfolioHistory extends React.Component {
     let context = document
       .getElementById("canvas-PortfolioHistory")
       .getContext("2d");
-    const assetChart = new Chart(context, {
+    const portfolioChart = new Chart(context, {
       type: "line",
       data: {
         labels: [...this.state.chartLabels],
@@ -139,11 +139,10 @@ class PortfolioHistory extends React.Component {
         hoverOffset: 4,
       },
     });
-    this.setState({ graph: assetChart });
+    this.setState({ graph: portfolioChart });
   };
 
   render() {
-    // console.log("renderizou o gráfico"); // ---------------------DEBUGGER
     return (
       <div
         className="center-object"
@@ -153,10 +152,7 @@ class PortfolioHistory extends React.Component {
           Portfolio History ({this.props.currency ? this.props.currency : "USD"}
           )
         </h3>
-        <div
-          className="center-object"
-          style={{ width: "40vw", paddingBottom: "10rem" }}
-        >
+        <div id="canvas-PortfolioHistory-div" className="center-object">
           <canvas
             id="canvas-PortfolioHistory"
             style={{ border: "1px solid black" }}

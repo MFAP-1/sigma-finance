@@ -24,6 +24,7 @@
 .asset-form-couple-div {
   display: flex;
   justify-content: space-evenly;
+  align-items: baseline;
 }
 
 .asset-form-couple-div input {
@@ -32,6 +33,7 @@
 
 .asset-form-couple-div select {
   width: calc(17vw + 1vmin);
+  text-align: center;
 }
 
 /* Media query */

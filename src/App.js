@@ -74,7 +74,11 @@ class App extends React.Component {
           <Route
             path="/wallet/details/:assetId"
             render={(props) => (
-              <DetailedAsset {...props} username={this.state.username} />
+              <DetailedAsset
+                {...props}
+                username={this.state.username}
+                loggedIn={this.state.loggedIn}
+              />
             )}
           />
           <Route
