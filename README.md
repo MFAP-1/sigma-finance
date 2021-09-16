@@ -1,11 +1,11 @@
 # Sigma Finance
 
-<p align='center'> <img src="/src/assets/images/demoSS.jpg" width="50%"/>  </p>
-<p align='center'> <img src="/src/assets/images/demoSS2.jpg" width="50%"/>  </p>
+<img src="/src/assets/images/demoSS.jpg" width="40%"/>  
+<img src="/src/assets/images/demoSS2.jpg" width="60%"/>
 
 ## About the application
 
-Your finances in one place. Sigma Finance is a portfolio helper.
+Your finances in one place. Sigma Finance is a portfolio tracker/helper, and much more.
 **His main features are:**
 
 > - Multi-currency portfolio;
