@@ -43,11 +43,13 @@
 
 /* ............................... */
 
-#myCanvas {
-  width: 43.75;
-  height: 25rem;
-  border: 1px solid black;
+.divideTwoSections{
+  display:flex;
+  flex-direction: row;
+ flex-wrap: wrap;
 }
+
+
 
 .searchBar {
   display: flex;
@@ -64,4 +66,30 @@
 
 .button-Stocks {
   width: 10rem;
+}
+
+
+.canvasGraphic {
+  width: 75%;
+  min-height: 350px;
+  margin-top:10px;
+
+  border:1px solid black; 
+   border-radius: 1rem;
+} 
+
+ /* #myCanvas {
+  width: 43.75;
+  height: 25rem;
+  border: 1px solid black;
+
+}  */
+
+
+@media screen and (max-width: 768px) {
+  .canvasGraphic {
+    width: 90%;
+    min-height: 250px;
+    margin-top:10px;
+    } 
 }
