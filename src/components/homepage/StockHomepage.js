@@ -222,6 +222,12 @@ class StockHomepage extends React.Component {
               color: "black",
               display: false,
             },
+            title: {
+              text: "Last 100 Days",
+              display:true,
+              color:"black",
+              font:20
+             },
           },
           y: {
             grid: {
@@ -229,8 +235,14 @@ class StockHomepage extends React.Component {
             },
             ticks: {
               color: "black",
-              display: false,
+              display: true,
             },
+            title: {
+              text: "Price(U$)",
+              display:true,
+              color:"black",
+              font:20
+             },
           },
         },
         maintainAspectRatio: false,
