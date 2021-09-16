@@ -11,12 +11,12 @@ class News extends React.Component {
   };
 
   getNewsData = async () => {
-    
-    let url = "https://finnhub.io/api/v1/news?category=business&token=c50ojj2ad3ic9bdldmog";
+    this.setState({ loading: true });
+    let url =
+      "https://finnhub.io/api/v1/news?category=business&token=c50ojj2ad3ic9bdldmog";
 
     const response = await axios.get(url);
 
-   
     let articlesArr = [...response.data];
 
     this.setState({
@@ -45,15 +45,19 @@ class News extends React.Component {
             return (
               <div>
                 <div key={article["headline"]} className="card-body">
-
-                   <div className="card-image" >
-                      <img className="imgNews" alt= {article["headline"]} src={article["image"]} />
+                  <div className="card-image">
+                    <img
+                      className="imgNews"
+                      alt={article["headline"]}
+                      src={article["image"]}
+                    />
                   </div>
                   <div className="card-text">
-                    <a className = "linkNews" href= {article["url"]}><h2>{article["headline"]}</h2></a>
+                    <a className="linkNews" href={article["url"]}>
+                      <h2>{article["headline"]}</h2>
+                    </a>
                     <p>{article["summary"]}</p>
                   </div>
-
                 </div>
               </div>
             );
