@@ -15,7 +15,7 @@ Your finances in one place. Sigma Finance is a portfolio tracker/helper, and muc
 > - 100% automated tracking (stocks, crypto and savings acc);
 > - Statistics and comparisons for every asset;
 > - Dynamic graphs;
-> - Currency convertion;
+> - Currency conversion;
 > - Monetary correction;
 > - Top trending investment news;
 > - Stock finder;
