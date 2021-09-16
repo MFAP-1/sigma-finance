@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
+
 import "./InvestmentList.css";
 import Crypto from "./Crypto";
+import LoadingAnimation from "../loading/LoadingAnimation";
 
 class CryptoList extends React.Component {
   constructor() {
@@ -9,6 +11,7 @@ class CryptoList extends React.Component {
     this.state = {
       coins: [],
       search: "",
+      loading: false,
     };
   }
 
@@ -20,16 +23,16 @@ class CryptoList extends React.Component {
     this.setState({
       coins: [...coinsObj],
     });
-
-    // console.log(this.state.coins);
   };
 
   componentDidMount = async () => {
+    this.setState({ loading: true });
     try {
       await this.getListData();
     } catch (err) {
       console.error(err);
     }
+    this.setState({ loading: false });
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -49,7 +52,6 @@ class CryptoList extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(this.state.search);
     let filteredCoinArr = this.state.coins.filter((coin) => {
       return coin.name.toLowerCase().includes(this.state.search.toLowerCase());
     });
@@ -75,20 +77,24 @@ class CryptoList extends React.Component {
             <button className="button-form">Search</button>
           </form>
         </div>
-        {this.state.coins.map((coin) => {
-          return (
-            <Crypto
-              key={coin.id}
-              name={coin.name}
-              image={coin.image}
-              symbol={coin.symbol}
-              marketcap={coin.market_cap}
-              price={coin.current_price}
-              priceChange={coin.price_change_percentage_24h}
-              marketcaprank={coin.market_cap_rank}
-            />
-          );
-        })}
+        {this.state.loading ? (
+          <LoadingAnimation />
+        ) : (
+          this.state.coins.map((coin) => {
+            return (
+              <Crypto
+                key={coin.id}
+                name={coin.name}
+                image={coin.image}
+                symbol={coin.symbol}
+                marketcap={coin.market_cap}
+                price={coin.current_price}
+                priceChange={coin.price_change_percentage_24h}
+                marketcaprank={coin.market_cap_rank}
+              />
+            );
+          })
+        )}
       </div>
     );
   }

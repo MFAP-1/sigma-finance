@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import cellphone_demo from "../../assets/images/cellphone-demo.webp";
+import cellphone_demo from "../../assets/images/cellphone.webp";
 import sigmaIcon from "../../assets/images/logo512.png";
 
 function SigmaFinancePresentation() {
@@ -18,7 +18,7 @@ function SigmaFinancePresentation() {
           <img
             src={cellphone_demo}
             alt="Background vector created by rawpixel.com - www.freepik.com"
-            style={{ height: "20vh" }}
+            style={{ height: "15vh" }}
           />
         </div>
       </div>
@@ -34,7 +34,7 @@ function SigmaFinancePresentation() {
             <tr>Dynamic graphs</tr>
             <tr>Currency convertion</tr>
             <tr>Monetary correction</tr>
-            <tr>Top treading investment news</tr>
+            <tr>Top trending investment news</tr>
             <tr>Stock finder</tr>
             <tr>Crypto finder</tr>
           </tbody>

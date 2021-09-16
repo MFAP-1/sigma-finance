@@ -4,13 +4,10 @@ import "./InvestmentList.css";
 
 function CryptoPage() {
   return (
-    <div >
-     
-     <CryptoList />
-   
+    <div className="main-crypto-page-div">
+      <CryptoList />
     </div>
   );
 }
 
 export default CryptoPage;
-

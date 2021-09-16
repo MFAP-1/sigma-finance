@@ -32,8 +32,6 @@ class CurrencyConverterPage extends React.Component {
       currenciesInformation: { ...currenciesObj },
       currenciesList: [...currenciesArr],
     });
-
-    // console.log(this.state.currenciesInformation);
   };
 
   Calculate = () => {
