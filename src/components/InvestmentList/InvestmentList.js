@@ -104,11 +104,20 @@ class StockList extends React.Component {
       options: {
         scales: {
           x: {
+            type: "time",
+
+           
+              type: 'time',
+              time: {
+                  unit: 'month'
+              
+            },
             grid: {
               display: false,
             },
             ticks: {
               color: "black",
+              maxTicksLimit:10,
             },
           },
           y: {
@@ -117,6 +126,12 @@ class StockList extends React.Component {
             },
             ticks: {
               color: "black",
+            },
+            title: {
+             text: "Price(U$)",
+             display:true,
+             color:"black",
+             font:20
             },
           },
         },
