@@ -60,7 +60,7 @@ class Wallet extends React.Component {
     }
   };
 
-  renderAssetList = () => {
+  renderAssetListTable = () => {
     return (
       <table id="portfolio-table">
         <thead>
@@ -131,7 +131,7 @@ class Wallet extends React.Component {
             Show portfolio history
           </button>
         </div>
-        <div id="portfolio-table-div">{this.renderAssetList()}</div>
+        <div id="portfolio-table-div">{this.renderAssetListTable()}</div>
         <div id="canvas-graphs-div">
           {this.state.drawGraph1 ? (
             <AssetTypeChart

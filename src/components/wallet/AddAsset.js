@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import AssetForm from "./AssetForm";
+import LoggedOffPage from "../authentication/loggedoff/LoggedOffPage";
 
 import "./assetForm.css";
 
@@ -43,7 +44,7 @@ class AddAsset extends React.Component {
   };
 
   render() {
-    return (
+    return this.props.loggedIn ? (
       <div className="asset-form-box">
         <h2>Add a new asset to your portfolio</h2>
         <AssetForm
@@ -52,6 +53,8 @@ class AddAsset extends React.Component {
           handleChange={this.handleChange}
         />
       </div>
+    ) : (
+      <LoggedOffPage />
     );
   }
 }

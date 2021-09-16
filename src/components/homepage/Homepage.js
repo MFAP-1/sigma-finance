@@ -1,12 +1,15 @@
 import React from "react";
-import StockHomepage from "../InvestmentList/StockHomepage";
+
+import StockHomepage from "./StockHomepage";
+import SigmaFinancePresentation from "./SigmaFinancePresentation";
+
+import "./homepage.css";
 
 function HomePage() {
   return (
-    <div>
-      <div>
-        <StockHomepage />
-      </div>
+    <div className="container-homepage">
+      <StockHomepage />
+      <SigmaFinancePresentation />
     </div>
   );
 }

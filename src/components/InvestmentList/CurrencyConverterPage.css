@@ -78,9 +78,11 @@
     font-size: 1.1rem;
   }
   .converter-form-couple-div select {
-    width: calc(17vw + 1vmin);
+    text-align: left;
+    width: 26vw;
   }
   .converter-form-couple-div input {
+    text-align: left;
     width: 20vw;
   }
 }

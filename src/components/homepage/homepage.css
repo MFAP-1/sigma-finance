@@ -1,0 +1,200 @@
+/* Main div */
+.container-homepage {
+  min-height: 79.9vh;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../../assets/images/bg_earth_mirrored.jpg");
+  color: white;
+  padding: 1rem 1rem;
+}
+
+.container-canvas {
+  width: 90%;
+  min-height: 250px;
+  background-color: lightgray;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+}
+
+.container-stockOfDay {
+  /* relacionado a responsividade da homepage (tem que ser vh ao inves de %)*/
+  width: 48%;
+  /* relacionado a responsividade da do container */
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.cointainer-infoImg {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.cards-container2 {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  border-radius: 1rem;
+  margin-left: 1rem;
+  background-color: lightgray;
+  color: black;
+}
+
+.card-body2 h2 {
+  font-size: 1rem;
+  word-wrap: break-word;
+}
+
+.container-strips {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  margin-right: 1rem;
+  background-color: white;
+  color: black;
+  border-radius: 1rem;
+}
+.stripInformation,
+.last-div {
+  border-bottom: solid 1px black;
+  background-color: lightgray;
+}
+.last-div {
+  border-radius: 0 0 1rem 1rem;
+}
+
+.imgNews2 {
+  width: 100%;
+  max-height: 20%;
+  border-radius: 1rem 1rem 0 0;
+  border-bottom: solid 1px white;
+}
+
+/* Company's div configuration */
+.container-OurCompany {
+  background: rgb(0, 0, 0, 0.8);
+  padding: 0.5rem 1rem 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 48%;
+  /* border: 1px solid red; */
+  color: white;
+  border-radius: 2rem;
+}
+
+.title-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.logo-div-homepage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 0.1rem;
+  margin: 0 2rem;
+}
+
+.companys-presentation-aux-div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.container-OurCompany h2 {
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border-top: 1px dashed white;
+}
+.features-table {
+  width: 25vw;
+}
+.container-OurCompany thead {
+  background-color: white;
+  color: black;
+}
+.container-OurCompany tbody {
+  background-color: lightgray;
+  color: black;
+}
+.container-OurCompany tr {
+  font-size: 0.9rem;
+}
+.container-OurCompany tr:hover,
+.stripInformation:hover,
+.last-div:hover {
+  background-color: gray;
+  color: white;
+  transition: all 300ms ease-in-out 0ms;
+}
+
+/* Button configuration */
+.presentation-signup-button {
+  padding: 0.5rem 5rem;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 500ms ease-in-out 0ms;
+}
+.presentation-signup-button:hover {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+
+  transition: all 500ms ease-in-out 0ms;
+}
+.presentation-signup-button:active {
+  background-color: rgb(168, 12, 12);
+  color: white;
+  border: 1px solid white;
+}
+
+/*  Media queries */
+
+@media screen and (max-width: 1280px) {
+  .features-table {
+    width: 30vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container-stockOfDay {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .container-OurCompany {
+    width: 100%;
+  }
+
+  .cards-container2 {
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 1.5rem;
+  }
+
+  .container-strips {
+    margin-top: 20px;
+    width: 80%;
+  }
+  .features-table {
+    width: 65vw;
+  }
+}

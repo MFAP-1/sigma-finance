@@ -4,7 +4,7 @@ import LoadingAnimationLinear from "../../loading/LoadingAnimationLinear";
 
 function BasicInformationTable(props) {
   return (
-    <div className="center-object">
+    <div className="center-object asset-details-basic-information-table">
       <table>
         <thead>
           <tr key="detailedAsset-tables-title-basic-information">
