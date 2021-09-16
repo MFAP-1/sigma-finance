@@ -14,7 +14,7 @@
 #portfolio-table-div {
   display: flex;
   justify-content: center;
-  margin-bottom: 100px; /* -----------------DEBUGGUER DO FOOTER -------*/
+  margin-bottom: 1.5rem;
 }
 
 #portfolio-table,
@@ -85,7 +85,7 @@ th {
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  padding-bottom: 10rem; /* -----------------DEBUGGUER DO FOOTER -------*/
+  padding-bottom: 1.5rem;
 }
 
 #canvas-PortfolioHistory-div {

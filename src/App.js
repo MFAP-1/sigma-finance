@@ -37,84 +37,88 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="main-container bg-titanium">
+      <div id="main-container">
         <BrowserRouter>
           <Header state={this.state} />
-          <Route exact path="/" component={HomePage} />
+          <main id="site-content">
+            <Route exact path="/" component={HomePage} />
 
-          {/* Investments (external API) imports */}
-          <Route exact path="/stocks" component={InvestmentListPage} />
-          <Route exact path="/cryptocurrencies" component={CryptoPage} />
-          <Route
-            exact
-            path="/currency-converter"
-            component={CurrencyConverterPage}
-          />
-          <Route exact path="/correction" component={Correction} />
-          <Route exact path="/news" component={News} />
+            {/* Investments (external API) imports */}
+            <Route exact path="/stocks" component={InvestmentListPage} />
+            <Route exact path="/cryptocurrencies" component={CryptoPage} />
+            <Route
+              exact
+              path="/currency-converter"
+              component={CurrencyConverterPage}
+            />
+            <Route exact path="/correction" component={Correction} />
+            <Route exact path="/news" component={News} />
 
-          {/* Wallet Routes */}
-          <Route
-            exact
-            path="/wallet"
-            render={(props) => (
-              <Wallet
-                {...props}
-                username={this.state.username}
-                loggedIn={this.state.loggedIn}
-              />
-            )}
-          />
-          <Route
-            path="/wallet/add"
-            render={(props) => (
-              <AddAsset {...props} username={this.state.username} />
-            )}
-          />
-          <Route
-            path="/wallet/details/:assetId"
-            render={(props) => (
-              <DetailedAsset
-                {...props}
-                username={this.state.username}
-                loggedIn={this.state.loggedIn}
-              />
-            )}
-          />
-          <Route
-            path="/wallet/edit/:assetId"
-            render={(props) => (
-              <EditAsset {...props} username={this.state.username} />
-            )}
-          />
-          <Route
-            path="/wallet/manualupdate/:assetId"
-            render={(props) => (
-              <ManualUpdateAsset {...props} username={this.state.username} />
-            )}
-          />
-          <Route
-            path="/wallet/delete/:assetId"
-            render={(props) => (
-              <DeleteAsset {...props} username={this.state.username} />
-            )}
-          />
+            {/* Wallet Routes */}
+            <Route
+              exact
+              path="/wallet"
+              render={(props) => (
+                <Wallet
+                  {...props}
+                  username={this.state.username}
+                  loggedIn={this.state.loggedIn}
+                />
+              )}
+            />
+            <Route
+              path="/wallet/add"
+              render={(props) => (
+                <AddAsset {...props} username={this.state.username} />
+              )}
+            />
+            <Route
+              path="/wallet/details/:assetId"
+              render={(props) => (
+                <DetailedAsset
+                  {...props}
+                  username={this.state.username}
+                  loggedIn={this.state.loggedIn}
+                />
+              )}
+            />
+            <Route
+              path="/wallet/edit/:assetId"
+              render={(props) => (
+                <EditAsset {...props} username={this.state.username} />
+              )}
+            />
+            <Route
+              path="/wallet/manualupdate/:assetId"
+              render={(props) => (
+                <ManualUpdateAsset {...props} username={this.state.username} />
+              )}
+            />
+            <Route
+              path="/wallet/delete/:assetId"
+              render={(props) => (
+                <DeleteAsset {...props} username={this.state.username} />
+              )}
+            />
 
-          {/* Authentication Routes */}
-          <Route path="/signup" component={SignUpPage} />
-          <Route
-            path="/login"
-            render={(props) => (
-              <LoginPage {...props} updateLoginState={this.updateLoginState} />
-            )}
-          />
-          <Route
-            path="/logout"
-            render={(props) => (
-              <Logout {...props} updateLoginState={this.updateLoginState} />
-            )}
-          />
-
+            {/* Authentication Routes */}
+            <Route path="/signup" component={SignUpPage} />
+            <Route
+              path="/login"
+              render={(props) => (
+                <LoginPage
+                  {...props}
+                  updateLoginState={this.updateLoginState}
+                />
+              )}
+            />
+            <Route
+              path="/logout"
+              render={(props) => (
+                <Logout {...props} updateLoginState={this.updateLoginState} />
+              )}
+            />
+          </main>
           <Footer />
         </BrowserRouter>
       </div>

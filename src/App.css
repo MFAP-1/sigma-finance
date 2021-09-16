@@ -5,15 +5,20 @@
   font-size: calc(0.75rem + 0.5vmin);
 }
 
-.main-container {
-  max-width: 100%;
-  max-height: 92%;
-  width: 100vw;
-  height: 92vh;
+#main-container {
+  /* max-width: 100%; */
+  /* max-height: 92%; */
+  /* width: 100vw; */
+  /* height: 92vh; */
+  background-color: rgb(226, 226, 226);
+  /* footer test */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-.bg-titanium {
-  background-color: rgb(226, 226, 226);
+#site-content {
+  flex: 1;
 }
 
 /* centering objects */
