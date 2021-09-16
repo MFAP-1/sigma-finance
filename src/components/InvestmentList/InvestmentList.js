@@ -18,18 +18,18 @@ class StockList extends React.Component {
   };
 
   getChartData = async () => {
-    // const apiKey = "R2P4F9RG0EKKWZEU";
+    const apiKey = "R2P4F9RG0EKKWZEU";
 
-    // let url = `https://www.alphavantage.co/query?function=${
-    //   this.state.typeInformation
-    // }&symbol=${this.state.companySymbol.toUpperCase()}&outputsize=${
-    //   this.state.outputsize
-    // }&apikey=${apiKey}`;
-    // console.log(url)
+    let url = `https://www.alphavantage.co/query?function=${
+      this.state.typeInformation
+    }&symbol=${this.state.companySymbol.toUpperCase()}&outputsize=${
+      this.state.outputsize
+    }&apikey=${apiKey}`;
+    console.log(url)
 
     //teste para não passar do limite de requisições
-    let url =
-      "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22";
+    // let url =
+    //   "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22";
 
     const response = await axios.get(url);
 
