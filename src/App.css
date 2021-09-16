@@ -81,11 +81,9 @@ select {
 
 /* ruler */
 hr {
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   height: 1px;
-  /* text-align: center; */
-  /* font-size: 0.2rem; */
   border-top: 1px dashed black;
   margin: 3vh 0;
 }

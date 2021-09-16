@@ -88,7 +88,7 @@ function PortfolioTableBody(props) {
       })}
       <tr key="add new asset btn">
         <td colSpan="9">
-          <Link to="/wallet/add" className="no-link-decoration">
+          <Link to="/wallet/add">
             <button style={{ width: "100%" }}>Add new asset</button>
           </Link>
         </td>
