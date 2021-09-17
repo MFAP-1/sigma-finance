@@ -36,7 +36,7 @@ This is an open source project, feel free to fork it, make improvements and subm
 
 ## Find more about this project
 
-To see a slide presentation, just follow the link: <a href="......">Sigma Finance presentation</a>.
+To see a slide presentation, just follow the link: <a href="https://docs.google.com/presentation/d/1qkfEb5cBT7KYd1kv8pBmbOMs8w0uHRU0OhvkIdTQsiE/edit?usp=sharing">Sigma Finance presentation</a>.
 For an enhanced experience, watch it in the 'presentation mode'. There are important transitions.
 
 ## Disclaimer
