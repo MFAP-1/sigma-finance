@@ -45,6 +45,7 @@ class StockHomepage extends React.Component {
 
   /////////////////////NEWS CARD//////////////////////////
   getNewsData = async () => {
+    
     let url = `https://finnhub.io/api/v1/company-news?symbol=${this.state.companySymbol}&from=2021-09-01&to=2021-09-14&token=c50ojj2ad3ic9bdldmog`;
     const response = await axios.get(url);
     let articlesArr = [...response.data];
@@ -63,36 +64,19 @@ class StockHomepage extends React.Component {
     //FUNCIONANDO
     let url = `https://www.alphavantage.co/query?function=${this.state.typeInformation}&symbol=${random}&outputsize=${this.state.outputsize}&apikey=${apiKey}`;
 
-    // let  url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${random}&apikey=${apiKey}`
-
-    //USAR PARA NÃO ATINGIR O LIMITE DE APIS
-    // let url =
-    //   "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22";
-
     const response = await axios.get(url);
 
     this.setState({
       companySymbol: random,
     });
 
-    // const response2 = await axios.get(url2)
-    // const companyInformations = {...response2.data}
-
-    //     this.setState ({
-    //       companyOverview: companyInformations
-    //    })
-
     this.transformDataChart(response.data);
   };
 
   getCompanyDescription = async () => {
     const apiKey = "R2P4F9RG0EKKWZEU";
-    //FUNCIONANDO LIMITE DE APIS
-    let url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.companySymbol}&apikey=${apiKey}`;
 
-    /// USAR QUANDO LIMITE DE APIS FOR ATINGIDO
-    // let url2 =
-    //   "https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo";
+    let url2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.companySymbol}&apikey=${apiKey}`;
 
     const response2 = await axios.get(url2);
 
@@ -143,17 +127,7 @@ class StockHomepage extends React.Component {
     }
   };
 
-  //   componentDidUpdate = (prevProps, prevState) => {
-  //     if (prevState.chartValuesY !== this.state.chartValuesY) {
-  //       this.renderChart();
-  //     }
-  //  }
-
   renderChart = () => {
-    // if (this.state.chartValuesX.length === 0) {
-    //   return alert("Couldn't find information about this stock at the moment. Please try again or serch for another");
-    // }
-
     if (this.state.isLoaded) {
       this.state.isLoaded.destroy();
     }
@@ -171,7 +145,7 @@ class StockHomepage extends React.Component {
             borderColor: "blue",
             fill: true,
             tension: 0.4,
-            borderWidth: 2,
+            borderWidth: 1.5,
             pointRadius: 0,
           },
           {
@@ -181,7 +155,7 @@ class StockHomepage extends React.Component {
             borderColor: "green",
             fill: true,
             tension: 0.4,
-            borderWidth: 2,
+            borderWidth: 1.5,
             pointRadius: 0,
           },
           {
@@ -191,7 +165,7 @@ class StockHomepage extends React.Component {
             borderColor: "black",
             fill: true,
             tension: 0.4,
-            borderWidth: 2,
+            borderWidth: 1,
             pointRadius: 0,
           },
         ],
@@ -252,6 +226,7 @@ class StockHomepage extends React.Component {
         </div>
 
         <div className="cointainer-infoImg">
+          
           <div className="container-strips">
             <div>
               <h3>{this.state.companyOverview["Name"]}</h3>
@@ -289,39 +264,42 @@ class StockHomepage extends React.Component {
               {formatMoney(Number(this.state.companyOverview["EBITDA"]), "USD")}
             </div>
           </div>
-          <div className="cards-container2">
-            {this.state.topArticles.map((article) => {
-              return (
-                <div key={article["id"]} className="card-body2">
-                  {article["image"] === "" || article["image"] === null ? (
-                    <div className="card-image2">
-                      <img
-                        className="imgNews2"
-                        alt={article["related"]}
-                        src={
-                          "https://s.yimg.com/uu/api/res/1.2/T44Iwg7RbRrkaTIYz_liyQ--~B/aD00Njk7dz05MDA7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/en/zacks.com/737ffb82e07dc8bffb77e72d153c91f2"
-                        }
-                      />
+
+          {this.state.topArticles === undefined ? null : (
+            <div className="cards-container2">
+              {this.state.topArticles.map((article) => {
+                return (
+                  <div key={article["id"]} className="card-body2">
+                    {article["image"] === "" || article["image"] === null || article === undefined ? (
+                      <div className="card-image2">
+                        <img
+                          className="imgNews2"
+                          alt={article["related"]}
+                          src={
+                            "https://s.yimg.com/uu/api/res/1.2/T44Iwg7RbRrkaTIYz_liyQ--~B/aD00Njk7dz05MDA7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/en/zacks.com/737ffb82e07dc8bffb77e72d153c91f2"
+                          }
+                        />
+                      </div>
+                    ) : (
+                      <div className="card-image2">
+                        <img
+                          className="imgNews2"
+                          alt={article["related"]}
+                          src={article["image"]}
+                        />
+                      </div>
+                    )}
+                    <div className="card-text2">
+                      <h2>{article["headline"]}</h2>
+                      <a rel="noopener noreferrer" href={article["url"]}>
+                        Read More...
+                      </a>
                     </div>
-                  ) : (
-                    <div className="card-image2">
-                      <img
-                        className="imgNews2"
-                        alt={article["related"]}
-                        src={article["image"]}
-                      />
-                    </div>
-                  )}
-                  <div className="card-text2">
-                    <h2>{article["headline"]}</h2>
-                    <a rel="noopener noreferrer" href={article["url"]}>
-                      Read More...
-                    </a>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     );

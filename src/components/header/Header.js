@@ -11,6 +11,11 @@ class Header extends React.Component {
   renderOfflineNavBar = () => {
     return (
       <nav id="nav-bar-small">
+        <div className="linkAboutDiv">
+          <Link to="/about" className="linkAbout">
+            About
+          </Link>
+        </div>
         <div className="linksSmallContainer">
           <div>
             <Link to="/currency-converter" className="no-link-decoration">
@@ -61,6 +66,11 @@ class Header extends React.Component {
   renderOnlineNavBar = () => {
     return (
       <nav id="nav-bar-large">
+        <div className="linkAboutDiv">
+          <Link to="/about" className="linkAbout">
+            About
+          </Link>
+        </div>
         <div className="linksLargeContainer">
           <div>
             <Link to="/currency-converter" className="no-link-decoration">
@@ -123,6 +133,11 @@ class Header extends React.Component {
     return (
       <nav id="nav-bar-small-mobile" onClick={this.toggleBurger}>
         <div className="link-mobile">
+          <Link to="/about" className="no-link-decoration">
+            About
+          </Link>
+        </div>
+        <div className="link-mobile">
           <Link to="/login" className="no-link-decoration">
             Login
           </Link>
@@ -167,6 +182,11 @@ class Header extends React.Component {
     return (
       <nav id="nav-bar-large-mobile" onClick={this.toggleBurger}>
         <div className="link-mobile">
+          <Link to="/about" className="no-link-decoration">
+            About
+          </Link>
+        </div>
+        <div className="link-mobile">
           <Link to="/currency-converter" className="no-link-decoration">
             Converter
           </Link>
@@ -208,6 +228,7 @@ class Header extends React.Component {
             {this.props.state.username}
           </span>
         </div>
+
         <div className="link-mobile">
           <Link to="/logout" className="no-link-decoration">
             Logout

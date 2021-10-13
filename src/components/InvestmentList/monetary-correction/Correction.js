@@ -86,7 +86,7 @@ class Correction extends React.Component {
         <form className="converter-form" onSubmit={this.handleSubmit}>
           <div className="converter-form-couple-div">
             <div>
-              <label>Amount</label>
+              <label>Amount </label>
               <input
                 type="number"
                 name="amount"
@@ -97,16 +97,16 @@ class Correction extends React.Component {
               />
             </div>
             <div>
-              <label>Index</label>
+              <label>Index </label>
               <select name="correctionType" onChange={this.handleChange}>
-                <option>IPCA</option>
-                <option>Selic</option>
+                <option>IPCA </option>
+                <option>Selic </option>
               </select>
             </div>
           </div>
           <div className="converter-form-couple-div">
             <div>
-              <label>From</label>
+              <label>From </label>
               <input
                 type="date"
                 name="fromDate"
@@ -117,7 +117,7 @@ class Correction extends React.Component {
               />
             </div>
             <div>
-              <label>To</label>
+              <label>To </label>
               <input
                 type="date"
                 name="toDate"

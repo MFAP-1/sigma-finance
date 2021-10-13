@@ -41,10 +41,10 @@ class News extends React.Component {
         <h1>News of the Day</h1>
 
         <div className="cards-container">
-          {this.state.topArticles.map((article) => {
+          {this.state.topArticles.map((article, index) => {
             return (
-              <div>
-                <div key={article["headline"]} className="card-body">
+              <div key={article["headline"] + index}>
+                <div  className="card-body">
                   <div className="card-image">
                     <img
                       className="imgNews"

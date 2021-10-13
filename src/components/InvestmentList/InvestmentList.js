@@ -15,6 +15,7 @@ class StockList extends React.Component {
     bestMatches: [],
     displaySearchbar: false,
     displayMessage: false,
+    displayAdvice:false
   };
 
   getChartData = async () => {
@@ -26,19 +27,14 @@ class StockList extends React.Component {
       this.state.outputsize
     }&apikey=${apiKey}`;
 
-    //teste para não passar do limite de requisições
-    // let url =
-    //   "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo%22";
+   
 
     const response = await axios.get(url);
 
     this.transformDataChart(response.data);
   };
 
-  // getCompanyData = async () => {
-  //   let url2 = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=AAPL&apikey=demo%27"
-  //   const response = await axios.get(url2);
-  // }
+
 
   transformDataChart = (data) => {
     const obj = { ...data["Time Series (Daily)"] };
@@ -75,7 +71,7 @@ class StockList extends React.Component {
 
   renderChart = () => {
     if (this.state.chartValuesX.length === 0) {
-      return null; //alert("Couldn't find information about this stock at the moment. Please try again or search for another" );
+      return null; 
     }
 
     if (this.state.isLoaded) {
@@ -119,7 +115,7 @@ class StockList extends React.Component {
               color: "black",
             },
             title: {
-              text: "Price(U$)",
+              text: "Price",
               display: true,
               color: "black",
               font: 20,
@@ -140,11 +136,14 @@ class StockList extends React.Component {
   };
 
   handleFind = async () => {
-    //coloquei um async/await
+    
     if (this.state.companySymbol === "") {
-      //alert("Please write a valid stock name");
+      
     } else {
       await this.getChartData();
+      this.setState({
+        displayAdvice:false
+      })
     }
   };
 
@@ -173,8 +172,9 @@ class StockList extends React.Component {
   };
 
   handleFind2 = async () => {
-    //coloquei um async/await
+    
     this.setState({
+     
       displaySearchbar: !this.state.displaySearchbar,
     });
 
@@ -187,6 +187,7 @@ class StockList extends React.Component {
     this.setState({
       companySymbol: event.target.name,
       displaySearchbar: !this.state.displaySearchbar,
+      displayAdvice:!this.state.displayAdvice
     });
   };
 
@@ -208,6 +209,8 @@ class StockList extends React.Component {
               <button className="button-Stocks" onClick={this.handleFind}>
                 Find
               </button>
+
+              {this.state.displayAdvice===false? null : <div className="messageClick"><b>Click Find</b> </div>}
             </div>
             <div className="searchBar">
               <input
