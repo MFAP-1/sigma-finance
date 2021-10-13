@@ -30,9 +30,9 @@ class PortfolioHistory extends React.Component {
 
   getCurrencyData = async () => {
     const url =
-      "https://api.exchangeratesapi.io/v1/latest?access_key=ac8ab16193cf913bd7bbf4e56ef3f6c2";
+      "https://v6.exchangerate-api.com/v6/0643403684aee3640b113f6c/latest/EUR";
     const response = await axios.get(url);
-    const currenciesObj = { ...response.data["rates"] };
+    const currenciesObj = { ...response.data["conversion_rates"] };
     const usd_brl = currenciesObj["BRL"] / currenciesObj["USD"];
     const usd_eur = currenciesObj["EUR"] / currenciesObj["USD"];
     const brl_usd = currenciesObj["USD"] / currenciesObj["BRL"];

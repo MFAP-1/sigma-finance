@@ -60,6 +60,21 @@
   border-radius: 0.45rem;
 }
 
+.linkAboutDiv {
+  border: 1px solid white;
+  border-radius: 0.45rem;
+  margin-right: 3%;
+  display:flex;
+  text-align: center;
+}
+
+.linkAbout {
+  text-decoration: none;
+  color: white;
+  margin:0.35rem
+}
+
+
 .linksLargeContainer {
   display: inline-flex;
   border: 1px solid white;

@@ -13,11 +13,12 @@
 }
 
 .container-canvas {
-  width: 90%;
+  width: 80%;
   min-height: 250px;
   background-color: lightgray;
   border: 1px solid white;
   border-radius: 0.5rem;
+  padding:0.9rem
 }
 
 .container-stockOfDay {

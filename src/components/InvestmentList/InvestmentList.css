@@ -77,13 +77,17 @@
   border:1px solid black; 
    border-radius: 1rem;
 } 
-
- /* #myCanvas {
-  width: 43.75;
-  height: 25rem;
-  border: 1px solid black;
-
-}  */
+.messageClick{
+  margin-left: 0.2rem;
+  display:flex;
+  text-align: center;
+  align-items: center;
+  background-color: chartreuse;
+  height: 2rem;
+  padding:0.2rem;
+  border-radius: 0.5rem;
+  border:1px solid black
+}
 
 
 @media screen and (max-width: 768px) {

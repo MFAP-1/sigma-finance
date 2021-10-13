@@ -6,6 +6,8 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import HomePage from "./components/homepage/Homepage";
+import About from "./components/about/About";
+
 // Investments (external API) imports
 import InvestmentListPage from "./components/InvestmentList/InvestmentListPage";
 import CryptoPage from "./components/InvestmentList/CryptoPage";
@@ -53,6 +55,7 @@ class App extends React.Component {
             />
             <Route exact path="/correction" component={Correction} />
             <Route exact path="/news" component={News} />
+            <Route exact path="/about" component={About} />
 
             {/* Wallet Routes */}
             <Route
