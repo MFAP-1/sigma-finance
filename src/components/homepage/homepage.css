@@ -10,6 +10,7 @@
   background-image: url("../../assets/images/bg_digital_earth.jpg");
   color: white;
   padding: 1rem 1rem;
+
 }
 
 .container-canvas {
@@ -25,12 +26,13 @@
   /* relacionado a responsividade da homepage (tem que ser vh ao inves de %)*/
   width: 48%;
   /* relacionado a responsividade da do container */
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.8);
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  padding-top:0.5rem;
 }
 
 .cointainer-infoImg {
@@ -39,6 +41,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+  padding-top: 1rem;
 }
 
 .cards-container2 {
@@ -98,6 +101,9 @@
   flex-direction: row;
   align-items: center;
 }
+.title-strip {
+  border-bottom: 1px solid black;
+}
 .logo-div-homepage {
   display: flex;
   flex-direction: row;
@@ -121,21 +127,36 @@
   margin-bottom: 1rem;
   border-top: 1px dashed white;
 }
+
 .features-table {
   width: 25vw;
+  padding:0;
+  border-radius: 10px;
 }
-.container-OurCompany thead {
-  background-color: white;
-  color: black;
-}
-.container-OurCompany tbody {
+
+.li-feature {
+  list-style: none;
+  border-top:1px solid black;
+  padding:0.5px 0;
   background-color: lightgray;
   color: black;
 }
-.container-OurCompany tr {
-  font-size: 0.9rem;
+.li-last{
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
-.container-OurCompany tr:hover,
+.title-feature {
+  list-style: none;
+  border-top:1px solid black;
+  padding:0.5px 0;
+  background-color: white;
+  color: black;
+  font-weight: 600;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.container-OurCompany li:hover,
 .stripInformation:hover,
 .last-div:hover {
   background-color: gray;
@@ -179,22 +200,37 @@
     width: 100%;
     background: rgba(0, 0, 0, 0.8);
   }
+  .logo-div-homepage {
+    display: none;
 
+  }
+  .title-div {
+    flex-direction: column;
+  }
+  .title-div h2 {
+    border: none;
+    font-size: 1.7rem;
+  }
   .container-OurCompany {
     width: 100%;
+    margin-bottom: 10px;
   }
-
   .cards-container2 {
     width: 80%;
     margin-top: 20px;
     margin-bottom: 1.5rem;
   }
-
   .container-strips {
     margin-top: 20px;
     width: 80%;
   }
   .features-table {
     width: 65vw;
+  }
+  .title-stockofDay h1{
+    margin-bottom:10px;
+  }
+  .container-canvas {
+    width: 80%;
   }
 }

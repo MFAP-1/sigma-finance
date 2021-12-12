@@ -229,7 +229,7 @@ class StockHomepage extends React.Component {
           
           <div className="container-strips">
             <div>
-              <h3>{this.state.companyOverview["Name"]}</h3>
+              <h3 className="title-strip">{this.state.companyOverview["Name"]}</h3>
             </div>
             <div className="stripInformation">
               <span>Exchange: </span> {this.state.companyOverview["Exchange"]}{" "}

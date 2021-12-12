@@ -7,39 +7,22 @@ body {
 }
 
 .horizontal-div {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 5rem;
+  display: grid;
+  grid-template-columns: 5% 1fr 5% 20% 15% 1fr 5%;
+  height: 4.5rem;
   border-bottom: 1px solid black;
   width: 100%;
-}
-
-.ImgNameSymbol-div {
-  width: 30%;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-self: center;
+}
+.horizontal-div:hover {
+ background-color: rgb(221, 217, 217);
 }
 
-.ImgNameSymbol-div img {
+.horizontal-div img {
   height: 1.875rem;
   width: 1.875rem;
-  margin-left: 1rem;
-}
-
-.coinData-div {
-  width: 70%;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-  width: 100%;
-  padding-left: 10%;
-  padding-right: 5%;
-}
-
-.marketCap-div {
-  margin-right: 8rem;
+  justify-self: center;
 }
 
 .coin-symbol {
@@ -74,13 +57,7 @@ body {
     display: none;
   }
 
-  .price-div {
-    margin-right: 3rem;
-  }
-
-  .coinData-div {
-    width: 50%;
-    padding-left: 20%;
-    padding-right: 10%;
+  .horizontal-div {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
