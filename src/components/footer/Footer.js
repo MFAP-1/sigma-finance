@@ -5,10 +5,10 @@ import "./footer.css";
 function Footer() {
   return (
     <footer id="footer-div">
-      <span>&#169;</span>
+      <span>&#169; </span>
       <a
         href="https://github.com/MFAP-1/sigma-finance"
-        style={{ color: "white", paddingRight: "10px" }}
+        style={{ color: "white", paddingRight: "10px", paddingLeft:"5px" }}
       >
         Sigma Finance.
       </a>

@@ -177,6 +177,9 @@
   .burger {
     display: block;
   }
+  #logo-div > h2 {
+    font-size: calc(1.5rem + 0.6vmin);
+  }
 }
 
 /* Styling for links  */

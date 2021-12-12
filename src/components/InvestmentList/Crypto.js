@@ -4,7 +4,7 @@ import "./Crypto.css";
 const Crypto = (props) => {
   return (
     <div className="horizontal-div">
-      <div className="ImgNameSymbol-div">
+      
         <img src={props.image} alt="cryptoLogo" />
 
         <p className="coin-name">
@@ -13,8 +13,8 @@ const Crypto = (props) => {
         <p className="coin-symbol">
           <b>{props.symbol}</b>
         </p>
-      </div>
-      <div className="coinData-div">
+    
+     
         <p className="price-div">
           <b> ${props.price}</b>
         </p>
@@ -36,7 +36,7 @@ const Crypto = (props) => {
           
         )}
         
-      </div>
+     
     </div>
   );
 };
