@@ -25,17 +25,18 @@ const Crypto = (props) => {
         <p className = "marketCap-div">
           <b>Mkt Cap: ${props.marketcap.toLocaleString()}</b>
         </p>
+        
         {props.priceChange < 0 ? (
           <p className="red">
-            <b>{props.priceChange.toFixed(2)}</b>%
+            <b>{parseFloat(props.priceChange).toFixed(2)}</b>%
           </p>
         ) : (
           <p className="green">
-            <b>{props.priceChange.toFixed(2)}</b>%
+            <b>{parseFloat(props.priceChange).toFixed(2)}</b>%
           </p>
-          
+         
         )}
-        
+         
      
     </div>
   );
